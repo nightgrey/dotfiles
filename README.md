@@ -30,6 +30,7 @@ _Note: The following steps were never tested. I created this repository shortly 
         3.  <https://github.com/mtneug/cfg_mgmt-macos>
     -   Shell script
         1.  <https://github.com/nicksp/dotfiles/blob/master/setup-new-machine.share>
+        2. <https://github.com/holman/dotfiles>
 -   This would probably come with the ansible automation, (there are homebrew roles) but ultimately, it'd be awesome to `brew install` => update package list.
 -   Encrypt (and thus commit) sensitive data (~/.ssh/ or similar)
 -   Command to automatically install from the brew/cask package lists; I have not yet tested if `brew install < .brew-packages` works.
