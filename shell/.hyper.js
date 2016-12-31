@@ -70,8 +70,11 @@ module.exports = {
     // by default ['--login'] will be used
     shellArgs: ['--login'],
 
-    // for environment variables
-    env: {},
+    // environment variables
+    env: {
+      // https://github.com/zeit/hyper/issues/360
+      LC_ALL: 'de_DE.UTF-8'
+    },
 
     // set to false for no bell
     bell: 'SOUND',

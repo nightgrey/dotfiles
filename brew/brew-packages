@@ -7,7 +7,7 @@ libyaml
 lua
 nano
 ncurses
-node
+nvm
 openssl
 pcre
 pkg-config
@@ -15,5 +15,6 @@ python
 readline
 ruby
 sqlite
+yarn
 zsh
 zsh-completions
