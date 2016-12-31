@@ -51,7 +51,7 @@ ZSH_THEME="pure"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting)
+plugins=(z zsh-completions zsh-syntax-highlighting history-substring-search yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=de_DE.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -87,3 +87,7 @@ fi
 # Export path for "NVM" (node.js version manager)
 export NVM_DIR=$HOME/.nvm
 . "/usr/local/opt/nvm/nvm.sh"
+
+# Autocompletion (via "zsh-completions" plugin)
+autoload -U compinit && compinit
+_comp_options+=(NO_err_return) # https://github.com/zsh-users/zsh-completions/issues/480#issuecomment-269412964
