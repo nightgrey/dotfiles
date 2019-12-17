@@ -1,0 +1,11 @@
+# sudo: auth account password session
+
+# `auth sufficient pam_tid.so` adds Touch ID support for authenticating sudo.
+# See https://dev.to/equiman/how-to-use-macos-s-touch-id-on-terminal-5fhg
+auth       sufficient     pam_tid.so
+auth       sufficient     pam_smartcard.so
+auth       required       pam_opendirectory.so
+account    required       pam_permit.so
+password   required       pam_deny.so
+session    required       pam_permit.so
+

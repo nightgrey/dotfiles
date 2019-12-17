@@ -1,0 +1,6 @@
+[submodule "iterm2-color-schemes"]
+	path = iterm2-color-schemes
+	url = https://github.com/mbadolato/iTerm2-Color-Schemes.git
+[submodule "home/.nano/nanorc"]
+	path = home/.nano/nanorc
+	url = https://github.com/scopatz/nanorc.git

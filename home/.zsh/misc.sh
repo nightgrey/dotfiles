@@ -1,0 +1,7 @@
+# Set locale
+# https://unix.stackexchange.com/questions/87745/what-does-lc-all-c-do
+export LC_ALL=en_GB.UTF-8
+
+# Bind up/down keys to zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

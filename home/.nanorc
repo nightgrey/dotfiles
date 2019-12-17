@@ -1,0 +1,3 @@
+# Include nanorc syntax highlightning
+# https://github.com/scopatz/nanorc
+include ~/.nano/nanorc/*.nanorc
