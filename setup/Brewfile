@@ -7,17 +7,25 @@ brew "git"
 brew "mas"
 brew "nano"
 brew "ruby"
+brew "yarn"
 brew "zsh"
+cask "discord"
 cask "figma"
 cask "font-hack"
 cask "font-powerline-symbols"
+cask "font-source-code-pro"
+cask "font-source-code-pro-for-powerline"
 cask "google-chrome"
+cask "iina"
 cask "iterm2"
 cask "nvidia-geforce-now"
 cask "spotify"
 cask "visual-studio-code"
+mas "1Password", id: 443987910
+mas "1Password 7", id: 1333542190
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
 mas "Magnet", id: 441258766
+mas "The Unarchiver", id: 425424353
 mas "Vectornator Pro", id: 1470168007
 mas "Xcode", id: 497799835

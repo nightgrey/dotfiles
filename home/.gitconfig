@@ -3,3 +3,5 @@
 	email = nico.niebergall@googlemail.com
 [pull]
 	rebase = true
+[core]
+	editor = nano
