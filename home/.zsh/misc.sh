@@ -9,3 +9,6 @@ bindkey '^[[B' history-substring-search-down
 # Load iTerm shell integration
 # https://iterm2.com/documentation-shell-integration.html
 source ~/.iterm2_shell_integration.zsh
+
+# Set $EDITOR
+export EDITOR="nano""
