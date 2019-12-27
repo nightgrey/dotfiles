@@ -7,8 +7,10 @@ brew "git"
 brew "mas"
 brew "nano"
 brew "ruby"
+brew "upx"
 brew "yarn"
 brew "zsh"
+cask "alfred"
 cask "discord"
 cask "figma"
 cask "font-hack"
@@ -20,9 +22,10 @@ cask "iina"
 cask "iterm2"
 cask "nvidia-geforce-now"
 cask "spotify"
+cask "telegram"
 cask "visual-studio-code"
-mas "1Password", id: 443987910
 mas "1Password 7", id: 1333542190
+mas "Adblock Pro", id: 1484190263
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
 mas "Magnet", id: 441258766

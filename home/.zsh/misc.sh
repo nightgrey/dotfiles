@@ -11,4 +11,4 @@ bindkey '^[[B' history-substring-search-down
 source ~/.iterm2_shell_integration.zsh
 
 # Set $EDITOR
-export EDITOR="nano""
+export EDITOR="nano"
