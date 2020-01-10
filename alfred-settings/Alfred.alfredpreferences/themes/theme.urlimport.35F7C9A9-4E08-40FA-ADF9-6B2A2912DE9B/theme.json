@@ -1,0 +1,61 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 4,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#EDE8D7FF",
+        "font" : "Monaco",
+        "color" : "#5C6E74FF"
+      },
+      "shortcut" : {
+        "size" : 13,
+        "colorSelected" : "#258AD1FF",
+        "font" : "Monaco",
+        "color" : "#6B6EC6FF"
+      },
+      "backgroundSelected" : "#293338FF",
+      "text" : {
+        "size" : 13,
+        "colorSelected" : "#859801FF",
+        "font" : "Monaco",
+        "color" : "#819395FF"
+      },
+      "iconPaddingHorizontal" : 7,
+      "paddingVertical" : 7,
+      "iconSize" : 24
+    },
+    "search" : {
+      "paddingVertical" : 0,
+      "background" : "#202A2FFF",
+      "spacing" : 3,
+      "text" : {
+        "size" : 19,
+        "colorSelected" : "#000000FF",
+        "font" : "Monaco",
+        "color" : "#FDF6E3FF"
+      },
+      "backgroundSelected" : "#B2D7FFFF"
+    },
+    "window" : {
+      "color" : "#202A2FFF",
+      "paddingHorizontal" : 3,
+      "width" : 560,
+      "borderPadding" : 0,
+      "borderColor" : "#002733FF",
+      "blur" : 0,
+      "roundness" : 3,
+      "paddingVertical" : 3
+    },
+    "credit" : "Velina V Veleva",
+    "separator" : {
+      "color" : "#FEFFFE00",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#00000019",
+      "thickness" : 0
+    },
+    "name" : "VVV Dark Solarized (Compact) (Gray)"
+  }
+}
