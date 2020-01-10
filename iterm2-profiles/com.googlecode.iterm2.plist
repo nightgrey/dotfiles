@@ -52889,7 +52889,19 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>335 172 799 448 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
+<<<<<<< HEAD
 	<string>192 87 1242 790 0 0 1440 877 </string>
+=======
+	<string>236 272 650 467 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>176 64 665 467 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>233 78 665 467 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>254 410 665 467 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>275 410 665 467 0 0 1440 877 </string>
+>>>>>>> Changed: iTerm settings
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -53531,17 +53543,32 @@
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<integer>0</integer>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
+<<<<<<< HEAD
 		<string>{398, 728}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>531DFED4-703B-495A-8445-9103728D6ADA</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
 	<integer>6</integer>
+=======
+		<string>{269, 605}</string>
+	</dict>
+	<key>NoSyncInstallationId</key>
+	<string>F3E67294-23F3-47F7-9BA9-71383CC4FE0A</string>
+	<key>NoSyncLastTipTime</key>
+	<real>598486914.83921301</real>
+	<key>NoSyncLaunchExperienceControllerRunCount</key>
+	<integer>22</integer>
+>>>>>>> Changed: iTerm settings
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -54249,7 +54276,24 @@
 		</array>
 	</dict>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
+<<<<<<< HEAD
 	<real>599655824.52058399</real>
+=======
+	<real>597106773.429685</real>
+	<key>NoSyncTipsDisabled</key>
+	<true/>
+	<key>NoSyncTipsToNotShow</key>
+	<array>
+		<string>0003</string>
+		<string>0000</string>
+		<string>0004</string>
+		<string>0001</string>
+		<string>000</string>
+		<string>0005</string>
+		<string>0002</string>
+		<string>0006</string>
+	</array>
+>>>>>>> Changed: iTerm settings
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -54298,7 +54342,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
+<<<<<<< HEAD
 	<date>2020-01-02T11:11:48Z</date>
+=======
+	<date>2019-12-27T00:33:56Z</date>
+>>>>>>> Changed: iTerm settings
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SoundForEsc</key>
