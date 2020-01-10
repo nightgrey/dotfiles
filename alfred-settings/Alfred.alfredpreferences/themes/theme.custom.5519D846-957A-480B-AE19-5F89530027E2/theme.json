@@ -1,0 +1,61 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 8,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#FFFFFFB4",
+        "font" : "Helvetica Neue",
+        "color" : "#FFFFFF66"
+      },
+      "shortcut" : {
+        "size" : 15,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica Neue",
+        "color" : "#FEFFFF66"
+      },
+      "backgroundSelected" : "#F3FFE313",
+      "text" : {
+        "size" : 17,
+        "colorSelected" : "#EFF5F8FF",
+        "font" : "Helvetica Neue Light",
+        "color" : "#FFFFFFD8"
+      },
+      "iconPaddingHorizontal" : 12,
+      "paddingVertical" : 14,
+      "iconSize" : 31
+    },
+    "search" : {
+      "paddingVertical" : 8,
+      "background" : "#FFFFFF00",
+      "spacing" : 3,
+      "text" : {
+        "size" : 34,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Hack",
+        "color" : "#FFFFFFFF"
+      },
+      "backgroundSelected" : "#016BDEFF"
+    },
+    "window" : {
+      "color" : "#12142944",
+      "paddingHorizontal" : 15,
+      "width" : 559,
+      "borderPadding" : 0,
+      "borderColor" : "#0000007F",
+      "blur" : 20,
+      "roundness" : 5,
+      "paddingVertical" : 16
+    },
+    "credit" : "Nico",
+    "separator" : {
+      "color" : "#CBCBCBF3",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#6D6D6DFF",
+      "thickness" : 2
+    },
+    "name" : "Soft Dark"
+  }
+}
