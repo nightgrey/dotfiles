@@ -12,6 +12,8 @@ antigen bundle brew
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle history-substring-search
 antigen bundle z
+antigen bundle DarrinTisdale/zsh-aliases-exa
+antigen bundle zsh-users/zsh-completions
 
 # Theme
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
