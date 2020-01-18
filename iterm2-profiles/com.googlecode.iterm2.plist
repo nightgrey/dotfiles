@@ -12,6 +12,8 @@
 	<string>manual</string>
 	<key>BootstrapDaemon</key>
 	<false/>
+	<key>CGFontRenderingFontSmoothingDisabled</key>
+	<false/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>3024 Day</key>
@@ -52840,7 +52842,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Dev/dotfiles/iterm2-color-schemes/schemes</string>
+	<string>~/Dev/dotfiles/iterm2-profiles</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{799, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -52863,7 +52865,7 @@
 	dWxs0g0ODxJaTlMub2JqZWN0c1YkY2xhc3OiEBGAAoAKgA3TFA0OFRkdV05TLmtleXOj
 	FhcYgAOABIAFoxobHIAGgAeACIAJWklkZW50aWZpZXJVV2lkdGhWSGlkZGVuUTAjQGjA
 	AAAAAAAI0iUmJyhaJGNsYXNzbmFtZVgkY2xhc3Nlc1xOU0RpY3Rpb25hcnmiJylYTlNP
-	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0B0oZ2yLQ5W0iUmNzhe
+	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0BzsZ2yLQ5W0iUmNzhe
 	TlNNdXRhYmxlQXJyYXmjNzkpV05TQXJyYXkACAARABoAJAApADIANwBJAEwAUgBUAGMA
 	aQBuAHkAgACDAIUAhwCJAJAAmACcAJ4AoACiAKYAqACqAKwArgC5AL8AxgDIANEA0gDX
 	AOIA6wD4APsBBAELAQ8BEQETARUBGQEbAR0BHwEhASMBLAExAUABRAAAAAAAAAIBAAAA
@@ -52885,14 +52887,11 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSColorPanel</key>
-	<string>0 153 224 275 0 0 1440 877 </string>
+	<string>0 163 224 275 0 0 1440 877 </string>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>335 172 799 448 0 0 1440 877 </string>
+	<string>320 337 799 448 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-<<<<<<< HEAD
-	<string>192 87 1242 790 0 0 1440 877 </string>
-=======
-	<string>236 272 650 467 0 0 1440 877 </string>
+	<string>0 64 1440 813 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>176 64 665 467 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -52901,7 +52900,6 @@
 	<string>254 410 665 467 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
 	<string>275 410 665 467 0 0 1440 877 </string>
->>>>>>> Changed: iTerm settings
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -53541,6 +53539,10 @@
 	<array>
 		<string>3.3.7</string>
 	</array>
+	<key>NoSyncBFPRecents</key>
+	<array>
+		<string>Hack</string>
+	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
@@ -53552,14 +53554,6 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-<<<<<<< HEAD
-		<string>{398, 728}</string>
-	</dict>
-	<key>NoSyncInstallationId</key>
-	<string>531DFED4-703B-495A-8445-9103728D6ADA</string>
-	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>6</integer>
-=======
 		<string>{269, 605}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
@@ -53567,15 +53561,16 @@
 	<key>NoSyncLastTipTime</key>
 	<real>598486914.83921301</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>22</integer>
->>>>>>> Changed: iTerm settings
+	<integer>25</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
-	<real>599828624.52073002</real>
+	<real>597770942.96425498</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
+	<true/>
+	<key>NoSyncPermissionToShowTip</key>
 	<true/>
 	<key>NoSyncRecordedVariables</key>
 	<dict>
@@ -53935,6 +53930,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>currentTab.currentSession.terminalWindowName</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>currentTab.currentSession.lastCommand</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -53952,6 +53955,14 @@
 				<true/>
 				<key>name</key>
 				<string>currentTab.currentSession</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>currentTab.window</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -54090,14 +54101,6 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.terminalIconName</string>
-				<key>nonterminalContext</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>isTerminal</key>
-				<true/>
-				<key>name</key>
 				<string>currentSession.presentationName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -54147,6 +54150,14 @@
 				<true/>
 				<key>name</key>
 				<string>currentSession.name</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>window</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -54276,9 +54287,6 @@
 		</array>
 	</dict>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
-<<<<<<< HEAD
-	<real>599655824.52058399</real>
-=======
 	<real>597106773.429685</real>
 	<key>NoSyncTipsDisabled</key>
 	<true/>
@@ -54293,7 +54301,6 @@
 		<string>0002</string>
 		<string>0006</string>
 	</array>
->>>>>>> Changed: iTerm settings
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -54338,15 +54345,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final_new.xml?shard=35</string>
+	<string>https://iterm2.com/appcasts/final_new.xml?shard=82</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-<<<<<<< HEAD
-	<date>2020-01-02T11:11:48Z</date>
-=======
-	<date>2019-12-27T00:33:56Z</date>
->>>>>>> Changed: iTerm settings
+	<date>2020-01-10T16:33:06Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SoundForEsc</key>
