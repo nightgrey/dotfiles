@@ -19,3 +19,16 @@ function open_command() {
 
   ${=open_cmd} "$@" &>/dev/null
 }
+ 
+# Install peer dependencies of the given packagename, e.g. `npp package-name`
+function npp() {
+  if [ -z "$1" ]
+    then
+      echo "First argument must be the package name you want to install the peer dependencies of."
+    else
+      echo "Installing peer dependencies of $1 ..."
+      npm info "$1@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$1@latest"
+  fi
+}
+
+alias install
