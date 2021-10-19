@@ -1,6 +1,6 @@
 # Dotfiles
 
-These are my personal Mac OS dotfiles to setup and configure a MacBook to my liking using the popular package manager ``homebrew``. 🥰
+These are my personal Linux dotfiles to setup and configure an Arch installation to my liking. 🥰
 
 Feel free to share, copy, use and edit.
 

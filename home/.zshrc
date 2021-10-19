@@ -1,30 +1,37 @@
-# Load antigen.sh
-source /usr/local/share/antigen/antigen.zsh
+# Load antigen
+source /usr/share/zsh/share/antigen.zsh
+
+# Load library
+antigen use oh-my-zsh
 
 # Load bundles
 antigen bundle git
 antigen bundle docker
 antigen bundle docker-compose
-antigen bundle docker-machine
-antigen bundle yarn
+antigen bundle node
+antigen bundle npm
+antigen bundle lukechilds/zsh-better-npm-completion
 antigen bundle web-search
-antigen bundle brew
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle history-substring-search
+antigen bundle zsh_reload
+
+# Shell related
 antigen bundle z
-antigen bundle DarrinTisdale/zsh-aliases-exa
 antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle DarrinTisdale/zsh-aliases-exa
+antigen bundle history-substring-search
+antigen bundle zsh-autocomplete
+antigen bundle command-not-found
 
 # Theme
-POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs ram nvm)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+antigen theme romkatv/powerlevel10k
 
-antigen theme bhilburn/powerlevel9k powerlevel9k
-
-# Apply it
+# Apply!
 antigen apply
+
+# powerlevel10k configuration
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Import configuration
 for file in $HOME/.zsh/*

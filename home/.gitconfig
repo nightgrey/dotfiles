@@ -5,3 +5,25 @@
 	rebase = true
 [core]
 	editor = nano
+	pager = delta
+[init]
+	defaultBranch = master
+
+# Delta (https://github.com/dandavison/delta#installation)
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
