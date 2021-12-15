@@ -30,11 +30,12 @@ antigen theme romkatv/powerlevel10k
 # Apply!
 antigen apply
 
-# powerlevel10k configuration
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Import configuration
 for file in $HOME/.zsh/*
 do
    source $file
 done
+
+# powerlevel10k configuration
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /usr/share/nvm/init-nvm.sh
