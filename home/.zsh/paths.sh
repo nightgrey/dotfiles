@@ -1,2 +1,2 @@
 # Local binaries
-export PATH="$HOME/bin:${PATH}"
+export PATH="$HOME/.zsh/bin:${PATH}"
