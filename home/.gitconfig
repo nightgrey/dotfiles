@@ -1,11 +1,14 @@
 [user]
 	name = Nico
 	email = nico.niebergall@googlemail.com
+[push]
+	followTags = true
 [pull]
 	rebase = true
 [core]
 	editor = nano
 	pager = delta
+	excludesFile = ~/.gitignore
 [init]
 	defaultBranch = master
 
@@ -27,3 +30,4 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+

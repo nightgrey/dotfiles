@@ -12,7 +12,7 @@ export LC_ALL=en_US.UTF-8
 # Load zplug
 source /usr/share/zsh/scripts/zplug/init.zsh
 
-zplug "b4b4r07/enhancd", use:init.sh
+# zplug "b4b4r07/enhancd", use:init.sh
 
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
@@ -20,9 +20,12 @@ zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
+zplug "plugins/colored-man-pages", from:oh-my-zsh
 
-zplug "zsh-users/zsh-completions"
+
+#zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
+zplug "marlonrichert/zsh-autocomplete"
 
 zplug "DarrinTisdale/zsh-aliases-exa"
 zplug "zsh-users/zsh-history-substring-search"
