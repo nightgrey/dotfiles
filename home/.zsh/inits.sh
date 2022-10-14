@@ -10,6 +10,7 @@ source /usr/share/nvm/init-nvm.sh
 
 # Automagically use the NVM version defined in `.nvmrc`
 # Modified to only work if `pwd` matches `home/nico/Developer`.
+# Note: Makes cd-ing slower.
 # https://github.com/nvm-sh/nvm#zsh
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -47,3 +48,8 @@ eval "$(zoxide init zsh)"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# Load completions
+fpath=(~/.zsh/completions $fpath)
+autoload -Uz compinit
+compinit -u

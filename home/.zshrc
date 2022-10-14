@@ -22,8 +22,7 @@ zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 
-
-#zplug "zsh-users/zsh-completions"
+# zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "marlonrichert/zsh-autocomplete"
 
@@ -32,6 +31,9 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "romkatv/powerlevel10k", as:theme, depth:1
+
+# Let zplug manage itself.
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

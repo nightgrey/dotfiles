@@ -1,4 +1,4 @@
-# Aliases for starting HAUSGOLD projects
+# Aliases for starting work projects
 
 # Kundenportal
 alias start-kundenportal="make -C ~/Developer/env start-identity-api start-jabber start-analytic-api start-asset-api start-property-api start-calendar-api start-preferences start-dossiers-proxy start-maklerportal-api start-verkaeuferportal-api && make -C ~/Developer/env/projects/verkaeuferportal-frontend start"
@@ -22,6 +22,16 @@ alias fix-maklerportal-api="cd ~/Developer/env/projects/maklerportal-api && touc
 # Note: The command works when pasted into console, but not via alias, even with `"`. Why?
 # alias docker-ram=docker stats --no-stream --format 'table {{.MemUsage}}' | sed 's/[A-Za-z]*//g' | awk '{sum += $1} END {print sum "MB"}'
 
+# `cd`
+alias ..="cd .."
+alias ...="cd ..."
+alias ....="cd ...."
+alias .....="cd ....."
+alias ......="cd ......"
+alias .......="cd ......."
+alias ........="cd ........"
+alias .........="cd ........."
+alias ..........="cd .........."
 
 # Quick commit
 alias gqc="gaa && gc -m \"WIP [ci skip]\""
@@ -30,3 +40,6 @@ alias gqcv="gaa && gc -m \"WIP [ci skip]\" --no-verify"
 
 alias gac="gaa & git commit -m \"WIP\""
 alias gacp="gaa && git commit -m \"WIP\" && gp"
+
+# Reload
+alias reload="source ~/.zshrc"
