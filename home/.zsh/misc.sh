@@ -1,6 +1,10 @@
 # Default browser
 export BROWSER="google-chrome-stable"
 
+# Nativefier directory
+# https://github.com/nativefier/nativefier
+export NATIVEFIER_APPS_DIR="$HOME/.nativefier"
+
 # language configuration
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
