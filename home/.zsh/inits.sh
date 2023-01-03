@@ -2,6 +2,9 @@
 # Details: https://github.com/nvbn/thefuck#manual-installation
 eval $(thefuck --alias)
 
+# Initialize `zoxide` (z)
+eval "$(zoxide init zsh)"
+
 # Initialize `rbenv`
 eval "$(rbenv init -)"
 
@@ -41,15 +44,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# Initialize `zoxide`
-eval "$(zoxide init zsh)"
-
 # Initialize `pyenv`
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-# Load completions
-fpath=(~/.zsh/completions $fpath)
-autoload -Uz compinit
-compinit -u

@@ -51,6 +51,7 @@ alias reload="source ~/.zshrc"
 
 # Search
 alias findFile="find ./ -type f -name"
+alias findDir="find ./ -type d -name"
 
 # pacman
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks

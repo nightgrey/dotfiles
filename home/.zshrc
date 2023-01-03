@@ -22,7 +22,7 @@ zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 
-# zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "marlonrichert/zsh-autocomplete"
 
@@ -31,6 +31,12 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "romkatv/powerlevel10k", as:theme, depth:1
+
+# Load local scripts
+zplug "$HOME/.zsh/*.sh", from:local
+
+# Load local completions
+zplug "$HOME/.zsh/completions", from:local
 
 # Let zplug manage itself.
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -44,12 +50,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
-# Import configuration
-for file in $HOME/.zsh/*
-do
-   source $file
-done
 
 # powerlevel10k configuration
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
