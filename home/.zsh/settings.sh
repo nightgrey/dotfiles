@@ -1,6 +1,6 @@
 # Bind up and down to history-substring-search
 bindkey '^[[A' history-substring-search-up
-#bindkey '^[[B' history-substring-search-down
+bindkey '^[[B' history-substring-search-down
 
 # POS1, END, and DEL
 bindkey  "^[[H"   beginning-of-line

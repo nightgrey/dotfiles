@@ -1,16 +1,23 @@
 [user]
-	name = Nico
-	email = nightgrey@users.noreply.github.com
+  name = Nico
+  email = nightgrey@users.noreply.github.com
+#  signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDOUQ+y5V7VA5U+Ph4E4PH2wzabCHFKruWZq0XWTfpHMHQjGsBvDvIpiOaptTvVaZLv23czEvciZxM4O1JAZVzqFtban5LaiYOtDWURa+yHZCSlqcIJBIXMQD2ZEJWWCNB+3Mg8+epaRHg/EWfPJ67Q5NEz1PT852sKX9/Nwt+5Quvly00oZJbu9jqOCW+P7duzNwMa6SOiuMWOcOaKQ3DMZs6mtIKX4PwyMmnzGGVCb48gUmfiVAjC6OMPj2V7dr9dqbtr9rs3NCgxrogDcVTqJlXZD19TPqUjpsIJu1faxKtvQ73GGvAm7YdBmAulJ9iyzLXGuI8nfyT+W69sNCvrvNJscjwKJ6vOB8eWJC7fkdN5spKy6UPhPZWknvdC50FRvDhBchEyxTQD61ETs3+6OIyKC7hR4Fi8b8/mjasMMZ92p2GxZkJUUg6Y65Q8FSUNOt6+Kz4H5AZY7ruwQNGOenvEsAuG8Au2F0IIqNzBJXiD3j+EXA9ybXPcz3cWsUOd7SG+rZK44Vmm0j/2AB9sSMSdC/BMstuwxQ1FEiBTJTeLa5x2BbTfE92fd7pbLun+/+u6sRrWnZO7DqIiQ6J5DXQKrH+db2oWebXWxxESbbAg8k4DNdD1HTirZAkcSWMjObP/LZ22NljNRE446Icojx/Grhxmb2MTETMIonFOzQ==
+#[gpg]
+#  format = ssh
+#[gpg "ssh"]
+#  program = "/opt/1Password/op-ssh-sign"
+#[commit]
+#  gpgsign = false
 [push]
-	followTags = true
+  followTags = true
 [pull]
-	rebase = true
+  rebase = true
 [core]
-	editor = nano
-	pager = delta
-	excludesFile = ~/.gitignore
+  editor = nano
+  pager = delta
+  excludesFile = ~/.gitignore
 [init]
-	defaultBranch = master
+  defaultBranch = master
 
 # Delta (https://github.com/dandavison/delta#installation)
 [interactive]
@@ -26,10 +33,10 @@
     file-decoration-style = none
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 
 [protocol "file"]
-	allow = always
+  allow = always

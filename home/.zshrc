@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 # language configuration
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -33,13 +34,21 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 
 # Load local scripts
-zplug "$HOME/.zsh/*.sh", from:local
+# @TODO: Doesn't work for some reason. Check out.
+# zplug "$HOME/.zsh/*.sh", from:local
 
 # Load local completions
 zplug "$HOME/.zsh/completions", from:local
 
 # Let zplug manage itself.
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+
+# Import local configuration
+for file in $HOME/.zsh/*
+do
+   source $file
+done
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
