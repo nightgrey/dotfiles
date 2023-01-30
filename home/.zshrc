@@ -1,65 +1,58 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Fig pre block. Keep at the top of this file.
+# @TODO: Keep?
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 
-
-# language configuration
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# Load zplug
-source /usr/share/zsh/scripts/zplug/init.zsh
-
-# zplug "b4b4r07/enhancd", use:init.sh
-
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/docker", from:oh-my-zsh
-zplug "plugins/docker-compose", from:oh-my-zsh
-zplug "plugins/node", from:oh-my-zsh
-zplug "plugins/npm", from:oh-my-zsh
-zplug "plugins/web-search", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "marlonrichert/zsh-autocomplete"
-
-zplug "DarrinTisdale/zsh-aliases-exa"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "romkatv/powerlevel10k", as:theme, depth:1
-
-# Load local scripts
-# @TODO: Doesn't work for some reason. Check out.
-# zplug "$HOME/.zsh/*.sh", from:local
-
-# Load local completions
-zplug "$HOME/.zsh/completions", from:local
-
-# Let zplug manage itself.
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-
-# Import local configuration
-for file in $HOME/.zsh/*
+#### BEFORE ####
+for file in $(find $HOME/.zsh/before -name '*.zsh')
 do
-   source $file
+  source $file
 done
+#### BEFORE ####
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
 
-zplug load
+#### ZNAP ####
 
-# powerlevel10k configuration
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# https://github.com/marlonrichert/zsh-snap
+# https://github.com/marlonrichert/zsh-snap/blob/main/.zshrc
+source "$HOME/.znap/znap/znap.zsh"
+
+# Theme
+znap eval starship "starship init zsh --print-full-init"
+znap prompt
+
+# Autocompletions & syntax highlighting
+znap source marlonrichert/zsh-autocomplete
+znap source zdharma-continuum/fast-syntax-highlighting
+znap source lukechilds/zsh-better-npm-completion
+znap source zsh-users/zsh-autosuggestions
+
+# Completions
+znap source ohmyzsh/ohmyzsh lib/theme-and-appearance
+znap source ohmyzsh/ohmyzsh \
+     lib/{directories,clipboard,history,key-bindings} plugins/{git,npm,web-search,colored-man-pages,docker,docker-compose}
+znap source supercrabtree/k
+znap source DarrinTisdale/zsh-aliases-exa
+
+# Prettify
+znap source marlonrichert/zcolors
+znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
+
+# Tools
+znap source ajeetdsouza/zoxide
+znap eval ajeetdsouza/zoxide "zoxide init zsh"
+
+znap source nvbn/thefuck
+znap eval nvbn/thefuck "thefuck --alias"
+
+#### ZNAP ####
+
+#### MAIN ####
+for file in $(find $HOME/.zsh/main -name '*.zsh')
+do
+  source $file
+done
+#### MAIN ####
+
+# Fig post block. Keep at the bottom of this file.
+# @TODO: Keep?
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

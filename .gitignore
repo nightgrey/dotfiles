@@ -2,5 +2,8 @@
 home/.zsh/private.sh
 home/.npmrc
 
+# Ignore compiled .zwc files
+*.zwc
+
 # Ignore IntelliJ project files
 .idea/

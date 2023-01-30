@@ -1,0 +1,107 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+
+# Default:
+# format = """
+# $username\
+# $hostname\
+# $localip\
+# $shlvl\
+# $singularity\
+# $kubernetes\
+# $directory\
+# $vcsh\
+# $git_branch\
+# $git_commit\
+# $git_state\
+# $git_metrics\
+# $git_status\
+# $hg_branch\
+# $docker_context\
+# $package\
+# $c\
+# $cmake\
+# $cobol\
+# $daml\
+# $dart\
+# $deno\
+# $dotnet\
+# $elixir\
+# $elm\
+# $erlang\
+# $golang\
+# $guix_shell\
+# $haskell\
+# $haxe\
+# $helm\
+# $java\
+# $julia\
+# $kotlin\
+# $lua\
+# $nim\
+# $nodejs\
+# $ocaml\
+# $opa\
+# $perl\
+# $php\
+# $pulumi\
+# $purescript\
+# $python\
+# $raku\
+# $rlang\
+# $red\
+# $ruby\
+# $rust\
+# $scala\
+# $swift\
+# $terraform\
+# $vlang\
+# $vagrant\
+# $zig\
+# $buf\
+# $nix_shell\
+# $conda\
+# $meson\
+# $spack\
+# $memory_usage\
+# $aws\
+# $gcloud\
+# $openstack\
+# $azure\
+# $env_var\
+# $crystal\
+# $custom\
+# $sudo\
+# $cmd_duration\
+# $line_break\
+# $jobs\
+# $battery\
+# $time\
+# $status\
+# $os\
+# $container\
+# $shell\
+# $character"""
+
+right_format = "$time"
+
+[time]
+disabled = false
+format = '🕙[\[ $time \]]($style) '
+time_format = '%T'
+utc_time_offset = '-5'
+time_range = '10:00:00-14:00:00'
+
+
+[directory.substitutions]
+'~/Developer' = 'Dev'
+
+
+[env_var.NODE_ENV]
+variable = 'NODE_ENV'
+format = '[NODE_ENV=$env_value]($style) '
+
+[env_var.APP_ENV]
+variable = 'APP_ENV'
+format = '[APP_ENV=$env_value]($style) '

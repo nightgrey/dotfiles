@@ -170,32 +170,7 @@ class Uploader < WEBrick::HTTPServlet::AbstractServlet
     uploadedFile = File.open(filename, "wb")
     uploadedFile.write req.query['upload'].to_s
     uploadedFile.close
-    res.set_redirect(WEBrick::HTTPStatus::SeeOther, '/')
-  end
-
-  def do_GET(req, res)
-    res.content_type = "text/html"
-    res.body = <<-EOS
-      <form method=POST action=/upload enctype=multipart/form-data>
-        <input type=file name=upload />
-        <input type=submit value=upload />
-      </form>
-      <!--script
-      var form = new FormData()
-      var blob = new Blob(['aaaaa'], { type: 'text/plain' })
-      form.append('file', blob)
-      var xhr = new XMLHttpRequest()
-      xhr.open('POST', '/upload')
-      xhr.send(form)
-      script-->
-    EOS
-  end
-end
-server.mount('/upload', Uploader)
-
-
-########################################
-# /login
+    res.set_redirect(WEBHTTPS
 ########################################
 class Login < WEBrick::HTTPServlet::AbstractServlet
   def do_POST(req, res)

@@ -1,42 +1,158 @@
 [user]
-  name = Nico
-  email = nightgrey@users.noreply.github.com
-#  signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDOUQ+y5V7VA5U+Ph4E4PH2wzabCHFKruWZq0XWTfpHMHQjGsBvDvIpiOaptTvVaZLv23czEvciZxM4O1JAZVzqFtban5LaiYOtDWURa+yHZCSlqcIJBIXMQD2ZEJWWCNB+3Mg8+epaRHg/EWfPJ67Q5NEz1PT852sKX9/Nwt+5Quvly00oZJbu9jqOCW+P7duzNwMa6SOiuMWOcOaKQ3DMZs6mtIKX4PwyMmnzGGVCb48gUmfiVAjC6OMPj2V7dr9dqbtr9rs3NCgxrogDcVTqJlXZD19TPqUjpsIJu1faxKtvQ73GGvAm7YdBmAulJ9iyzLXGuI8nfyT+W69sNCvrvNJscjwKJ6vOB8eWJC7fkdN5spKy6UPhPZWknvdC50FRvDhBchEyxTQD61ETs3+6OIyKC7hR4Fi8b8/mjasMMZ92p2GxZkJUUg6Y65Q8FSUNOt6+Kz4H5AZY7ruwQNGOenvEsAuG8Au2F0IIqNzBJXiD3j+EXA9ybXPcz3cWsUOd7SG+rZK44Vmm0j/2AB9sSMSdC/BMstuwxQ1FEiBTJTeLa5x2BbTfE92fd7pbLun+/+u6sRrWnZO7DqIiQ6J5DXQKrH+db2oWebXWxxESbbAg8k4DNdD1HTirZAkcSWMjObP/LZ22NljNRE446Icojx/Grhxmb2MTETMIonFOzQ==
-#[gpg]
-#  format = ssh
-#[gpg "ssh"]
-#  program = "/opt/1Password/op-ssh-sign"
-#[commit]
-#  gpgsign = false
-[push]
-  followTags = true
-[pull]
-  rebase = true
-[core]
-  editor = nano
-  pager = delta
-  excludesFile = ~/.gitignore
-[init]
-  defaultBranch = master
+name = Nico
+email = nightgrey@users.noreply.github.com
 
+[commit]
+template = ~/.gitmessage
+
+[push]
+followTags = true
+
+[pull]
+rebase = true
+
+[push]
+default = current
+autoSetupRemote = true
+
+[core]
+editor = nano
+pager = delta
+excludesFile = ~/.gitignore
+
+[init]
+defaultBranch = master
+
+# Aliases
+[alias]
+# Returns the git root directory
+root = !git rev-parse --show-toplevel 2>/dev/null
+# Quickly creates a "SAVEPOINT" commit
+save = !git add -A && git commit -vm 'SAVEPOINT' --no-verify
+# Quickly creates a "WIP" commit
+wip = !git add -A && git commit -vm 'WIP' --no-verify
+# Quickly creates and pushes a "WIP" commit
+push-wip = !git add -A && git commit -vm 'WIP' --no-verify && git push
+# Undos the last commit, but keeps the changes in the repository. Useful for undoing `SAVEPOINT`s.
+undo = reset HEAD~1 --mixed
+# Find commits by message
+find = "!f() { git log --decorate --date=short --grep=$1; }; f"
+# Find commits by SHA
+find-sha = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+
+## Wipe the last commit
+# wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard
+
+# Better diffs and logs
 # Delta (https://github.com/dandavison/delta#installation)
 [interactive]
-    diffFilter = delta --color-only
+diffFilter = delta
+
+[diff]
+	colorMoved = zebra
 
 [delta]
-    features = side-by-side line-numbers decorations
-    whitespace-error-style = 22 reverse
+features = villsau side-by-side line-numbers decorations
+whitespace-error-style = 22 reverse
+map-styles = bold purple = magenta, bold cyan = blue >syntax >syntax
 
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+# For more themes, see
+#   - https://dandavison.github.io/delta/custom-themes.html
+#   - https://raw.githubusercontent.com/dandavison/delta/master/themes.gitconfig
+[delta "villsau"]
+# author: https://github.com/torarnv
+dark = true
+file-style = omit
+hunk-header-decoration-style = omit
+hunk-header-file-style = magenta
+hunk-header-line-number-style = dim magenta
+hunk-header-style = file line-number syntax
+line-numbers = false
+minus-emph-style = bold red 52
+minus-empty-line-marker-style = normal "#3f0001"
+minus-non-emph-style = dim red
+minus-style = bold red
+plus-emph-style = bold green 22
+plus-empty-line-marker-style = normal "#002800"
+plus-non-emph-style = dim green
+plus-style = bold green
+syntax-theme = OneHalfDark
+whitespace-error-style = reverse red
+zero-style = dim syntax
 
+# Git LFS
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
 
+# Misc settings
 [protocol "file"]
-  allow = always
+allow = always
+[maintenance]
+	repo = /home/nico/.znap/znap
+	repo = /home/nico/.znap/asdf
+	repo = /home/nico/.znap/asdf-direnv
+	repo = /home/nico/.znap/fast-syntax-highlighting
+	repo = /home/nico/.znap/source
+	repo = /home/nico/.znap/zsh-autocomplete
+	repo = /home/nico/.znap/zsh-autosuggestions
+	repo = /home/nico/.znap/zsh-better-npm-completion
+[color "status"]
+	branch = 6 normal bold
+	added = 10 normal
+	updated = 10 normal
+	localbranch = 6 normal bold
+	changed = 11 normal
+	header = normal
+	remotebranch = 5 normal bold
+	nobranch = 1 0 bold
+	unmerged = 9 normal
+	untracked = normal
+[color "branch"]
+	plain = 6 normal bold
+	remote = 5 normal bold
+	current = 6 normal bold reverse
+	local = 6 normal bold
+	upstream = 5 normal bold
+[color "remote"]
+	hint = normal dim
+	success = 2 normal
+	error = 1 normal
+	warning = 3 normal
+[color "interactive"]
+	header = normal bold
+	prompt = 15 4
+	help = normal
+	error = 1 0 bold
+[color "diff"]
+	commit = 3 0
+	newMoved = 11 normal
+	oldMovedAlternativeDimmed = 4 normal dim
+	frag = normal dim italic
+	oldMovedAlternative = 4 normal
+	contextBold = normal bold
+	newBold = 10 normal bold
+	context = normal
+	oldMoved = 3 normal
+	oldBold = 1 normal bold
+	newMovedDimmed = 11 normal dim
+	func = normal dim italic
+	meta = normal dim
+	newDimmed = 10 normal dim
+	newMovedAlternative = 12 normal
+	new = 10 normal
+	newMovedAlternativeDimmed = 12 normal dim
+	whitespace = normal 9
+	oldMovedDimmed = 3 normal dim
+	oldDimmed = 1 normal dim
+	old = 1 normal
+[color "decorate"]
+	branch = 6 normal bold
+	tag = 3 0
+	remotebranch = 5 normal bold
+	stash = normal
+	grafted = 1 0 bold
+	HEAD = 6 normal bold italic

@@ -2,10 +2,6 @@
 # zsh completion for fly
 __fly_debug()
 {
-    local file="$BASH_COMP_DEBUG_FILE"
-    if [[ -n ${file} ]]; then
-        echo "$*" >> "${file}"
-    fi
 }
 
 _fly()
