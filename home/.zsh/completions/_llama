@@ -1,0 +1,250 @@
+#compdef llama
+
+
+_llama() {
+  setopt local_options xtrace
+
+  local arguments
+
+
+  # Opus:
+
+  arguments=(
+    {-h,--help}'[show this help message and exit]'
+    '--version[show version and build info]'
+    {-i,--interactive}'[run in interactive mode]'
+    '--interactive-first[run in interactive mode and wait for input right away]'
+    {-ins,--instruct}'[run in instruction mode (use with Alpaca models)]'
+    {-cml,--chatml}'[run in chatml mode (use with ChatML-compatible models)]'
+    '--multiline-input[allows you to write or paste multiple lines without ending each in \\]'
+    {-r,--reverse-prompt}'[halt generation at PROMPT, return control in interactive mode (can be specified more than once for multiple prompts)]:PROMPT'
+    '--color[colorise output to distinguish prompt and user input from generations]'
+    {-s,--seed}'[RNG seed (default: -1, use random seed for < 0)]:SEED'
+    {-t,--threads}'[number of threads to use during generation (default: 16)]:N'
+    {-tb,--threads-batch}'[number of threads to use during batch and prompt processing (default: same as --threads)]:N'
+    {-td,--threads-draft}'[number of threads to use during generation (default: same as --threads)]:N'
+    {-tbd,--threads-batch-draft}'[number of threads to use during batch and prompt processing (default: same as --threads-draft)]:N'
+    {-p,--prompt}'[prompt to start generation with (default: empty)]:PROMPT'
+    {-e,--escape}'[process prompt escapes sequences (\n, \r, \t, \'\'', \", \\)]'
+    '--prompt-cache[file to cache prompt state for faster startup (default: none)]:FNAME'
+    '--prompt-cache-all[if specified, saves user input and generations to cache as well. not supported with --interactive or other interactive options]'
+    '--prompt-cache-ro[if specified, uses the prompt cache but does not update it]'
+    '--random-prompt[start with a randomized prompt]'
+    '--in-prefix-bos[prefix BOS to user inputs, preceding the `--in-prefix` string]'
+    '--in-prefix[string to prefix user inputs with (default: empty)]:STRING'
+    '--in-suffix[string to suffix after user inputs with (default: empty)]:STRING'
+    {-f,--file}'[prompt file to start generation]:FNAME'
+    {-bf,--binary-file}'[binary file containing multiple choice tasks]:FNAME'
+    {-n,--n-predict}'[number of tokens to predict (default: -1, -1 = infinity, -2 = until context filled)]:N'
+    {-c,--ctx-size}'[size of the prompt context (default: 512, 0 = loaded from model)]:N'
+    {-b,--batch-size}'[batch size for prompt processing (default: 512)]:N'
+    '--samplers[samplers that will be used for generation in the order, separated by ;]:samplers:(top_k tfs_z typical_p top_p min_p temperature)'
+    '--sampling-seq[simplified sequence for samplers that will be used (default: kfypmt)]:seq'
+    '--top-k[top-k sampling (default: 40, 0 = disabled)]:N'
+    '--top-p[top-p sampling (default: 0.9, 1.0 = disabled)]:N'
+    '--min-p[min-p sampling (default: 0.1, 0.0 = disabled)]:N'
+    '--tfs[tail free sampling, parameter z (default: 1.0, 1.0 = disabled)]:N'
+    '--typical[locally typical sampling, parameter p (default: 1.0, 1.0 = disabled)]:N'
+    '--repeat-last-n[last n tokens to consider for penalize (default: 64, 0 = disabled, -1 = ctx_size)]:N'
+    '--repeat-penalty[penalize repeat sequence of tokens (default: 1.1, 1.0 = disabled)]:N'
+    '--presence-penalty[repeat alpha presence penalty (default: 0.0, 0.0 = disabled)]:N'
+    '--frequency-penalty[repeat alpha frequency penalty (default: 0.0, 0.0 = disabled)]:N'
+    '--dynatemp-range[dynamic temperature range (default: 0.0, 0.0 = disabled)]:N'
+    '--dynatemp-exp[dynamic temperature exponent (default: 1.0)]:N'
+    '--mirostat[use Mirostat sampling. Top K, Nucleus, Tail Free and Locally Typical samplers are ignored if used. (default: 0, 0 = disabled, 1 = Mirostat, 2 = Mirostat 2.0)]:N:(0 1 2)'
+    '--mirostat-lr[Mirostat learning rate, parameter eta (default: 0.1)]:N'
+    '--mirostat-ent[Mirostat target entropy, parameter tau (default: 5.0)]:N'
+    {-l,--logit-bias}'[modifies the likelihood of token appearing in the completion]:TOKEN_ID(+/-)BIAS'
+    '--grammar[BNF-like grammar to constrain generations (see samples in grammars/ dir)]:GRAMMAR'
+    '--grammar-file[file to read grammar from]:FNAME'
+    '--cfg-negative-prompt[negative prompt to use for guidance. (default: empty)]:PROMPT'
+    '--cfg-negative-prompt-file[negative prompt file to use for guidance. (default: empty)]:FNAME'
+    '--cfg-scale[strength of guidance (default: 1.000000, 1.0 = disable)]:N'
+    '--rope-scaling[RoPE frequency scaling method, defaults to linear unless specified by the model]:scaling:(none linear yarn)'
+    '--rope-scale[RoPE context scaling factor, expands context by a factor of N]:N'
+    '--rope-freq-base[RoPE base frequency, used by NTK-aware scaling (default: loaded from model)]:N'
+    '--rope-freq-scale[RoPE frequency scaling factor, expands context by a factor of 1/N]:N'
+    '--yarn-orig-ctx[YaRN: original context size of model (default: 0 = model training context size)]:N'
+    '--yarn-ext-factor[YaRN: extrapolation mix factor (default: 1.0, 0.0 = full interpolation)]:N'
+    '--yarn-attn-factor[YaRN: scale sqrt(t) or attention magnitude (default: 1.0)]:N'
+    '--yarn-beta-slow[YaRN: high correction dim or alpha (default: 1.0)]:N'
+    '--yarn-beta-fast[YaRN: low correction dim or beta (default: 32.0)]:N'
+    '--pooling[pooling type for embeddings, use model default if unspecified]:pooling:(none mean cls)'
+    {-dt,--defrag-thold}'[KV cache defragmentation threshold (default: -1.0, < 0 - disabled)]:N'
+    '--ignore-eos[ignore end of stream token and continue generating (implies --logit-bias 2-inf)]'
+    '--no-penalize-nl[do not penalize newline token]'
+    '--temp[temperature (default: 0.8)]:N'
+    '--all-logits[return logits for all tokens in the batch (default: disabled)]'
+    '--hellaswag[compute HellaSwag score over random tasks from datafile supplied with -f]'
+    '--hellaswag-tasks[number of tasks to use when computing the HellaSwag score (default: 400)]:N'
+    '--winogrande[compute Winogrande score over random tasks from datafile supplied with -f]'
+    '--winogrande-tasks[number of tasks to use when computing the Winogrande score (default: 0)]:N'
+    '--multiple-choice[compute multiple choice score over random tasks from datafile supplied with -f]'
+    '--multiple-choice-tasks[number of tasks to use when computing the multiple choice score (default: 0)]:N'
+    '--kl-divergence[computes KL-divergence to logits provided via --kl-divergence-base]'
+    '--keep[number of tokens to keep from the initial prompt (default: 0, -1 = all)]:N'
+    '--draft[number of tokens to draft for speculative decoding (default: 5)]:N'
+    '--chunks[max number of chunks to process (default: -1, -1 = all)]:N'
+    {-np,--parallel}'[number of parallel sequences to decode (default: 1)]:N'
+    {-ns,--sequences}'[number of sequences to decode (default: 1)]:N'
+    {-ps,--p-split}'[speculative decoding split probability (default: 0.1)]:N'
+    {-cb,--cont-batching}'[enable continuous batching (a.k.a dynamic batching) (default: disabled)]'
+    '--mmproj[path to a multimodal projector file for LLaVA. see examples/llava/README.md]:MMPROJ_FILE'
+    '--image[path to an image file. use with multimodal models]:IMAGE_FILE'
+    '--mlock[force system to keep model in RAM rather than swapping or compressing]'
+    '--no-mmap[do not memory-map model (slower load but may reduce pageouts if not using mlock)]'
+    '--numa[attempt optimizations that help on some NUMA systems]:TYPE:(distribute isolate numactl)'
+    {-ngl,--n-gpu-layers}'[number of layers to store in VRAM]:N'
+    {-ngld,--n-gpu-layers-draft}'[number of layers to store in VRAM for the draft model]:N'
+    {-sm,--split-mode}'[how to split the model across multiple GPUs]:SPLIT_MODE:(none layer row)'
+    {-ts,--tensor-split}'[fraction of the model to offload to each GPU, comma-separated list of proportions, e.g. 3,1]:SPLIT'
+    {-mg,--main-gpu}'[the GPU to use for the model (with split-mode = none), or for intermediate results and KV (with split-mode = row) (default: 0)]:i'
+    '--verbose-prompt[print a verbose prompt before generation (default: false)]'
+    '--no-display-prompt[don'\''t print prompt at generation (default: false)]'
+    {-gan,--grp-attn-n}'[group-attention factor (default: 1)]:N'
+    {-gaw,--grp-attn-w}'[group-attention width (default: 512.0)]:N'
+    {-dkvc,--dump-kv-cache}'[verbose print of the KV cache]'
+    {-nkvo,--no-kv-offload}'[disable KV offload]'
+    {-ctk,--cache-type-k}'[KV cache data type for K (default: f16)]:TYPE'
+    {-ctv,--cache-type-v}'[KV cache data type for V (default: f16)]:TYPE'
+    '--simple-io[use basic IO for better compatibility in subprocesses and limited consoles]'
+    '--lora[apply LoRA adapter (implies --no-mmap)]:FNAME'
+    '--lora-scaled[apply LoRA adapter with user defined scaling S (implies --no-mmap)]:FNAME S'
+    '--lora-base[optional model to use as a base for the layers modified by the LoRA adapter]:FNAME'
+    {-m,--model}'[model path (default: models/7B/ggml-model-f16.gguf)]:FNAME:_files'
+    {-md,--model-draft}'[draft model for speculative decoding]:FNAME:_files'
+    {-ld,--logdir}'[path under which to save YAML logs (no logging if unset)]:LOGDIR'
+    '--override-kv[advanced option to override model metadata by key. may be specified multiple times]:KEY=TYPE:VALUE'
+    {-ptc,--print-token-count}'[print token count every N tokens (default: -1)]:N'
+    '--log-test[Run simple logging test]'
+    '--log-disable[Disable trace logs]'
+    '--log-enable[Enable trace logs]'
+    '--log-file[Specify a log filename (without extension)]'
+    '--log-new[Create a separate new log file on start. Each log file will have unique name: "<name>.<ID>.log"]'
+    '--log-append[Don'\''t truncate the old log file]'
+  )
+
+  # Sonnet:
+  # _arguments \
+  # '(-h --help)'{-h,--help}'[show help message and exit]' \
+  # '--version[show version and build info]' \
+  # '(-i --interactive)'{-i,--interactive}'[run in interactive mode]' \
+  # '--interactive-first[run in interactive mode and wait for input right away]' \
+  # '(-ins --instruct)'{-ins,--instruct}'[run in instruction mode (use with Alpaca models)]' \
+  # '(-cml --chatml)'{-cml,--chatml}'[run in chatml mode (use with ChatML-compatible models)]' \
+  # '--multiline-input[allows you to write or paste multiple lines without ending each in \\]' \
+  # '(-r --reverse-prompt)'{-r,--reverse-prompt}'[halt generation at PROMPT, return control in interactive mode]:PROMPT' \
+  # '--color[colorise output to distinguish prompt and user input from generations]' \
+  # '(-s --seed)'{-s,--seed}'[RNG seed (default: -1, use random seed for < 0)]:SEED' \
+  # '(-t --threads)'{-t,--threads}'[number of threads to use during generation (default: 16)]:N' \
+  # '(-tb --threads-batch)'{-tb,--threads-batch}'[number of threads to use during batch and prompt processing (default: same as --threads)]:N' \
+  # '(-td --threads-draft)'{-td,--threads-draft}'[number of threads to use during generation (default: same as--threads)]:N' \
+  # '(-tbd --threads-batch-draft)'{-tbd,--threads-batch-draft}'[number of threads to use during batch and prompt processing (default: same as --threads-draft)]:N' \
+  # '(-p --prompt)'{-p,--prompt}'[prompt to start generation with (default: empty)]:PROMPT' \
+  # '(-e --escape)'{-e,--escape}'[process prompt escapes sequences (\n, \r, \t, \'\'', \", \\)]' \
+  # '--prompt-cache[file to cache prompt state for faster startup (default: none)]:FNAME' \
+  # '--prompt-cache-all[if specified, saves user input and generations to cache as well. not supported with --interactive or other interactive options]' \
+  # '--prompt-cache-ro[if specified, uses the prompt cache but does not update it.]' \
+  # '--random-prompt[start with a randomized prompt.]' \
+  # '--in-prefix-bos[prefix BOS to user inputs, preceding the --in-prefix string]' \
+  # '--in-prefix[string to prefix user inputs with (default: empty)]:STRING' \
+  # '--in-suffix[string to suffix after user inputs with (default: empty)]:STRING' \
+  # '(-f --file)'{-f,--file}'[prompt file to start generation.]:FNAME' \
+  # '(-bf --binary-file)'{-bf,--binary-file}'[binary file containing multiple choice tasks.]:FNAME' \
+  # '(-n --n-predict)'{-n,--n-predict}'[number of tokens to predict (default: -1, -1 = infinity, -2 = until context filled)]:N' \
+  # '(-c --ctx-size)'{-c,--ctx-size}'[size of the prompt context (default: 512, 0 = loaded from model)]:N' \
+  # '(-b --batch-size)'{-b,--batch-size}'[batch size for prompt processing (default: 512)]:N' \
+  # '--samplers[samplers that will be used for generation in the order, separated by \;]:SAMPLERS' \
+  # '--sampling-seq[simplified sequence for samplers that will be used (default: kfypmt)]:SEQ' \
+  # '--top-k[top-k sampling (default: 40, 0 = disabled)]:N' \
+  # '--top-p[top-p sampling (default: 0.9, 1.0 = disabled)]:N' \
+  # '--min-p[min-p sampling (default: 0.1, 0.0 = disabled)]:N' \
+  # '--tfs[tail free sampling, parameter z (default: 1.0, 1.0 = disabled)]:N' \
+  # '--typical[locally typical sampling, parameter p (default: 1.0, 1.0 = disabled)]:N' \
+  # '--repeat-last-n[last n tokens to consider for penalize (default: 64, 0 = disabled, -1 = ctx_size)]:N' \
+  # '--repeat-penalty[penalize repeat sequence of tokens (default: 1.1, 1.0 = disabled)]:N' \
+  # '--presence-penalty[repeat alpha presence penalty (default: 0.0, 0.0 = disabled)]:N' \
+  # '--frequency-penalty[repeat alpha frequency penalty (default: 0.0, 0.0 = disabled)]:N' \
+  # '--dynatemp-range[dynamic temperature range (default: 0.0, 0.0 = disabled)]:N' \
+  # '--dynatemp-exp[dynamic temperature exponent (default: 1.0)]:N' \
+  # '--mirostat[use Mirostat sampling. Top K, Nucleus, Tail Free and Locally Typical samplers are ignored if used. (default: 0, 0 = disabled, 1 = Mirostat, 2 = Mirostat 2.0)]:N' \
+  # '--mirostat-lr[Mirostat learning rate, parameter eta (default: 0.1)]:N' \
+  # '--mirostat-ent[Mirostat target entropy, parameter tau (default: 5.0)]:N' \
+  # '(-l --logit-bias)'{-l,--logit-bias}'[modifies the likelihood of token appearing in the completion]:TOKEN_ID(+/-)BIAS' \
+  # '--grammar[BNF-like grammar to constrain generations (see samples in grammars/ dir)]:GRAMMAR' \
+  # '--grammar-file[file to read grammar from]:FNAME' \
+  # '--cfg-negative-prompt[negative prompt to use for guidance. (default: empty)]:PROMPT' \
+  # '--cfg-negative-prompt-file[negative prompt file to use for guidance. (default: empty)]:FNAME' \
+  # '--cfg-scale[strength of guidance (default: 1.000000, 1.0 = disable)]:N' \
+  # '--rope-scaling[RoPE frequency scaling method, defaults to linear unless specified by the model]:{none,linear,yarn}' \
+  # '--rope-scale[RoPE context scaling factor, expands context by a factor of N]:N' \
+  # '--rope-freq-base[RoPE base frequency, used by NTK-aware scaling (default: loaded from model)]:N' \
+  # '--rope-freq-scale[RoPE frequency scaling factor, expands context by a factor of 1/N]:N' \
+  # '--yarn-orig-ctx[YaRN: original context size of model (default: 0 = model training context size)]:N' \
+  # '--yarn-ext-factor[YaRN: extrapolation mix factor (default: 1.0, 0.0 = full interpolation)]:N' \
+  # '--yarn-attn-factor[YaRN: scale sqrt(t) or attention magnitude (default: 1.0)]:N' \
+  # '--yarn-beta-slow[YaRN: high correction dim or alpha (default: 1.0)]:N' \
+  # '--yarn-beta-fast[YaRN: low correction dim or beta (default: 32.0)]:N' \
+  # '--pooling[pooling type for embeddings, use model default if unspecified]:{none,mean,cls}' \
+  # '(-dt --defrag-thold)'{-dt,--defrag-thold}'[KV cache defragmentation threshold (default: -1.0, < 0 - disabled)]:N' \
+  # '--ignore-eos[ignore end of stream token and continue generating (implies --logit-bias 2-inf)]' \
+  # '--no-penalize-nl[do not penalize newline token]' \
+  # '--temp[temperature (default: 0.8)]:N' \
+  # '--all-logits[return logits for all tokens in the batch (default: disabled)]' \
+  # '--hellaswag[compute HellaSwag score over random tasks from datafile supplied with -f]' \
+  # '--hellaswag-tasks[number of tasks to use when computing the HellaSwag score (default: 400)]:N' \
+  # '--winogrande[compute Winogrande score over random tasks from datafile supplied with -f]' \
+  # '--winogrande-tasks[number of tasks to use when computing the Winogrande score (default: 0)]:N' \
+  # '--multiple-choice[compute multiple choice score over random tasks from datafile supplied with -f]' \
+  # '--multiple-choice-tasks[number of tasks to use when computing the multiple choice score (default: 0)]:N' \
+  # '--kl-divergence[computes KL-divergence to logits provided via --kl-divergence-base]' \
+  # '--keep[number of tokens to keep from the initial prompt (default: 0, -1 = all)]:N' \
+  # '--draft[number of tokens to draft for speculative decoding (default: 5)]:N' \
+  # '--chunks[max number of chunks to process (default: -1, -1 = all)]:N' \
+  # '(-np --parallel)'{-np,--parallel}'[number of parallel sequences to decode (default: 1)]:N' \
+  # '(-ns --sequences)'{-ns,--sequences}'[number of sequences to decode (default: 1)]:N' \
+  # '(-ps --p-split)'{-ps,--p-split}'[speculative decoding split probability (default: 0.1)]:N' \
+  # '(-cb --cont-batching)'{-cb,--cont-batching}'[enable continuous batching (a.k.a dynamic batching) (default: disabled)]' \
+  # '--mmproj[path to a multimodal projector file for LLaVA. see examples/llava/README.md]:MMPROJ_FILE' \
+  # '--image[path to an image file. use with multimodal models]:IMAGE_FILE' \
+  # '--mlock[force system to keep model in RAM rather than swapping or compressing]' \
+  # '--no-mmap[do not memory-map model (slower load but may reduce pageouts if not using mlock)]' \
+  # '--numa[attempt optimizations that help on some NUMA systems]:{distribute,isolate,numactl}' \
+  # '(-ngl --n-gpu-layers)'{-ngl,--n-gpu-layers}'[number of layers to store in VRAM]:N' \
+  # '(-ngld --n-gpu-layers-draft)'{-ngld,--n-gpu-layers-draft}'[number of layers to store in VRAM for the draft model]:N' \
+  # '(-sm --split-mode)'{-sm,--split-mode}'[how to split the model across multiple GPUs]:SPLIT_MODE:{none,layer,row}' \
+  # '(-ts --tensor-split)'{-ts,--tensor-split}'[fraction of the model to offload to each GPU, comma-separated list of proportions]:SPLIT' \
+  # '(-mg --main-gpu)'{-mg,--main-gpu}'[the GPU to use for the model (with split-mode = none), or for intermediate results and KV (with split-mode = row) (default: 0)]:i' \
+  # '--verbose-prompt[print a verbose prompt before generation (default: false)]' \
+  # '--no-display-prompt[don'\''t print prompt at generation (default: false)]' \
+  # '(-gan --grp-attn-n)'{-gan,--grp-attn-n}'[group-attention factor (default: 1)]:N' \
+  # '(-gaw --grp-attn-w)'{-gaw,--grp-attn-w}'[group-attention width (default: 512.0)]:N' \
+  # '(-dkvc --dump-kv-cache)'{-dkvc,--dump-kv-cache}'[verbose print of the KV cache]' \
+  # '(-nkvo --no-kv-offload)'{-nkvo,--no-kv-offload}'[disable KV offload]' \
+  # '(-ctk --cache-type-k)'{-ctk,--cache-type-k}'[KV cache data type for K (default: f16)]:TYPE' \
+  # '(-ctv --cache-type-v)'{-ctv,--cache-type-v}'[KV cache data type for V (default: f16)]:TYPE' \
+  # '--simple-io[use basic IO for better compatibility in subprocesses and limited consoles]' \
+  # '--lora[apply LoRA adapter (implies --no-mmap)]:FNAME' \
+  # '--lora-scaled[apply LoRA adapter with user defined scaling S (implies --no-mmap)]:FNAME:S' \
+  # '--lora-base[optional model to use as a base for the layers modified by the LoRA adapter]:FNAME' \
+  # '(-m --model)'{-m,--model}'[model path (default: models/7B/ggml-model-f16.gguf)]:FNAME' \
+  # '(-md --model-draft)'{-md,--model-draft}'[draft model for speculative decoding]:FNAME' \
+  # '(-ld --logdir)'{-ld,--logdir}'[path under which to save YAML logs (no logging if unset)]:LOGDIR' \
+  # '--override-kv[advanced option to override model metadata by key. may be specified multiple times.]:KEY=TYPE:VALUE' \
+  # '(-ptc --print-token-count)'{-ptc,--print-token-count}'[print token count every N tokens (default: -1)]:N' \
+  # '--log-test[Run simple logging test]' \
+  # '--log-disable[Disable trace logs]' \
+  # '--log-enable[Enable trace logs]' \
+  # '--log-file[Specify a log filename (without extension)]' \
+  # '--log-new[Create a separate new log file on start. Each log file will have unique name: \"<name>.<ID>.log\"]' \
+  # '--log-append[Don'\''t truncate the old log file]'
+
+
+  _arguments -s $arguments
+}
+
+
+# don't run the completion function when being source-ed or eval-ed
+if [ "$funcstack[1]" = "_llama" ]; then
+    _llama "$@"
+fi

@@ -1,6 +1,5 @@
-# Bind up and down to history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Movement
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Movement-1
 
 # POS1, END, and DEL
 bindkey  "^[[H"   beginning-of-line
@@ -11,16 +10,20 @@ bindkey  "^[[3~"  delete-char
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# Bind up and down to history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # Configuration for zsh autocompletion.
 
 # Increase limits for zsh-autocomplete
 # See https://github.com/marlonrichert/zsh-autocomplete#configuration
-zstyle -e ':autocomplete:list-choices:*' list-lines 'reply=( 256 )'
-zstyle ':autocomplete:history-incremental-search-backward:*' list-lines 256
-zstyle ':autocomplete:history-search-backward:*' list-lines 256
+#zstyle -e ':autocomplete:list-choices:*' list-lines 'reply=( 256 )'
+#zstyle ':autocomplete:history-incremental-search-backward:*' list-lines 256
+#zstyle ':autocomplete:history-search-backward:*' list-lines 256
 
 # Submit the command when pressing enter - always.
-bindkey -M menuselect '\r' .accept-line
+# bindkey -M menuselect '\r' .accept-line
 
 # Set recent directory backend to use `z`.
 # https://github.com/marlonrichert/zsh-autocomplete#use-a-custom-backend-for-recent-directories
