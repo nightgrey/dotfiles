@@ -1,13 +1,18 @@
 # Fig pre block. Keep at the top of this file.
 # @TODO: Keep?
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+#[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 
-#### BEFORE ####
-for file in $(find $HOME/.zsh/before -name '*.zsh')
+#### SETTINGS ####
+for file in $(find $HOME/.zsh/settings -name '*.zsh')
 do
+  echo $file
   source $file
 done
-#### BEFORE ####
+#### SETTINGS ####
+
+#### PRIVATE ####
+source $HOME/.zsh/private.zsh
+#### PRIVATE ####
 
 
 #### ZNAP ####
@@ -38,21 +43,33 @@ znap source marlonrichert/zcolors
 znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
 
 # Tools
+znap source asdf-vm/asdf
 znap source ajeetdsouza/zoxide
 znap eval ajeetdsouza/zoxide "zoxide init zsh"
 
 znap source nvbn/thefuck
 znap eval nvbn/thefuck "thefuck --alias"
 
+znap source peterhurford/up.zsh
+znap source mattmc3/zman
+
+# Misc
+znap source mattmc3/zephyr \
+     plugins/{utility,history,history}
+
 #### ZNAP ####
 
-#### MAIN ####
-for file in $(find $HOME/.zsh/main -name '*.zsh')
+#### UTILS/ALIASES ####
+for file in $(find $HOME/.zsh/aliases -name '*.*sh')
 do
-  source $file
+source $file
 done
-#### MAIN ####
+#### UTILS/ALIASES ####
 
 # Fig post block. Keep at the bottom of this file.
 # @TODO: Keep?
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+#[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# Tabtab
+# pnpm uses it for autocompletion.
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true

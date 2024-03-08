@@ -15,14 +15,14 @@
 # -------------------------------------------------------------------------
 
 __docker-compose_q() {
-    docker-compose 2>/dev/null $compose_options "$@"
+    docker-compose 2>/dev/null "$compose_options" "$@"
 }
 
 # All services defined in docker-compose.yml
 __docker-compose_all_services_in_compose_file() {
     local already_selected
     local -a services
-    already_selected=$(echo $words | tr " " "|")
+    already_selected=$(echo "$words" | tr " " "|")
     __docker-compose_q ps --services "$@" \
         | grep -Ev "^(${already_selected})$"
 }
@@ -110,7 +110,7 @@ __docker-compose_subcommand() {
     case "$words[1]" in
         (build)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 "*--build-arg=[Set build-time variables for one service.]:<varname>=<value>: " \
                 '--force-rm[Always remove intermediate containers.]' \
                 '(--quiet -q)'{--quiet,-q}'[Curb build output]' \
@@ -123,7 +123,7 @@ __docker-compose_subcommand() {
             ;;
         (config)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '(--quiet -q)'{--quiet,-q}"[Only validate the configuration, don't print anything.]" \
                 '--resolve-image-digests[Pin image tags to digests.]' \
                 '--services[Print the service names, one per line.]' \
@@ -132,30 +132,30 @@ __docker-compose_subcommand() {
             ;;
         (create)
             _arguments \
-                $opts_help \
-                $opts_force_recreate \
-                $opts_no_recreate \
-                $opts_no_build \
+                "$opts_help" \
+                "$opts_force_recreate" \
+                "$opts_no_recreate" \
+                "$opts_no_build" \
                 "(--no-build)--build[Build images before creating containers.]" \
                 '*:services:__docker-compose_services' && ret=0
             ;;
         (down)
             _arguments \
-                $opts_help \
-                $opts_timeout \
+                "$opts_help" \
+                "$opts_timeout" \
                 "--rmi[Remove images. Type must be one of: 'all': Remove all images used by any service. 'local': Remove only images that don't have a custom tag set by the \`image\` field.]:type:(all local)" \
                 '(-v --volumes)'{-v,--volumes}"[Remove named volumes declared in the \`volumes\` section of the Compose file and anonymous volumes attached to containers.]" \
-                $opts_remove_orphans && ret=0
+                "$opts_remove_orphans" && ret=0
             ;;
         (events)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '--json[Output events as a stream of json objects]' \
                 '*:services:__docker-compose_services' && ret=0
             ;;
         (exec)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '-d[Detached mode: Run command in the background.]' \
                 '--privileged[Give extended privileges to the process.]' \
                 '(-u --user)'{-u,--user=}'[Run the command as this user.]:username:_users' \
@@ -172,33 +172,33 @@ __docker-compose_subcommand() {
             ;;
     (images)
         _arguments \
-        $opts_help \
+        "$opts_help" \
         '-q[Only display IDs]' \
         '*:services:__docker-compose_services' && ret=0
         ;;
         (kill)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '-s[SIGNAL to send to the container. Default signal is SIGKILL.]:signal:_signals' \
                 '*:running services:__docker-compose_runningservices' && ret=0
             ;;
         (logs)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '(-f --follow)'{-f,--follow}'[Follow log output]' \
-                $opts_no_color \
+                "$opts_no_color" \
                 '--tail=[Number of lines to show from the end of the logs for each container.]:number of lines: ' \
                 '(-t --timestamps)'{-t,--timestamps}'[Show timestamps]' \
                 '*:services:__docker-compose_services' && ret=0
             ;;
         (pause)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '*:running services:__docker-compose_runningservices' && ret=0
             ;;
         (port)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '--protocol=[tcp or udp \[default: tcp\]]:protocol:(tcp udp)' \
                 '--index=[index of the container if there are multiple instances of a service \[default: 1\]]:index: ' \
                 '1:running services:__docker-compose_runningservices' \
@@ -206,14 +206,14 @@ __docker-compose_subcommand() {
             ;;
         (ps)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '-q[Only display IDs]' \
                 '--filter KEY=VAL[Filter services by a property]:<filtername>=<value>:' \
                 '*:services:__docker-compose_services' && ret=0
             ;;
         (pull)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '--ignore-pull-failures[Pull what it can and ignores images with pull failures.]' \
                 '--no-parallel[Disable parallel pulling]' \
                 '(-q --quiet)'{-q,--quiet}'[Pull without printing progress information]' \
@@ -222,21 +222,21 @@ __docker-compose_subcommand() {
             ;;
         (push)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '--ignore-push-failures[Push what it can and ignores images with push failures.]' \
                 '*:services:__docker-compose_services' && ret=0
             ;;
         (rm)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '(-f --force)'{-f,--force}"[Don't ask to confirm removal]" \
                 '-v[Remove any anonymous volumes attached to containers]' \
                 '*:stopped services:__docker-compose_stoppedservices' && ret=0
             ;;
         (run)
             _arguments \
-                $opts_help \
-                $opts_no_deps \
+                "$opts_help" \
+                "$opts_no_deps" \
                 '-d[Detached mode: Run container in the background, print new container name.]' \
                 '*-e[KEY=VAL Set an environment variable (can be used multiple times)]:environment variable KEY=VAL: ' \
                 '*'{-l,--label}'[KEY=VAL Add or override a label (can be used multiple times)]:label KEY=VAL: ' \
@@ -256,52 +256,52 @@ __docker-compose_subcommand() {
             ;;
         (scale)
             _arguments \
-                $opts_help \
-                $opts_timeout \
+                "$opts_help" \
+                "$opts_timeout" \
                 '*:running services:__docker-compose_runningservices' && ret=0
             ;;
         (start)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '*:stopped services:__docker-compose_stoppedservices' && ret=0
             ;;
         (stop|restart)
             _arguments \
-                $opts_help \
-                $opts_timeout \
+                "$opts_help" \
+                "$opts_timeout" \
                 '*:running services:__docker-compose_runningservices' && ret=0
             ;;
         (top)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '*:running services:__docker-compose_runningservices' && ret=0
             ;;
         (unpause)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '*:paused services:__docker-compose_pausedservices' && ret=0
             ;;
         (up)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 '(--abort-on-container-exit)-d[Detached mode: Run containers in the background, print new container names. Incompatible with --abort-on-container-exit and --attach-dependencies.]' \
-                $opts_no_color \
-                $opts_no_deps \
-                $opts_force_recreate \
-                $opts_no_recreate \
-                $opts_no_build \
+                "$opts_no_color" \
+                "$opts_no_deps" \
+                "$opts_force_recreate" \
+                "$opts_no_recreate" \
+                "$opts_no_build" \
                 "(--no-build)--build[Build images before starting containers.]" \
                 "(-d)--abort-on-container-exit[Stops all containers if any container was stopped. Incompatible with -d.]" \
                 "(-d)--attach-dependencies[Attach to dependent containers. Incompatible with -d.]" \
                 '(-t --timeout)'{-t,--timeout}"[Use this timeout in seconds for container shutdown when attached or when containers are already running. (default: 10)]:seconds: " \
                 '--scale[SERVICE=NUM Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.]:service scale SERVICE=NUM: ' \
                 '--exit-code-from=[Return the exit code of the selected service container. Implies --abort-on-container-exit]:service:__docker-compose_services' \
-                $opts_remove_orphans \
+                "$opts_remove_orphans" \
                 '*:services:__docker-compose_services' && ret=0
             ;;
         (version)
             _arguments \
-                $opts_help \
+                "$opts_help" \
                 "--short[Shows only Compose's version number.]" && ret=0
             ;;
         (*)
@@ -316,7 +316,7 @@ _docker-compose() {
     # Support for subservices, which allows for `compdef _docker docker-shell=_docker_containers`.
     # Based on /usr/share/zsh/functions/Completion/Unix/_git without support for `ret`.
     if [[ $service != docker-compose ]]; then
-        _call_function - _$service
+        _call_function - _"$service"
         return
     fi
 
