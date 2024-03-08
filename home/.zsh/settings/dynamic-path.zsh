@@ -38,51 +38,36 @@ perf() {
   echo "$execution_time_ms ms"
 }
 
-CHPWD_PREVIOUS_GIT_ROOT=false
+PREVIOUS_GIT=false
 # Registers $PATH for binaries in git repositories ($LOCAL_BINARIES)
 # https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions
-function test() {
-  IS_GIT=$(is-git)
+chpwd() {
+  # Check if in a git repository
+  CURRENT_GIT=${$(is-git)//\/.git}
 
-  # Check if in the previous run of this function, a git root was detected.
-  IS_PREVIOUS_GIT=$([[ -n $CHPWD_PREVIOUS_GIT_ROOT ]] && echo true || echo false)
-
-  echo "IS_PREVIOUS_GIT: $IS_PREVIOUS_GIT"
-  if [[ $IS_GIT == false ]]; then
-    echo "Not in a git repository"
-
-    if [[ $IS_PREVIOUS_GIT == true ]]; then
-      echo "Unsetting PATH for local binaries."
+  if [[ $CURRENT_GIT == false ]]; then
+    if [[ -z $PREVIOUS_GIT ]]; then
+      # Do nothing.
+    else
       # Unset PATH for local binaries
-      for path in "${LOCAL_BINARIES[@]}"; do
-        echo "Removing $path from $CHPWD_PREVIOUS_GIT_ROOT"
-        echo "Before removal: PATH: $PATH"
-        export PATH="${PATH//$CHPWD_PREVIOUS_GIT_ROOT/$path:/}"
-        echo "After removal: PATH: $PATH"
+      for _path in "${LOCAL_BINARIES[@]}"; do
+        _absolute_path="${PREVIOUS_GIT}/${_path}"
+        export PATH="${PATH//$_absolute_path:}"
       done
 
-      echo "Unsetting CHPWD_PREVIOUS_GIT_ROOT"
-      $CHPWD_PREVIOUS_GIT_ROOT=false
-    else
-      echo "No previous git root detected."
+      PREVIOUS_GIT=false
     fi
-
-
   else
-    echo "In a git repository"
-    # Set current root
-    CHPWD_PREVIOUS_GIT_ROOT=$IS_GIT
+    # Set current root as previous root
+    PREVIOUS_GIT=$CURRENT_GIT
 
     # Set PATH for local binaries
-    for path in "${LOCAL_BINARIES[@]}"; do
-      echo "Adding $path to $CHPWD_PREVIOUS_GIT_ROOT"
-      export PATH="$CHPWD_PREVIOUS_GIT_ROOT/$path:${PATH}"
+    for _path in "${LOCAL_BINARIES[@]}"; do
+      _absolute_path="${CURRENT_GIT}/${_path}"
+      export PATH="${_absolute_path}:${PATH}"
     done
   fi
-
-  if [[ IS_GIT != false ]]; then
-
-  else
-
-  fi
 }
+
+# .. and execute it once to set the initial $PATH
+chpwd
