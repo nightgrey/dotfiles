@@ -5,6 +5,7 @@ LOCAL_BINARIES=(
   node_modules/.bin
 )
 
+# Copied from utils
 is-git() {
   vc=false
   d=$PWD
@@ -27,20 +28,16 @@ is-git() {
   echo $vc
 }
 
-# Check performance of given command
-# Returns execution time in milliseconds.
-perf() {
-  start_time=$(date +%s.%N)
-  eval "$@" >/dev/null
-  end_time=$(date +%s.%N)
-  execution_time=$(echo "$end_time - $start_time" | bc)
-  execution_time_ms=$(echo "$execution_time * 1000" | bc)
-  echo "$execution_time_ms ms"
-}
-
 PREVIOUS_GIT=false
-# Registers $PATH for binaries in git repositories ($LOCAL_BINARIES)
-# https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions
+# Registers $PATH for binaries in git repositories ($LOCAL_BINARIES) with `chpwd`.
+# Why not set relative paths?
+# -> Slows down autocompletion considerably.
+# -> Occasionally takes into account the wrong binary.
+#
+# This solution is not super good either though, as directory changing is
+# impacted.
+#
+# See: https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions
 chpwd() {
   # Check if in a git repository
   CURRENT_GIT=${$(is-git)//\/.git}
