@@ -36,6 +36,11 @@ function reload {
 # Shows key codes for the pressed keys.
 alias keycodes="sed -n l"
 
+# Show all colors
+color-map() {
+    for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+}
+
 # Kill processes with given search term
 function killit() {
   search="$1"
