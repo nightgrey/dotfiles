@@ -5,7 +5,6 @@
 #### SETTINGS ####
 for file in $(find $HOME/.zsh/settings -name '*.zsh')
 do
-  echo $file
   source $file
 done
 #### SETTINGS ####
