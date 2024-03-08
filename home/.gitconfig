@@ -21,12 +21,19 @@ pager = delta
 excludesFile = ~/.gitignore
 
 [init]
-defaultBranch = master
+defaultBranch = main
+
+[lfs]
+# Do not pull anything but the current ref of LFS files. I don't have
+# infinite money for storage. Yet.
+fetchrecentrefsdays = 0
 
 # Aliases
 [alias]
-# Returns the git root directory
-root = !git rev-parse --show-toplevel 2>/dev/null
+# Returns the git root directory or false.
+root = !git rev-parse --show-toplevel 2>/dev/null || echo false
+# Returns true or false if in git work tree.
+is-git = !git rev-parse --is-inside-work-tree
 # Quickly creates a "SAVEPOINT" commit
 save = !git add -A && git commit -vm 'SAVEPOINT' --no-verify
 # Quickly creates a "WIP" commit
@@ -39,10 +46,17 @@ undo = reset HEAD~1 --mixed
 find = "!f() { git log --decorate --date=short --grep=$1; }; f"
 # Find commits by SHA
 find-sha = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-
 ## Wipe the last commit
-# wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard
+# wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' --no-verify && git reset
+# HEAD~1 --hard
+# Clone repository without LFS files with recent refs.
+# Usually used for cloning repositories from huggingface with large LFS files.
+storage = "!f() { GIT_LFS_SKIP_SMUDGE=1 git clone \"$@\" --depth 1; }; f"
+
+# ### ------------------- ###
+# --- DIFFING AND LOGGING ---
+# ### ------------------- ###
+# All settings below are for the `delta` diff viewer.
 
 # Better diffs and logs
 # Delta (https://github.com/dandavison/delta#installation)
@@ -53,7 +67,7 @@ diffFilter = delta
 	colorMoved = zebra
 
 [delta]
-features = villsau side-by-side line-numbers decorations
+features = villsau line-numbers decorations
 whitespace-error-style = 22 reverse
 map-styles = bold purple = magenta, bold cyan = blue >syntax >syntax
 
@@ -93,7 +107,6 @@ required = true
 allow = always
 [maintenance]
 	repo = /home/nico/.znap/znap
-	repo = /home/nico/.znap/asdf
 	repo = /home/nico/.znap/asdf-direnv
 	repo = /home/nico/.znap/fast-syntax-highlighting
 	repo = /home/nico/.znap/source
