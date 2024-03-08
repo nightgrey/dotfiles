@@ -1,7 +1,6 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-
 # Default:
 # format = """
 # $username\
@@ -93,10 +92,9 @@ time_format = '%T'
 utc_time_offset = '-5'
 time_range = '10:00:00-14:00:00'
 
-
-[directory.substitutions]
-'~/Developer' = 'Dev'
-
+# Disable git-status for now, it absolutely kills performance for the whole shell on my slow HDD.
+[git_status]
+disabled = true
 
 [env_var.NODE_ENV]
 variable = 'NODE_ENV'
