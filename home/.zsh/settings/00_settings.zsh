@@ -43,3 +43,6 @@ unsetopt LIST_BEEP
 setopt LIST_PACKED
 export LISTMAX=0
 export LISTMAXT=0
+
+# Enable `< file` to quickly view the contents of any file.
+[[ -z "$READNULLCMD" ]] || READNULLCMD=$PAGER
