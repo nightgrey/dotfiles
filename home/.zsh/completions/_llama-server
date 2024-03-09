@@ -1,0 +1,64 @@
+#compdef llama-server
+
+_llama-server() {
+    local arguments
+
+    arguments=(
+        {-h,--help}'[show this help message and exit]'
+        {-v,--verbose}'[verbose output (default: disabled)]'
+        {-t,--threads}'[number of threads to use during computation (default: 16)]:number of threads: '
+        {-tb,--threads-batch}'[number of threads to use during batch and prompt processing (default: same as --threads)]:number of threads: '
+        '--threads-http[number of threads in the http server pool to process requests (default: max(hardware concurrency - 1, --parallel N + 2))]:number of threads: '
+        {-c,--ctx-size}'[size of the prompt context (default: 512)]:context size: '
+        '--rope-scaling[RoPE frequency scaling method, defaults to linear unless specified by the model]:scaling method:(none linear yarn)'
+        '--rope-freq-base[RoPE base frequency (default: loaded from model)]:base frequency: '
+        '--rope-freq-scale[RoPE frequency scaling factor, expands context by a factor of 1/N]:scaling factor: '
+        '--yarn-ext-factor[YaRN: extrapolation mix factor (default: 1.0, 0.0 = full interpolation)]:extrapolation mix factor: '
+        '--yarn-attn-factor[YaRN: scale sqrt(t) or attention magnitude (default: 1.0)]:attention factor: '
+        '--yarn-beta-slow[YaRN: high correction dim or alpha (default: 1.0)]:beta slow: '
+        '--yarn-beta-fast[YaRN: low correction dim or beta (default: 32.0)]:beta fast: '
+        '--pooling[pooling type for embeddings, use model default if unspecified]:pooling type:(none mean cls)'
+        {-b,--batch-size}'[batch size for prompt processing (default: 512)]:batch size: '
+        '--memory-f32[use f32 instead of f16 for memory key+value (default: disabled)]'
+        '--mlock[force system to keep model in RAM rather than swapping or compressing]'
+        '--no-mmap[do not memory-map model (slower load but may reduce pageouts if not using mlock)]'
+        '--numa[attempt optimizations that help on some NUMA systems]:NUMA type:(distribute isolate numactl)'
+        {-ngl,--n-gpu-layers}'[number of layers to store in VRAM]:number of layers: '
+        {-sm,--split-mode}'[how to split the model across multiple GPUs]:split mode:(none layer row)'
+        {-ts,--tensor-split}'[fraction of the model to offload to each GPU, comma-separated list of proportions, e.g. 3,1]:tensor split: '
+        {-mg,--main-gpu}'[the GPU to use for the model (with split-mode = none), or for intermediate results and KV (with split-mode = row)]:main GPU: '
+        {-m,--model}'[model path (default: models/7B/ggml-model-f16.gguf)]:model path:_files'
+        {-a,--alias}'[set an alias for the model, will be added as `model` field in completion response]:alias: '
+        '--lora[apply LoRA adapter (implies --no-mmap)]:LoRA adapter:_files'
+        '--lora-base[optional model to use as a base for the layers modified by the LoRA adapter]:base model:_files'
+        '--host[ip address to listen (default: 127.0.0.1)]:host: '
+        '--port[port to listen (default: 8080)]:port: '
+        '--path[path from which to serve static files (default examples/server/public)]:public path:_files -/'
+        '--api-key[optional api key to enhance server security. If set, requests must include this key for access.]:API key: '
+        '--api-key-file[path to file containing api keys delimited by new lines. If set, requests must include one of the keys for access.]:API key file:_files'
+        {-to,--timeout}'[server read/write timeout in seconds (default: 600)]:timeout: '
+        '--embedding[enable embedding vector output (default: disabled)]'
+        {-np,--parallel}'[number of slots for process requests (default: 1)]:number of slots: '
+        {-cb,--cont-batching}'[enable continuous batching (a.k.a dynamic batching) (default: disabled)]'
+        {-spf,--system-prompt-file}'[set a file to load a system prompt (initial prompt of all slots), this is useful for chat applications.]:system prompt file:_files'
+        {-ctk,--cache-type-k}'[KV cache data type for K (default: f16)]:cache type K: '
+        {-ctv,--cache-type-v}'[KV cache data type for V (default: f16)]:cache type V: '
+        '--mmproj[path to a multimodal projector file for LLaVA.]:multimodal projector file:_files'
+        '--log-format[log output format: json or text (default: json)]:log format:(json text)'
+        '--log-disable[disables logging to a file.]'
+        '--slots-endpoint-disable[disables slots monitoring endpoint.]'
+        '--metrics[enable prometheus compatible metrics endpoint (default: disabled).]'
+        {-n,--n-predict}'[maximum tokens to predict (default: -1)]:number of tokens: '
+        '--override-kv[advanced option to override model metadata by key. may be specified multiple times.]:override KV: '
+        {-gan,--grp-attn-n}'[set the group attention factor to extend context size through self-extend (default: 1=disabled), used together with group attention width `--grp-attn-w`]:group attention factor: '
+        {-gaw,--grp-attn-w}'[set the group attention width to extend context size through self-extend (default: 512), used together with group attention factor `--grp-attn-n`]:group attention width: '
+        '--chat-template[set custom jinja chat template (default: template taken from model'\''s metadata)]:chat template: '
+    )
+    
+    _arguments -s $arguments
+}
+
+# don't run the completion function when being source-ed or eval-ed
+if [ "$funcstack[1]" = "_llamaserver" ]; then
+    _llama-server "$@"
+fi
