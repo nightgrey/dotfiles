@@ -2,7 +2,7 @@
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks
 
 # List all installed packages by size
-function pacman-sizes-all {
+function pacman-list-sizes {
     LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 
@@ -16,3 +16,9 @@ alias pacman-browse="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=revers
 
 # Remove all orphans and their configuration files
 alias pacman-clean="pacman -Qtdq | pacman -Rns -"
+
+# Update AUR packages.
+alias update-aur="yay -Syua"
+
+# Update the system.
+alias update-system="sudo pacman -Syu"
