@@ -1,7 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-# @TODO: Keep?
-#[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 #### SETTINGS ####
 for file in $(find $HOME/.zsh/settings -name '*.zsh')
 do
@@ -13,6 +9,9 @@ done
 source $HOME/.zsh/private.zsh
 #### PRIVATE ####
 
+#### COMPLETIONS ####
+source "$HOME/.zsh/completions/activate.zsh"
+#### UTILS/ALIASES ####
 
 #### ZNAP ####
 
@@ -54,7 +53,7 @@ znap source mattmc3/zman
 
 # Misc
 znap source mattmc3/zephyr \
-     plugins/{utility,history,history}
+     plugins/{utility,history}
 
 #### ZNAP ####
 
@@ -65,10 +64,3 @@ source $file
 done
 #### UTILS/ALIASES ####
 
-# Fig post block. Keep at the bottom of this file.
-# @TODO: Keep?
-#[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-# Tabtab
-# pnpm uses it for autocompletion.
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
