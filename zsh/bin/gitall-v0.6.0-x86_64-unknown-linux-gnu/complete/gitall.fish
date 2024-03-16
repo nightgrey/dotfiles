@@ -1,0 +1,10 @@
+complete -c gitall -n "__fish_use_subcommand" -l color -d 'Controls when to use color' -r -f -a "always true auto never false"
+complete -c gitall -n "__fish_use_subcommand" -s D -l directory -d 'The directory to start searching under'
+complete -c gitall -n "__fish_use_subcommand" -s d -l max-depth -d 'Descend at most LEVELS of directories below DIR'
+complete -c gitall -n "__fish_use_subcommand" -s r -l regex -d 'Filters command to repo(s) matching provided regular expression'
+complete -c gitall -n "__fish_use_subcommand" -s j -l threads -d 'The maximum number of commands to run in parallel'
+complete -c gitall -n "__fish_use_subcommand" -s X -l executable -d 'The program to run in each repo'
+complete -c gitall -n "__fish_use_subcommand" -s L -l follow -d 'Follow symbolic links'
+complete -c gitall -n "__fish_use_subcommand" -l full-path -d 'Match REGEX against the full directory path'
+complete -c gitall -n "__fish_use_subcommand" -s h -l help -d 'Prints help information'
+complete -c gitall -n "__fish_use_subcommand" -s V -l version -d 'Prints version information'

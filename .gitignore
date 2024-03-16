@@ -1,6 +1,6 @@
-# Ignore private stuff
-home/.zsh/private.*sh
-home/.npmrc
+# Ignore private and secrets files
+private.*sh
+secret.*sh
 
 # Ignore compiled .zwc files
 *.zwc
