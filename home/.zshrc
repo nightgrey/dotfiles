@@ -3,7 +3,6 @@
 source "$HOME/.znap/znap/znap.zsh"
 
 # My own dotfiles
-znap source nightgrey/dotfiles
 
 # Theme
 znap eval starship "starship init zsh --print-full-init"
@@ -41,3 +40,5 @@ znap source mattmc3/zman
 znap source mattmc3/zephyr \
   plugins/{utility,history}
 
+# My own stuff.
+znap source nightgrey/dotfiles
