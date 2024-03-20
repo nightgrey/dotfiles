@@ -7,6 +7,8 @@ hash -d dot=~/Developer/own/dotfiles
 hash -d dotfiles=~/Developer/own/dotfiles
 hash -d ai=~/hdd/Data/AI
 
+hash -d models=~/AI/Models
+
 # Everytime we change directory, update the named directories
 # `git root` is defined in
 # https://stackoverflow.com/a/45444758

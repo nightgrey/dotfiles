@@ -4,3 +4,6 @@
 [submodule "tools/explainshell"]
 	path = tools/explainshell
 	url = git@github.com:idank/explainshell.git
+[submodule "zsh/bin/tomono-src"]
+	path = zsh/bin/tomono-src
+	url = git@github.com:hraban/tomono.git
