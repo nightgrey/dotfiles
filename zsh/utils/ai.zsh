@@ -20,9 +20,8 @@ sync-ai() {
     to_root="/home/nico/AI/Models"
 
     dirs=(
-        "${from_root}/SDXL/Collections/,${to_root}/SDXL"
-        "${from_root}/Others/,${to_root}/Others"
-        "${from_root}/SC/,${to_root}/SC"
+        "${from_root}/ComfyUI/,${to_root}/ComfyUI"
+        # "${from_root}/SC/,${to_root}/SC"
         # Unused:
         # "${from}/SD15/,${to}/SD15"
     )
@@ -33,8 +32,8 @@ sync-ai() {
     for dir in "${dirs[@]}"; do
         IFS=',' read -r from to <<<"$dir"
 
-        from_size=$(du -Lsm --exclude='**/.git' "$from" | awk '{print $1}')
-        to_size=$(du -Lsm --exclude='**/.git' "$to" | awk '{print $1}')
+        from_size=$(du -Lsm --exclude='**/.git' "$from" 2> /dev/null | awk '{print $1}')
+        to_size=$(du -Lsm --exclude='**/.git' "$to" 2> /dev/null | awk '{print $1}')
         diff="$((to_size - from_size))"
         diff="${diff#-}"
 
@@ -75,7 +74,7 @@ sync-ai() {
 
             echo -e "\n\nSyncing $from -> $to...\n"
 
-            rsync --delete -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to"
+            rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to"
 
             sleep 0.5
         done
