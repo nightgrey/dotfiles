@@ -1,8 +1,3 @@
-# Reload the shell (i.e. invoke as a login shell)
-function reload {
-  exec $SHELL -l
-}
-
 # Shows key codes for the pressed keys.
 alias keycodes="sed -n l"
 
