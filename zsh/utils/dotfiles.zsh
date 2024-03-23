@@ -1,1 +1,0 @@
-alias dotfiles="code ~dot"
