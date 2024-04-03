@@ -1,3 +1,6 @@
+# Create requirements.txt
+alias "create-requirements"="./.venv/bin/pip3 list --format=freeze --local > requirements.txt"
+
 # Aliases to create and (de-)activate venv's
 alias "venv-new"="python -m venv --symlinks --system-site-packages --symlinks .venv"
 alias "venv-on"="source .venv/bin/activate"

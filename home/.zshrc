@@ -29,7 +29,6 @@ znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
 znap source ajeetdsouza/zoxide
 znap eval ajeetdsouza/zoxide "zoxide init zsh"
 
-znap source nvbn/thefuck
 znap eval nvbn/thefuck "thefuck --alias"
 
 znap source peterhurford/up.zsh
@@ -48,10 +47,12 @@ znap source asdf-vm/asdf
 znap fpath _asdf  "cat $ASDF_DIR/completions/_asdf"
 
 # fpath
-znap fpath _pip "pip completion -z"
+znap fpath _pip "pip completion --zsh"
 znap fpath _docker "curl -sSL https://raw.githubusercontent.com/docker/cli/fa84cfd8020a4c221ab97da1c11507c1c5e552fd/contrib/completion/zsh/_docker"
 # https://github.com/docker/docker.github.io-1/blob/86dfbfc52bf242cac9f39630a952345cb171ab33/compose/completion.md?plain=1#L87
 znap fpath _docker-compose "curl -sSL https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
- 
+znap fpath _ruff "ruff generate-shell-completion zsh"
+znap fpath _starship "starship completions zsh"
+
 # My own stuff.
 znap source nightgrey/dotfiles
