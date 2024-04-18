@@ -1,5 +1,43 @@
-# Note: Needs to be a function for completions to apply, see completions folder.
+# Terminal copilot
 
+# alias "??"="gh copilot explain"
+# alias "?"="gh copilot suggest -t shell"
+
+function sgpt-explain() {
+    query="$1"
+    bat --style=plain --paging=never --language markdown <(sgpt explain --stream "$query")
+}
+
+function sgpt-shell() {
+    query="$1"
+    bat --style=plain --paging=never --language bash <(sgpt shell "$query")
+}
+
+function sgpt-clip() {
+    clipboard=$(pbpaste | tr -d '\r')
+
+    if [ -z "$clipboard" ]; then
+        echo "Clipboard is empty."
+        return
+    fi
+
+    block='```'
+    clipboard_block="${block}\n${clipboard}\n${block}"
+    query="$1"
+
+    echo $clipboard_block | bat --style=plain --paging=never --language markdown
+
+    bat --style=plain --paging=never --language markdown <(sgpt-explain "$clipboard_block\n\n$query")
+}
+
+alias "?"=sgpt-shell
+alias "??clip"=sgpt-clip
+alias "??"="sgpt-explain"
+
+
+# AI tooling
+
+# Note: Needs to be a function for completions to apply, see completions folder.
 llama() {
     ~/AI/llama.cpp/main "$@"
 }
@@ -10,9 +48,9 @@ llama-server() {
 
 alias comfy="~/AI/ComfyUI/venv/bin/python main.py --force-fp16"
 alias comfyui=comfy
-
-
 alias invoke="~/AI/invokeai/start.sh"
+
+# AI utilities
 
 # Sync AI models from HDD to local SSD.
 sync-ai() {
