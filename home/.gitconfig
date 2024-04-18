@@ -34,21 +34,23 @@ fetchrecentrefsdays = 0
 root = !git rev-parse --show-toplevel 2>/dev/null || echo false
 # Returns true or false if in git work tree.
 is-git = !git rev-parse --is-inside-work-tree
+
 # Quickly creates a "SAVEPOINT" commit
 save = !git add -A && git commit -vm 'SAVEPOINT' --no-verify
-# Quickly creates a "WIP" commit
-wip = !git add -A && git commit -vm 'WIP' --no-verify
-# Quickly creates and pushes a "WIP" commit
-push-wip = !git add -A && git commit -vm 'WIP' --no-verify && git push
 # Undos the last commit, but keeps the changes in the repository. Useful for undoing `SAVEPOINT`s.
 undo = reset HEAD~1 --mixed
+
+# Quickly creates a "WIP" commit
+wip = !git add -A && git commit -vm 'WIP [skip ci]' --no-verify
+
 # Find commits by message
 find = "!f() { git log --decorate --date=short --grep=$1; }; f"
 # Find commits by SHA
 find-sha = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
 ## Wipe the last commit
 # wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' --no-verify && git reset
-# HEAD~1 --hard
+
 # Clone repository without LFS files with recent refs.
 # Usually used for cloning repositories from huggingface with large LFS files.
 storage = "!f() { GIT_LFS_SKIP_SMUDGE=1 git clone \"$@\" --depth 1; }; f"
