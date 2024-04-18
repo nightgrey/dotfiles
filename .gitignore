@@ -4,6 +4,3 @@ secret.*sh
 
 # Ignore compiled .zwc files
 *.zwc
-
-# Ignore IntelliJ project files
-.idea/
