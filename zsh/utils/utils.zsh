@@ -24,3 +24,5 @@ function killit() {
     echo -e "No processes found matching \"${search}\""
   fi
 }
+
+alias neofetch="fastfetch"

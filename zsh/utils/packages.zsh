@@ -18,7 +18,8 @@ alias pacman-browse="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=revers
 alias pacman-clean="pacman -Qtdq | pacman -Rns -"
 
 # Update AUR packages.
-alias update-aur="yay -Syua"
+alias upgrade-aur="yay -Syua"
 
 # Update the system.
-alias update-system="sudo pacman -Syu"
+alias upgrade="sudo pacman -Su"
+
