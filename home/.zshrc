@@ -53,6 +53,8 @@ znap fpath _docker "curl -sSL https://raw.githubusercontent.com/docker/cli/fa84c
 znap fpath _docker-compose "curl -sSL https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
 znap fpath _ruff "ruff generate-shell-completion zsh"
 znap fpath _starship "starship completions zsh"
+znap fpath _gh "gh completion -s zsh" 
+znap fpath _rg "rg --generate complete-zsh"
 
 # My own stuff.
 znap source nightgrey/dotfiles
