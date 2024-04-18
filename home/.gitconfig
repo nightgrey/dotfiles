@@ -16,8 +16,6 @@ default = current
 autoSetupRemote = true
 
 [core]
-editor = nano
-pager = delta
 excludesFile = ~/.gitignore
 
 [init]
@@ -55,48 +53,6 @@ find-sha = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%C
 # Usually used for cloning repositories from huggingface with large LFS files.
 storage = "!f() { GIT_LFS_SKIP_SMUDGE=1 git clone \"$@\" --depth 1; }; f"
 
-# ### ------------------- ###
-# --- DIFFING AND LOGGING ---
-# ### ------------------- ###
-# All settings below are for the `delta` diff viewer.
-
-# Better diffs and logs
-# Delta (https://github.com/dandavison/delta#installation)
-[interactive]
-diffFilter = delta
-
-[diff]
-	colorMoved = zebra
-
-[delta]
-features = villsau line-numbers decorations
-whitespace-error-style = 22 reverse
-map-styles = bold purple = magenta, bold cyan = blue >syntax >syntax
-
-# For more themes, see
-#   - https://dandavison.github.io/delta/custom-themes.html
-#   - https://raw.githubusercontent.com/dandavison/delta/master/themes.gitconfig
-[delta "villsau"]
-# author: https://github.com/torarnv
-dark = true
-file-style = omit
-hunk-header-decoration-style = omit
-hunk-header-file-style = magenta
-hunk-header-line-number-style = dim magenta
-hunk-header-style = file line-number syntax
-line-numbers = false
-minus-emph-style = bold red 52
-minus-empty-line-marker-style = normal "#3f0001"
-minus-non-emph-style = dim red
-minus-style = bold red
-plus-emph-style = bold green 22
-plus-empty-line-marker-style = normal "#002800"
-plus-non-emph-style = dim green
-plus-style = bold green
-syntax-theme = OneHalfDark
-whitespace-error-style = reverse red
-zero-style = dim syntax
-
 # Git LFS
 [filter "lfs"]
 clean = git-lfs clean -- %f
@@ -107,6 +63,8 @@ required = true
 # Misc settings
 [protocol "file"]
 allow = always
+
+
 [maintenance]
 	repo = /home/nico/.znap/znap
 	repo = /home/nico/.znap/asdf-direnv
@@ -145,6 +103,49 @@ allow = always
 	repo = /home/nico/.znap/supercrabtree/k
 	repo = /home/nico/.znap/zdharma-continuum/fast-syntax-highlighting
 	repo = /home/nico/.znap/zsh-users/zsh-autosuggestions
+
+# ### ------------------- ###
+# --- DIFFING AND LOGGING ---
+# ### ------------------- ###
+# All settings below are for the `delta` diff viewer.
+
+# Better diffs and logs
+# Delta (https://github.com/dandavison/delta#installation)
+[interactive]
+diffFilter = delta
+
+[diff]
+colorMoved = zebra
+
+[delta]
+features = villsau line-numbers decorations
+whitespace-error-style = 22 reverse
+map-styles = bold purple = magenta, bold cyan = blue >syntax >syntax
+
+# For more themes, see
+#   - https://dandavison.github.io/delta/custom-themes.html
+#   - https://raw.githubusercontent.com/dandavison/delta/master/themes.gitconfig
+[delta "villsau"]
+# author: https://github.com/torarnv
+dark = true
+file-style = omit
+hunk-header-decoration-style = omit
+hunk-header-file-style = magenta
+hunk-header-line-number-style = dim magenta
+hunk-header-style = file line-number syntax
+line-numbers = false
+minus-emph-style = bold red 52
+minus-empty-line-marker-style = normal "#3f0001"
+minus-non-emph-style = dim red
+minus-style = bold red
+plus-emph-style = bold green 22
+plus-empty-line-marker-style = normal "#002800"
+plus-non-emph-style = dim green
+plus-style = bold green
+syntax-theme = OneHalfDark
+whitespace-error-style = reverse red
+zero-style = dim syntax
+
 [color "status"]
 	branch = 6 normal bold
 	added = 10 normal
