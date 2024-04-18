@@ -6,6 +6,7 @@ hash -d Dev=~/Developer
 hash -d dot=~/Developer/own/dotfiles
 hash -d dotfiles=~/Developer/own/dotfiles
 hash -d ai=~/hdd/Data/AI
+hash -d hdd=~/hdd
 
 hash -d models=~/AI/Models
 
