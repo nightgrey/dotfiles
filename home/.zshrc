@@ -41,6 +41,11 @@ znap source mattmc3/zephyr \
 # Move directory with symlinks intact
 znap source minTaqa/mvrel
 
+# Title
+ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
+ZSH_TAB_TITLE_ENABLE_FULL_COMMAND=true
+znap source trystan2k/zsh-tab-title
+
 # asdf
 # Tool management (npm, python, ruby, and more)
 znap source asdf-vm/asdf
