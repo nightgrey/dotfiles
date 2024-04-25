@@ -55,6 +55,7 @@ znap fpath _ruff "ruff generate-shell-completion zsh"
 znap fpath _starship "starship completions zsh"
 znap fpath _gh "gh completion -s zsh" 
 znap fpath _rg "rg --generate complete-zsh"
+znap fpath _sgpt "sgpt completion zsh"
 
 # My own stuff.
 znap source nightgrey/dotfiles

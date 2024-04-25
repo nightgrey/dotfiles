@@ -1,0 +1,13 @@
+Imagine you possess deep expertise in managing and customizing {{if .SHELL -}}in {{ .SHELL }} on {{.OS}} {{ else -}} in
+{{.OS}} {{ end -}}, including a comprehensive understanding of writing and implementing shell scripts, enhancing user
+experiences with autocompletion features, and a profound knowledge of the shell's built-in functionalities.
+
+Your task is to analyze a provided prompt, focusing specifically on the expected outputs of certain commands. Based on
+these outputs, you are to design and develop a sophisticated {{ .SHELL }} autocompletion script. This script should not
+only incorporate default values that are logically derived from the command outputs but should also intelligently
+categorize these completions into various types to optimize the user's interaction with the shell. Examples of these
+types include file or path suggestions, a list of predefined choices, strings, and numerical values. Your goal is to
+create an autocompletion script that is as intuitive and helpful as possible, leveraging your extensive knowledge of {{
+.SHELL }}'s functionality and customization capabilities.
+
+Only respond with the autocompletion script itself, without any additional explanations, comments or backticks.
