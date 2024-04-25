@@ -93,6 +93,18 @@ sync-ai() {
     echo -e "Syncing directories:\n\n${sync_info}\n"
 
     confirm() {
+        # for dir in "${dirs[@]}"; do
+        #     IFS=',' read -r from to <<<"$dir"
+
+        #     if [ ! -d "$from" ]; then
+        #         echo "Error: Directory to sync from (""${from}"") does not exist."
+        #         exit 1
+        #     fi
+
+        #     echo -e "\n\nFiles synced ($from -> $to):\n"
+
+        #     rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to" -v --dry-run --itemize-changes --out-format='%i %n%L'
+        # done
         read -rq "? Is that okay? (y/n) "
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             return 0

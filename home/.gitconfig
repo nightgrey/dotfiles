@@ -41,6 +41,9 @@ undo = reset HEAD~1 --mixed
 # Quickly creates a "WIP" commit
 wip = !git add -A && git commit -vm 'WIP [skip ci]' --no-verify
 
+# Update already staged files
+update = !git update-index --again
+
 # Find commits by message
 find = "!f() { git log --decorate --date=short --grep=$1; }; f"
 # Find commits by SHA
@@ -115,7 +118,7 @@ allow = always
 diffFilter = delta
 
 [diff]
-colorMoved = zebra
+	colorMoved = zebra
 
 [delta]
 features = villsau line-numbers decorations

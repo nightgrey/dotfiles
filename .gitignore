@@ -4,3 +4,5 @@ secret.*sh
 
 # Ignore compiled .zwc files
 *.zwc
+
+konsolestaterc
