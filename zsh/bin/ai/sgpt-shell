@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+query="$1"
+bat --style=plain --paging=never --language bash <(sgpt shell "$query")

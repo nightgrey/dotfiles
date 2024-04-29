@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+function sgpt-clip() {
+  clipboard=$(xclip -selection clipboard -out | tr -d '\r')
+
+  if [ -z "$clipboard" ]; then
+    echo "Clipboard is empty."
+    return
+  fi
+
+  block='```'
+  clipboard_block="${block}\n${clipboard}\n${block}"
+  query="$1"
+
+  echo $clipboard_block | bat --style=plain --paging=never --language markdown
+
+  bat --style=plain --paging=never --language markdown <(sgpt-explain "$clipboard_block\n\n$query")
+}
+
+sgpt-clip "$1"

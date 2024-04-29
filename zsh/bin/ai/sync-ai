@@ -1,0 +1,76 @@
+#!/usr/bin/env zsh
+from_root="/mnt/hdd/Data/AI"
+to_root="/home/nico/AI/Models"
+
+dirs=(
+  "${from_root}/ComfyUI/,${to_root}/ComfyUI"
+  # "${from_root}/SC/,${to_root}/SC"
+  # Unused:
+  # "${from}/SD15/,${to}/SD15"
+)
+
+# Format dirs as $from -> $to, $from -> $to, ...
+sync_info=""
+
+for dir in "${dirs[@]}"; do
+  IFS=',' read -r from to <<<"$dir"
+
+  from_size=$(du -Lsm --exclude='**/.git' "$from" 2>/dev/null | awk '{print $1}')
+  to_size=$(du -Lsm --exclude='**/.git' "$to" 2>/dev/null | awk '{print $1}')
+  diff="$((to_size - from_size))"
+  diff="${diff#-}"
+
+  # Format sizes
+  from_size="${from_size} MB"
+  to_size="${to_size} MB"
+  diff="${diff} MB"
+
+  sync_info+="[Diff: ${diff}] $from ($from_size) -> $to ($to_size)"
+
+  # Add new line if not last element
+  if [[ $dir != "${dirs[-1]}" ]]; then
+    sync_info+="\n"
+  fi
+done
+
+sync_info=${sync_info%, }
+
+echo -e "Syncing directories:\n\n${sync_info}\n"
+
+confirm() {
+  # for dir in "${dirs[@]}"; do
+  #     IFS=',' read -r from to <<<"$dir"
+
+  #     if [ ! -d "$from" ]; then
+  #         echo "Error: Directory to sync from (""${from}"") does not exist."
+  #         exit 1
+  #     fi
+
+  #     echo -e "\n\nFiles synced ($from -> $to):\n"
+
+  #     rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to" -v --dry-run --itemize-changes --out-format='%i %n%L'
+  # done
+  read -rq "? Is that okay? (y/n) "
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+if confirm; then
+  for dir in "${dirs[@]}"; do
+    IFS=',' read -r from to <<<"$dir"
+
+    if [ ! -d "$from" ]; then
+      echo "Error: Directory to sync from (""${from}"") does not exist."
+      exit 1
+    fi
+
+    echo -e "\n\nSyncing $from -> $to...\n"
+
+    rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to"
+
+    sleep 0.5
+  done
+fi

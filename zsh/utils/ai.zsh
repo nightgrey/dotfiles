@@ -1,211 +1,43 @@
-# Terminal copilot
-
-# alias "??"="gh copilot explain"
-# alias "?"="gh copilot suggest -t shell"
-
-function sgpt-explain() {
-    query="$1"
-    bat --style=plain --paging=never --language markdown <(sgpt explain --stream "$query")
-}
-
-function sgpt-shell() {
-    query="$1"
-    bat --style=plain --paging=never --language bash <(sgpt shell "$query")
-}
-
-function sgpt-clip() {
-    clipboard=$(pbpaste | tr -d '\r')
-
-    if [ -z "$clipboard" ]; then
-        echo "Clipboard is empty."
-        return
-    fi
-
-    block='```'
-    clipboard_block="${block}\n${clipboard}\n${block}"
-    query="$1"
-
-    echo $clipboard_block | bat --style=plain --paging=never --language markdown
-
-    bat --style=plain --paging=never --language markdown <(sgpt-explain "$clipboard_block\n\n$query")
-}
-
-
-
-alias "?"=sgpt-shell
-alias "??clip"=sgpt-clip
+# Aliases for my own sgpt scripts.
+alias "?"="sgpt-shell"
+alias "??clip"="sgpt-clip"
 alias "??"="sgpt-explain"
 
-
-
-# AI tooling
-
-# Note: Needs to be a function for completions to apply, see completions folder.
-llama() {
-    ~/AI/llama.cpp/main "$@"
-}
-
-llama-server() {
-    ~/AI/llama.cpp/server "$@"
-}
-
-alias comfy="~/AI/ComfyUI/venv/bin/python main.py --force-fp16"
 alias comfyui=comfy
-alias invoke="~/AI/invokeai/start.sh"
 
-# AI utilities
+alias stableswarm="docker-compose --project-directory /home/nico/AI/StableSwarmUI up"
 
-# Sync AI models from HDD to local SSD.
-sync-ai() {
-    from_root="/mnt/hdd/Data/AI"
-    to_root="/home/nico/AI/Models"
+function civit() {
+  token=$CIVITAI_API_KEY
+  url=$1
 
-    dirs=(
-        "${from_root}/ComfyUI/,${to_root}/ComfyUI"
-        # "${from_root}/SC/,${to_root}/SC"
-        # Unused:
-        # "${from}/SD15/,${to}/SD15"
-    )
+  if [ -z "$url" ]; then
+    echo "No URL provided"
+    return 1
+  fi
 
-    # Format dirs as $from -> $to, $from -> $to, ...
-    sync_info=""
+  if [ -z "$token" ]; then
+    echo "CIVITAI_API_KEY is not set"
+    return 1
+  fi
 
-    for dir in "${dirs[@]}"; do
-        IFS=',' read -r from to <<<"$dir"
+  # Append token as URL parameter
+  if [ -z "$url" ]; then
+    echo "No URL provided"
+    return 1
+  fi
 
-        from_size=$(du -Lsm --exclude='**/.git' "$from" 2> /dev/null | awk '{print $1}')
-        to_size=$(du -Lsm --exclude='**/.git' "$to" 2> /dev/null | awk '{print $1}')
-        diff="$((to_size - from_size))"
-        diff="${diff#-}"
+  if [ -z "$token" ]; then
+    echo "CIVITAI_API_KEY is not set"
+    return 1
+  fi
 
-        # Format sizes
-        from_size="${from_size} MB"
-        to_size="${to_size} MB"
-        diff="${diff} MB"
+  # Append token as URL parameter
+  if [[ $url == *'?'* ]]; then
+    url="${url}&token=${token}"
+  else
+    url="${url}?token=${token}"
+  fi
 
-        sync_info+="[Diff: ${diff}] $from ($from_size) -> $to ($to_size)"
-
-        # Add new line if not last element
-        if [[ $dir != "${dirs[-1]}" ]]; then
-            sync_info+="\n"
-        fi
-    done
-
-    sync_info=${sync_info%, }
-
-    echo -e "Syncing directories:\n\n${sync_info}\n"
-
-    confirm() {
-        # for dir in "${dirs[@]}"; do
-        #     IFS=',' read -r from to <<<"$dir"
-
-        #     if [ ! -d "$from" ]; then
-        #         echo "Error: Directory to sync from (""${from}"") does not exist."
-        #         exit 1
-        #     fi
-
-        #     echo -e "\n\nFiles synced ($from -> $to):\n"
-
-        #     rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to" -v --dry-run --itemize-changes --out-format='%i %n%L'
-        # done
-        read -rq "? Is that okay? (y/n) "
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            return 0
-        else
-            return 1
-        fi
-    }
-
-    if confirm; then
-        for dir in "${dirs[@]}"; do
-            IFS=',' read -r from to <<<"$dir"
-
-            if [ ! -d "$from" ]; then
-                echo "Error: Directory to sync from (""${from}"") does not exist."
-                exit 1
-            fi
-
-            echo -e "\n\nSyncing $from -> $to...\n"
-
-            rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to"
-
-            sleep 0.5
-        done
-    fi
-
-}
-
-
-
-
-# Create autocomplete for CLI commands with AI.
-aicomplete() {
-    # The destination folder for the completions
-    folder="/home/nico/Developer/own/dotfiles/zsh/completions"
-    # The CLI command to autocomplete.
-    cli="$1"
-    # Extract the current date as a string in the format YYYY.MM.DD
-    current_date=$(date +'%Y.%m.%d')
-    # Output file path
-    out="$folder/_$cli"
-
-    if [ -z "$cli" ]; then
-        echo "No CLI specified."
-        return
-    fi
-
-    # Get the help output of the CLI command.
-    help="$($cli --help)"
-
-    # If the help output is empty, return.
-    if [ -z "$help" ]; then
-        echo "No help output found for $cli."
-        return
-    fi
-
-    echo "Creating autocomplete for $cli...\n"
-
-    completion=$(sgpt autocomplete "$help" | tee /dev/tty | sed '2s/^/# Auto-generated by \`aicomplete\` @ '$current_date'\n/')
-
-
-    confirm() {
-        message="${1:-Is that okay?}"
-
-        read -rq "?$message (y/n) "
-        echo ""
-
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            return 0
-        else
-            return 1
-        fi
-    }
-
-    save() {
-            echo ""
-            echo "$completion" > "$out"
-            echo "Saved \`_$cli\` to $out."
-
-            return
-    }
-
-    abort() {
-        echo "Aborted."
-
-        return
-    }
-
-    if confirm; then
-        if [ -f "$out" ]; then
-            if confirm "Completion script already exists. Overwrite?"; then
-                save 
-            else
-                abort
-            fi
-        else
-            save
-        fi
-    else
-        abort
-    fi
+  wget --content-disposition $url
 }

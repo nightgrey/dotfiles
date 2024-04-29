@@ -11,6 +11,7 @@ _dot() {
     # Start completing from `~dot` and exclude `*.zwc` files.
     _files -W ~dot -F "*.zwc"
 }
+
 compdef _dot dot
 
 
@@ -32,5 +33,6 @@ _reload() {
     # Start completing from `~dot` and exclude `*.zwc` files.
     _files -W ~dot/zsh -F "*.zwc"
 }
+
 compdef _reload reload
 

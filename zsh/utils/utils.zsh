@@ -1,8 +1,13 @@
+
+
 # Shows key codes for the pressed keys.
 alias keycodes="sed -n l"
 
 # Display all colors
-"colors"() {
+# @TODO: It's executed on startup. Why?!
+print-colors() {
+      print -l $funcsourcetrace
+    print -l $funcstack
   for color in {0..255}; do
     print -Pn "%K{$color}    %k %F{white}${(l:3::0:)color}%F ";
 
