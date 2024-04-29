@@ -17,7 +17,7 @@ znap source lukechilds/zsh-better-npm-completion
 # Completions
 znap source ohmyzsh/ohmyzsh lib/theme-and-appearance
 znap source ohmyzsh/ohmyzsh \
-  lib/{directories,clipboard,history,key-bindings} plugins/{git,npm,web-search,colored-man-pages,docker,docker-compose}
+  lib/{directories,clipboard,history,key-bindings} plugins/{git,npm,web-search,colored-man-pages}
 znap source supercrabtree/k
 znap source DarrinTisdale/zsh-aliases-exa
 
