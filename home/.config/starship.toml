@@ -22,122 +22,227 @@ disabled = true
 variable = 'NODE_ENV'
 format = '[NODE_ENV=$env_value]($style) '
 
+
+# Custom
 [bun]
-format = "via [$symbol]($style)"
+format = '([$symbol($version )]($style))'
 symbol = "Bun "
 style = "bold 8"
 
-[buf]
-format = "via [$symbol]($style)"
-
-[cmake]
-format = "via [$symbol]($style)"
-
-[cobol]
-format = "via [$symbol]($style)"
-
-[crystal]
-format = "via [$symbol]($style)"
-
-[daml]
-format = "via [$symbol]($style)"
-
-[dart]
-format = "via [$symbol]($style)"
-
-[deno]
-format = "via [$symbol]($style)"
-
-[dotnet]
-format = "[$symbol(🎯 $tfm )]($style)"
-
-[elixir]
-format = 'via [$symbol]($style)'
-
-[elm]
-format = 'via [$symbol]($style)'
-
-[erlang]
-format = 'via [$symbol]($style)'
-
-[fennel]
-format = 'via [$symbol]($style)'
-
-[golang]
-format = 'via [$symbol]($style)'
-
-[gradle]
-format = 'via [$symbol]($style)'
-
-[haxe]
-format = 'via [$symbol]($style)'
-
-[helm]
-format = 'via [$symbol]($style)'
-
-[julia]
-format = 'via [$symbol]($style)'
-
-[kotlin]
-format = 'via [$symbol]($style)'
-
-[lua]
-format = 'via [$symbol]($style)'
-
-[meson]
-format = 'via [$symbol]($style)'
-
-[nim]
-format = 'via [$symbol]($style)'
-
 [nodejs]
-format = 'via [$symbol($version )]($style)'
+format = '([$symbol($version )]($style))'
 version_format = 'v${major}'
-
-[ocaml]
-format = 'via [$symbol(\($switch_indicator$switch_name\) )]($style)'
-
-[opa]
-format = 'via [$symbol]($style)'
-
-[perl]
-format = 'via [$symbol]($style)'
-
-[php]
-format = 'via [$symbol]($style)'
-
-[pulumi]
-format = 'via [$symbol$stack]($style)'
-
-[purescript]
-format = 'via [$symbol]($style)'
+symbol = " "
 
 [python]
-format = 'via [$symbol]($style)'
+format = '([${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style))'
+detect_folders = ['.venv', 'venv']
+symbol = " "
+
+# Preset: No empty icons
+[aws]
+symbol = "  "
+
+[buf]
+format = '(with [$symbol$version ]($style))'
+symbol = " "
+
+[c]
+format = '([$symbol($version(-$name) )]($style))'
+symbol = " "
+
+[cmake]
+format = '([$symbol($version )]($style))'
+
+[cobol]
+format = '([$symbol($version )]($style))'
+
+[conda]
+symbol = " "
+
+[crystal]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[daml]
+format = '([$symbol($version )]($style))'
+
+[dart]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[directory]
+read_only = " 󰌾"
+
+[docker_context]
+symbol = " "
+
+[deno]
+format = '([$symbol($version )]($style))'
+
+[dotnet]
+format = '([$symbol($version )(🎯 $tfm )]($style))'
+
+[elixir]
+format = '([$symbol($version \(OTP $otp_version\) )]($style))'
+symbol = " "
+
+[elm]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[erlang]
+format = '([$symbol($version )]($style))'
+
+[fennel]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[helm]
+format = '([$symbol($version )]($style))'
+
+[java]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[julia]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[kotlin]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[lua]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[nim]
+format = '([$symbol($version )]($style))'
+symbol = "󰆥 "
+
+[ocaml]
+format = '([$symbol($version )(\($switch_indicator$switch_name\) )]($style))'
+symbol = " "
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
+
+[opa]
+format = '([$symbo($version ]($style))"'
+
+[package]
+format = '(is [$symbol$version]($style) )'
+symbol = "󰏗 "
+
+[perl]
+format = '([$symbol($version )]($style))'
+symbol = " " 
+
+[php]
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[purescript]
+format = '([$symbol($version )]($style))'
+
+[pijul_channel]
+symbol = " "
 
 [raku]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version-$vm_version )]($style))'
 
 [red]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
 
 [rlang]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
+symbol = "󰟔 "
 
 [ruby]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
+symbol = " "
 
 [rust]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
+symbol = " "
+
+[scala]
+format = '([$symbol($version )]($style))'
+symbol = " "
 
 [swift]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
+symbol = " "
+
 
 [vagrant]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
 
 [vlang]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
 
 [zig]
-format = 'via [$symbol]($style)'
+format = '([$symbol($version )]($style))'
+symbol = " "
