@@ -2,6 +2,18 @@
 from_root="/mnt/hdd/Data/AI"
 to_root="/home/nico/AI/Models"
 
+excludes=(
+  --exclude='**/.git'
+  --exclude="sd_xl_base_1.0_0.9vae.safetensors"
+  --exclude="sd_xl_refiner_1.0_0.9vae.safetensors"
+  --exclude "diffusers/**/*.msgpack"
+  --exclude "diffusers/**/*.onnx"
+  --exclude "*.msgpack"
+  --exclude "diffusers/**/*.bin"
+  --exclude "diffusers/**/model.safetensors"
+  --exclude "diffusion_pytorch_model.safetensors"
+)
+
 dirs=(
   "${from_root}/ComfyUI/,${to_root}/ComfyUI"
   # "${from_root}/SC/,${to_root}/SC"
@@ -15,17 +27,10 @@ sync_info=""
 for dir in "${dirs[@]}"; do
   IFS=',' read -r from to <<<"$dir"
 
-  from_size=$(du -Lsm --exclude='**/.git' "$from" 2>/dev/null | awk '{print $1}')
-  to_size=$(du -Lsm --exclude='**/.git' "$to" 2>/dev/null | awk '{print $1}')
-  diff="$((to_size - from_size))"
-  diff="${diff#-}"
-
-  # Format sizes
-  from_size="${from_size} MB"
-  to_size="${to_size} MB"
+  diff=$(rsync -avn --dry-run --copy-unsafe-links --human-readable "${excludes[@]}" --itemize-changes --delete --delete-excluded "$from" "$to" | awk '{sum += $2} END {print sum}')
   diff="${diff} MB"
 
-  sync_info+="[Diff: ${diff}] $from ($from_size) -> $to ($to_size)"
+  sync_info+="[Diff: ${diff}] $from -> $to"
 
   # Add new line if not last element
   if [[ $dir != "${dirs[-1]}" ]]; then
@@ -69,7 +74,7 @@ if confirm; then
 
     echo -e "\n\nSyncing $from -> $to...\n"
 
-    rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to"
+    rsync -av --copy-unsafe-links --human-readable "${excludes[@]}" --itemize-changes --delete --delete-excluded "$from" "$to"
 
     sleep 0.5
   done
