@@ -11,6 +11,11 @@ alias ncu="bunx npm-check-updates"
 alias nc="bunx npm-check"
 
 
+# https://www.npmjs.com/package/madge
+alias list-deps="npx madge --extensions ts,tsx,js,jsx"
+alias list-circular="npx madge --circular --extensions ts,tsx,js,jsx"
+alias list-unused="npx madge --orphans --extensions ts,tsx,js,jsx"
+
 # ESLint config inspector
 alias "inspect-eslint"="bunx @eslint/config-inspector"
 alias "eslint-inspect"="inspect-eslint"
