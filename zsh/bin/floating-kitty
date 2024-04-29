@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Screen
+SCREEN=2560
+HALF_SCREEN=$(echo "$SCREEN / 2 / 1" | bc)
+
+# Kitty
+W=$(echo "$SCREEN * 0.75 / 1" | bc)
+X=$(echo "$HALF_SCREEN - $W / 2 / 1" | bc)
+H="40%"
+
+tdrop -am -y 0 -h "35%" -x "$X" -w "$W" -h "$H" kitty --config ~/.config/kitty/floating.conf --class "floating_kitty"
