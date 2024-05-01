@@ -4,7 +4,7 @@ This repository contains my personal dotfiles. They contain configuration files 
 
 ![neofetch](/docs/banner.png)
 
-I've picked up a lot from other developers' dotfiles, which is why I decided to share mine as well. Feel free to copy and use anything as you see fit. 
+I've picked up a lot from other developers' dotfiles, which is why I decided to share mine as well. Feel free to copy and use anything as you see fit. Read the source, Luke!
 
 > Note: It is not meant to be copied and run; as it is tailored to my system. Use it as a source for inspiration!
 
