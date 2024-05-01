@@ -1,0 +1,44 @@
+[$Version]
+update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_value_default_enum
+
+[LegacySession: saved at previous logout]
+count=0
+
+[Session: saved at previous logout]
+clientId1=10e4696e75000171447092200000017370005
+clientId2=10e4696e75000171148555500000017080015
+clientId3=10e4696e75000171344168200000016810025
+clientId4=10e4696e75000171447092200000017370006
+clientId5=10e4696e75000171344017900000016810016
+clientId6=10e4696e75000171448423800000017370012
+count=6
+discardCommand3[$e]=rm,$HOME/.config/session/yakuake_10e4696e75000171344168200000016810025_1714514285_113570
+discardCommand5[$e]=rm,$HOME/.config/session/konsole_10e4696e75000171344017900000016810016_1714514285_113546
+discardCommand6[$e]=rm,$HOME/.config/session/konsole_10e4696e75000171448423800000017370012_1714514285_113790
+program1=/usr/lib/DiscoverNotifier
+program2=/usr/bin/gwenview
+program3=/usr/bin/yakuake
+program4=/usr/bin/firewall-applet
+program5=/usr/bin/konsole
+program6=/usr/bin/konsole
+restartCommand1=/usr/lib/DiscoverNotifier,-session,10e4696e75000171447092200000017370005_1714514285_113608
+restartCommand2=/usr/bin/gwenview,-session,10e4696e75000171148555500000017080015_1714514285_113553
+restartCommand3=/usr/bin/yakuake,-session,10e4696e75000171344168200000016810025_1714514285_113570
+restartCommand4=/usr/bin/firewall-applet,-session,10e4696e75000171447092200000017370006_1714514285_113679,-name,firewall-applet
+restartCommand5=/usr/bin/konsole,-session,10e4696e75000171344017900000016810016_1714514285_113546
+restartCommand6=/usr/bin/konsole,-session,10e4696e75000171448423800000017370012_1714514285_113790
+restartStyleHint1=0
+restartStyleHint2=0
+restartStyleHint3=0
+restartStyleHint4=0
+restartStyleHint5=0
+restartStyleHint6=0
+userId1=nico
+userId2=nico
+userId3=nico
+userId4=nico
+userId5=nico
+userId6=nico
+
+[SubSession: 92d7f5cd-e68f-4bec-9f2f-827c03fc5919]
+count=0

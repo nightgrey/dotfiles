@@ -1,0 +1,26 @@
+[$Version]
+update_info=dolphin_detailsmodesettings.upd:rename-leading-padding
+
+[ExtractDialog]
+DP-0 Height 2560x1440 DP-0=713
+DP-0 Width 2560x1440 DP-0=1627
+DirHistory[$e]=$HOME/Downloads/
+
+[General]
+Version=202
+ViewPropsTimestamp=2023,1,22,11,51,58.49
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+Recent Files[$e]=file:$HOME,file:$HOME
+Recent URLs[$e]=file:$HOME/Downloads/
+detailViewIconSize=16
+
+[KPropertiesDialog]
+DP-0 Height 2560x1440 DP-0=650
+DP-0 Width 2560x1440 DP-0=511
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
