@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = discord
+
+[Action]
+Description = Install Vencord ...
+When = PostTransaction
+Exec = /usr/bin/vencordinstallercli -install -install-openasar -location /opt/discord

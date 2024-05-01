@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = discord
+
+[Action]
+Description = Uninstall Vencord ...
+When = PreTransaction
+Exec = /usr/bin/vencordinstallercli -uninstall -uninstall-openasar -location /opt/discord
