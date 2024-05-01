@@ -1,9 +1,3 @@
-[submodule "home/.nano/nanorc"]
-	path = home/.nano/nanorc
-	url = https://github.com/scopatz/nanorc.git
-[submodule "tools/explainshell"]
-	path = tools/explainshell
-	url = git@github.com:idank/explainshell.git
-[submodule "zsh/bin/tomono-src"]
-	path = zsh/bin/tomono-src
-	url = git@github.com:hraban/tomono.git
+[submodule "tools/tomono-src"]
+path = tools/tomono-src
+url = git@github.com:hraban/tomono.git
