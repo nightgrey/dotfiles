@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function sgpt-clip() {
+function aichat-clip() {
   clipboard=$(xclip -selection clipboard -out | tr -d '\r')
 
   if [ -z "$clipboard" ]; then
@@ -12,9 +12,9 @@ function sgpt-clip() {
   clipboard_block="${block}\n${clipboard}\n${block}"
   query="$1"
 
-  echo $clipboard_block | bat --style=plain --paging=never --language markdown
+  echo -e "\e[1;37m$clipboard_block\e[0m"
 
-  bat --style=plain --paging=never --language markdown <(sgpt-explain "$clipboard_block\n\n$query")
+  aichat -r explain "$clipboard_block\n\n$query"
 }
 
-sgpt-clip "$1"
+aichat-clip "$1"

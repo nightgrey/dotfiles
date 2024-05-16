@@ -1,7 +1,7 @@
 # Aliases for my own sgpt scripts.
-alias "?"="sgpt-shell"
-alias "??clip"="sgpt-clip"
-alias "??"="sgpt-explain"
+alias "?"="aichat -r shell -m claude:claude-3-sonnet-20240229 -e"
+alias "??clip"="aichat-clip"
+alias "??"="aichat -r explain"
 
 alias comfyui=comfy
 
