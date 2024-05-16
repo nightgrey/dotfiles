@@ -38,8 +38,9 @@ save = !git add -A && git commit -vm 'SAVEPOINT' --no-verify
 # Undos the last commit, but keeps the changes in the repository. Useful for undoing `SAVEPOINT`s.
 undo = reset HEAD~1 --mixed
 
-# Quickly creates a "WIP" commit
+# Quickly creates a "WIP" commit of all changes
 wip = !git add -A && git commit -vm 'WIP [skip ci]' --no-verify
+c = !git commit --no-verify
 
 # Update already staged files
 update = !git update-index --again
