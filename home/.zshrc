@@ -8,9 +8,6 @@ source "$HOME/.znap/znap/znap.zsh"
 znap eval starship "starship init zsh --print-full-init"
 znap prompt
 
-# My own stuff.
-znap source nightgrey/dotfiles
-
 # Autocompletions & syntax highlighting
 znap source zsh-users/zsh-autosuggestions
 znap source marlonrichert/zsh-autocomplete
@@ -64,3 +61,8 @@ znap fpath _starship "starship completions zsh"
 znap fpath _gh "gh completion -s zsh" 
 znap fpath _rg "rg --generate complete-zsh"
 znap fpath _sgpt "sgpt completion zsh"
+znap fpath _aichat "curl -sSL https://raw.githubusercontent.com/sigoden/aichat/master/scripts/completions/aichat.zsh"
+
+
+# My own stuff.
+znap source nightgrey/dotfiles
