@@ -5,4 +5,7 @@ secret.*sh
 # Ignore compiled .zwc files
 *.zwc
 
+# Ignore misc files
 konsolestaterc
+**/aichat/messages.md
+.uuid
