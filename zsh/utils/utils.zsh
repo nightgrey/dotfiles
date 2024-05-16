@@ -31,6 +31,3 @@ function killit() {
 }
 
 alias neofetch="fastfetch"
-
-# Remove dirty flag on my HDD.
-alias clean-hdd="sudo ntfsfix -d /dev/sda1"
