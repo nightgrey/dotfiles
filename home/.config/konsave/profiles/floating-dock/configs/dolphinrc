@@ -1,0 +1,48 @@
+MenuBar=Disabled
+
+[$Version]
+update_info=dolphin_detailsmodesettings.upd:rename-leading-padding,dolphin_detailsmodesettings.upd:move-content-display
+
+[DetailsMode]
+PreviewSize=22
+
+[ExtractDialog]
+2560x1440 screen: Height=715
+2560x1440 screen: Width=1642
+DP-0 Height 2560x1440 DP-0=713
+DP-0 Width 2560x1440 DP-0=1627
+DirHistory[$e]=$HOME/Downloads/,$HOME/Developer/blender/addons/
+
+[General]
+EditableUrl=true
+FilterBar=true
+LockPanels=false
+OpenExternallyCalledFolderInNewTab=true
+Version=202
+ViewPropsTimestamp=2023,1,22,11,51,58.49
+
+[IconsMode]
+PreviewSize=160
+
+[InformationPanel]
+previewsShown=false
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+Recent Files[$e]=file:$HOME
+Recent URLs[$e]=file:$HOME/Downloads/,file:$HOME/Developer/blender/addons/,file:$HOME/
+detailViewIconSize=16
+
+[KPropertiesDialog]
+2560x1440 screen: Height=650
+2560x1440 screen: Width=529
+DP-0 Height 2560x1440 DP-0=472
+DP-0 Width 2560x1440 DP-0=471
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[PreviewSettings]
+Plugins=appimagethumbnail,cursorthumbnail,jpegthumbnail,comicbookthumbnail,imagethumbnail,ebookthumbnail,exrthumbnail,opendocumentthumbnail,djvuthumbnail,svgthumbnail,windowsexethumbnail,audiothumbnail,kraorathumbnail,windowsimagethumbnail,fontthumbnail,directorythumbnail

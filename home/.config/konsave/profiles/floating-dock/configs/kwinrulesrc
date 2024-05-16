@@ -1,0 +1,60 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum,kwinrules.upd:use-virtual-desktop-ids
+
+[00daa78c-b0dd-4c69-9897-eb569fde4f33]
+Description=Settings for konsole
+placement=6
+placementrule=2
+wmclass=konsole
+wmclasscomplete=true
+wmclassmatch=2
+
+[1]
+Description=Settings for konsole
+desktops=\\0
+ignoregeometry=true
+ignoregeometryrule=2
+placementrule=2
+wmclass=konsole
+wmclasscomplete=true
+wmclassmatch=2
+
+[2]
+Description=Settings for floating_kitty
+above=true
+aboverule=3
+skippager=true
+skippagerrule=3
+skipswitcher=true
+skipswitcherrule=3
+skiptaskbar=true
+skiptaskbarrule=3
+wmclass=floating_kitty
+wmclassmatch=1
+
+[General]
+count=2
+rules=1,2
+
+[d49bf835-2144-4a02-9c4c-892bd86c15c1]
+Description=Window settings for google-chrome
+clientmachine=localhost
+types=1
+windowrole=browser
+windowrolematch=1
+wmclass=google-chrome (/home/nico/.config/code/user/workspacestorage/25e5790b09b8b7d831bf94ea2d4f13d2/ms-vscode.js-debug/.profile) google-chrome
+wmclasscomplete=true
+wmclassmatch=1
+
+[d9235776-0f01-4aaa-814f-b6acd0cb8f7e]
+Description=Settings for floating_kitty
+above=true
+aboverule=3
+skippager=true
+skippagerrule=3
+skipswitcher=true
+skipswitcherrule=3
+skiptaskbar=true
+skiptaskbarrule=3
+wmclass=floating_kitty
+wmclassmatch=1
