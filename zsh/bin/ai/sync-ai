@@ -6,19 +6,21 @@ excludes=(
   --exclude='**/.git'
   --exclude="sd_xl_base_1.0_0.9vae.safetensors"
   --exclude="sd_xl_refiner_1.0_0.9vae.safetensors"
-  --exclude "diffusers/**/*.msgpack"
-  --exclude "diffusers/**/*.onnx"
-  --exclude "*.msgpack"
-  --exclude "diffusers/**/*.bin"
-  --exclude "diffusers/**/model.safetensors"
-  --exclude "diffusion_pytorch_model.safetensors"
+  --exclude="stable-diffusion-v1-5/v1-5-pruned.ckpt"
+  --exclude="stable-diffusion-v1-5/v1-5-pruned.safetensors"
+  --exclude="stable-diffusion-v1-5/unet/diffusion_pytorch_model.non_ema.safetensors"
+  --exclude="diffusers/**/*.msgpack"
+  --exclude="diffusers/**/*.onnx"
+  --exclude="*.msgpack"
+  --exclude="diffusers/**/*.bin"
+  --exclude="diffusers/**/model.safetensors"
+  --exclude="diffusion_pytorch_model.safetensors"
+  # Ignore `stableswarmui` metadata
+  --exclude "*.ldb"
 )
 
 dirs=(
   "${from_root}/ComfyUI/,${to_root}/ComfyUI"
-  # "${from_root}/SC/,${to_root}/SC"
-  # Unused:
-  # "${from}/SD15/,${to}/SD15"
 )
 
 # Format dirs as $from -> $to, $from -> $to, ...
@@ -43,18 +45,6 @@ sync_info=${sync_info%, }
 echo -e "Syncing directories:\n\n${sync_info}\n"
 
 confirm() {
-  # for dir in "${dirs[@]}"; do
-  #     IFS=',' read -r from to <<<"$dir"
-
-  #     if [ ! -d "$from" ]; then
-  #         echo "Error: Directory to sync from (""${from}"") does not exist."
-  #         exit 1
-  #     fi
-
-  #     echo -e "\n\nFiles synced ($from -> $to):\n"
-
-  #     rsync -av --copy-unsafe-links --human-readable --exclude='.git/' "$from" "$to" -v --dry-run --itemize-changes --out-format='%i %n%L'
-  # done
   read -rq "? Is that okay? (y/n) "
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     return 0
@@ -74,7 +64,7 @@ if confirm; then
 
     echo -e "\n\nSyncing $from -> $to...\n"
 
-    rsync -av --copy-unsafe-links --human-readable "${excludes[@]}" --itemize-changes --delete --delete-excluded "$from" "$to"
+    rsync -av --copy-unsafe-links --human-readable "${excludes[@]}" --itemize-changes --delete "$from" "$to"
 
     sleep 0.5
   done
