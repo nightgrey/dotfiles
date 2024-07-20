@@ -1,11 +1,11 @@
-model: openai:gpt-4o # Default model
+model: claude:claude-3-5-sonnet-20240620 # Default model
 temperature: null # Set default temperature parameter
 top_p: null # Set default top-p parameter
 save: false # Indicates whether to persist the message
 save_session: null # Controls the persistence of the session, if null, asking the user
 highlight: true # Controls syntax highlighting
 light_theme: false # Activates a light color theme when true. ENV: AICHAT_LIGHT_THEME
-wrap: no # Controls text wrapping (no, auto, <max-width>)
+wrap: auto # Controls text wrapping (no, auto, <max-width>)
 wrap_code: false # Enables or disables wrapping of code blocks
 auto_copy: false # Enables or disables automatic copying the last LLM response to the clipboard
 keybindings: emacs # Choose keybinding style (emacs, vi)
@@ -14,7 +14,6 @@ prelude: null # Set a default role or session to start with (role:<name>, sessio
 # Command that will be used to edit the current line buffer with ctrl+o
 # if unset fallback to $EDITOR and $VISUAL
 buffer_editor: null
-
 # Compress session when token count reaches or exceeds this threshold (must be at least 1000)
 compress_threshold: 1600
 # Text prompt used for creating a concise summary of session message
@@ -48,11 +47,12 @@ clients:
   # Claude
   # See https://docs.anthropic.com/claude/reference/getting-started-with-the-api
   - type: claude
-    name: claude
+
   # Openrouter
   # See https://openrouter.ai/docs#quick-start
   - type: openai-compatible
     name: openrouter
+    api_base: https://openrouter.ai/api/v1
 
   - type: openai-compatible
     name: local
