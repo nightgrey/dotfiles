@@ -11,3 +11,6 @@ alias "venv"="venv-on"
 
 # Install nightly pytorch
 alias "install-pytorch"="pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121"
+
+# General fix for pip install issues. Usually something is out of date.
+alias "fix-pip"="pip install --upgrade pip setuptools wheel packaging"
