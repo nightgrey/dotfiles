@@ -1,5 +1,5 @@
 
-
+alias omp="oh-my-posh"
 # Shows key codes for the pressed keys.
 alias keycodes="sed -n l"
 

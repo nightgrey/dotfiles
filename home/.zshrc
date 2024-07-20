@@ -5,8 +5,8 @@ source "$HOME/.znap/znap/znap.zsh"
 # My own dotfiles
 
 # Theme
-znap eval starship "starship init zsh --print-full-init"
-znap prompt
+#znap eval starship "starship init zsh --print-full-init"
+znap eval oh-my-posh "oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json"
 
 # Autocompletions & syntax highlighting
 znap source zsh-users/zsh-autosuggestions
@@ -62,6 +62,7 @@ znap fpath _gh "gh completion -s zsh"
 znap fpath _rg "rg --generate complete-zsh"
 znap fpath _sgpt "sgpt completion zsh"
 znap fpath _aichat "curl -sSL https://raw.githubusercontent.com/sigoden/aichat/master/scripts/completions/aichat.zsh"
+znap fpath _oh-my-posh "oh-my-posh completion zsh"
 
 
 # My own stuff.
