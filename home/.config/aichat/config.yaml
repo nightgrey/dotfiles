@@ -1,29 +1,29 @@
+# https://github.com/sigoden/aichat/blob/main/config.example.yaml
 model: claude:claude-3-5-sonnet-20240620 # Default model
-temperature: null # Set default temperature parameter
+temperature: 0.8 # Set default temperature parameter
 top_p: null # Set default top-p parameter
-save: false # Indicates whether to persist the message
+save: true # Indicates whether to persist the message
 save_session: null # Controls the persistence of the session, if null, asking the user
 highlight: true # Controls syntax highlighting
 light_theme: false # Activates a light color theme when true. ENV: AICHAT_LIGHT_THEME
 wrap: auto # Controls text wrapping (no, auto, <max-width>)
-wrap_code: false # Enables or disables wrapping of code blocks
+wrap_code: true # Enables or disables wrapping of code blocks
 auto_copy: false # Enables or disables automatic copying the last LLM response to the clipboard
 keybindings: emacs # Choose keybinding style (emacs, vi)
 prelude: null # Set a default role or session to start with (role:<name>, session:<name>)
+
 
 # Command that will be used to edit the current line buffer with ctrl+o
 # if unset fallback to $EDITOR and $VISUAL
 buffer_editor: null
 # Compress session when token count reaches or exceeds this threshold (must be at least 1000)
-compress_threshold: 1600
+compress_threshold: 128000
 # Text prompt used for creating a concise summary of session message
 summarize_prompt: "Summarize the discussion briefly in 200 words or less to use as a prompt for future context."
 # Text prompt used for including the summary of the entire session
 summary_prompt: "This is a summary of the chat history as a recap: "
 
-# Custom REPL prompt, see https://github.com/sigoden/aichat/wiki/Custom-REPL-Prompt
-left_prompt: "{color.green}{?session {session}{?role /}}{role}{color.cyan}{?session )}{!session >}{color.reset} "
-right_prompt: "{color.purple}{?session {?consume_tokens {consume_tokens}({consume_percent}%)}{!consume_tokens {consume_tokens}}}{color.reset}"
+stream: true
 
 clients:
   # All clients have the following configuration:
@@ -53,11 +53,27 @@ clients:
   - type: openai-compatible
     name: openrouter
     api_base: https://openrouter.ai/api/v1
+    
+  - type: openai-compatible
+    name: hyperbolic
+    api_base: https://api.hyperbolic.xyz/v1
+    chat_endpoint: /chat/completions
+    models:
+      - name: meta-llama/Meta-Llama-3.1-405B-Instruct
+        max_input_tokens: 128000
+        supports_vision: false
+        supports_function_calling: false
+
+      - name: meta-llama/Meta-Llama-3.1-70B-Instruct
+        max_input_tokens: 128000
+        supports_vision: false
+        supports_function_calling: false
 
   - type: openai-compatible
     name: local
     api_base: http://localhost:8080/v1 # ENV: {client}_API_BASE
     chat_endpoint: /chat/completions # Optional
+    api_key: ${HYPERBOLIC_API_KEY}
     models:
       - name: model
 
@@ -68,3 +84,5 @@ clients:
   #   models:                                           # Required
   #     - name: llama3:8b-instruct-q8_0
   #       max_input_tokens: 8192
+
+  # Ref: https://github.com/sigoden/aichat/blob/main/config.example.yaml#L80

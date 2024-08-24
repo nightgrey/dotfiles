@@ -36,3 +36,7 @@ is-git() {
 
   echo $vc
 }
+
+
+# Alias for starting to work on current project.
+alias canvas="cd ~dev/own/canvas; webstorm . && bun dev"

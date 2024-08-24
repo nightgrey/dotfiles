@@ -49,21 +49,19 @@ znap source trystan2k/zsh-tab-title
 # asdf
 # Tool management (npm, python, ruby, and more)
 znap source asdf-vm/asdf
-znap fpath _asdf  "cat $ASDF_DIR/completions/_asdf"
 
-# fpath
-znap fpath _pip "pip completion --zsh"
-znap fpath _docker "curl -sSL https://raw.githubusercontent.com/docker/cli/fa84cfd8020a4c221ab97da1c11507c1c5e552fd/contrib/completion/zsh/_docker"
-# https://github.com/docker/docker.github.io-1/blob/86dfbfc52bf242cac9f39630a952345cb171ab33/compose/completion.md?plain=1#L87
-znap fpath _docker-compose "curl -sSL https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
-znap fpath _ruff "ruff generate-shell-completion zsh"
-znap fpath _starship "starship completions zsh"
+# # fpath
+# znap fpath _docker "curl -sSL https://raw.githubusercontent.com/docker/cli/fa84cfd8020a4c221ab97da1c11507c1c5e552fd/contrib/completion/zsh/_docker"
+# # https://github.com/docker/docker.github.io-1/blob/86dfbfc52bf242cac9f39630a952345cb171ab33/compose/completion.md?plain=1#L87
+#znap fpath _docker-compose "curl -sSL https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
 znap fpath _gh "gh completion -s zsh" 
 znap fpath _rg "rg --generate complete-zsh"
-znap fpath _sgpt "sgpt completion zsh"
 znap fpath _aichat "curl -sSL https://raw.githubusercontent.com/sigoden/aichat/master/scripts/completions/aichat.zsh"
 znap fpath _oh-my-posh "oh-my-posh completion zsh"
+
+znap fpath _pip "python -m pip completion --zsh"
 
 
 # My own stuff.
 znap source nightgrey/dotfiles
+
