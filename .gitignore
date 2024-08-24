@@ -9,3 +9,6 @@ secret.*sh
 konsolestaterc
 **/aichat/messages.md
 .uuid
+
+# Project files
+.idea
