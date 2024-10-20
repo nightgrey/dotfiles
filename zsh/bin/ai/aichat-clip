@@ -14,7 +14,7 @@ function aichat-clip() {
 
   echo -e "\e[1;37m$clipboard_block\e[0m"
 
-  aichat -r explain "$clipboard_block\n\n$query"
+  aichat -r help "$clipboard_block\n\n$query"
 }
 
 aichat-clip "$1"

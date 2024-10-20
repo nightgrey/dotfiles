@@ -1,29 +1,16 @@
 # https://github.com/sigoden/aichat/blob/main/config.example.yaml
-model: claude:claude-3-5-sonnet-20240620 # Default model
-temperature: 0.8 # Set default temperature parameter
-top_p: null # Set default top-p parameter
-save: true # Indicates whether to persist the message
-save_session: null # Controls the persistence of the session, if null, asking the user
-highlight: true # Controls syntax highlighting
-light_theme: false # Activates a light color theme when true. ENV: AICHAT_LIGHT_THEME
-wrap: auto # Controls text wrapping (no, auto, <max-width>)
-wrap_code: true # Enables or disables wrapping of code blocks
-auto_copy: false # Enables or disables automatic copying the last LLM response to the clipboard
-keybindings: emacs # Choose keybinding style (emacs, vi)
-prelude: null # Set a default role or session to start with (role:<name>, session:<name>)
+# ---- llm ----
+model: claude:claude-3-5-sonnet-20240620             # Specify the LLM to use
+temperature: 0.8                # Set default temperature parameter
+top_p: null                      # Set default top-p parameter, range (0, 1)
 
-
-# Command that will be used to edit the current line buffer with ctrl+o
-# if unset fallback to $EDITOR and $VISUAL
-buffer_editor: null
-# Compress session when token count reaches or exceeds this threshold (must be at least 1000)
-compress_threshold: 128000
-# Text prompt used for creating a concise summary of session message
-summarize_prompt: "Summarize the discussion briefly in 200 words or less to use as a prompt for future context."
-# Text prompt used for including the summary of the entire session
-summary_prompt: "This is a summary of the chat history as a recap: "
-
-stream: true
+# ---- behavior ----
+stream: true                     # Controls whether to use the stream-style API.
+save: true                       # Indicates whether to persist the message
+keybindings: emacs               # Choose keybinding style (emacs, vi)
+editor: null                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
+wrap: auto                         # Controls text wrapping (no, auto, <max-width>)
+wrap_code: true                 # Enables or disables wrapping of code blocks
 
 clients:
   # All clients have the following configuration:

@@ -58,7 +58,6 @@ znap fpath _gh "gh completion -s zsh"
 znap fpath _rg "rg --generate complete-zsh"
 znap fpath _aichat "curl -sSL https://raw.githubusercontent.com/sigoden/aichat/master/scripts/completions/aichat.zsh"
 znap fpath _oh-my-posh "oh-my-posh completion zsh"
-
 znap fpath _pip "python -m pip completion --zsh"
 
 

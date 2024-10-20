@@ -1,7 +1,15 @@
 # SGPT
-alias "?"="aichat -r shell -m claude:claude-3-5-sonnet-20240620 -e"
+alias "?"="aichat -m claude:claude-3-5-sonnet-20240620 -e"
 alias "??clip"="aichat-clip"
-alias "??"="aichat -r explain -m claude:claude-3-5-sonnet-20240620"
+
+function "aichat-clip-help"() {
+  query="$1"
+
+  aichat-clip "could you help me fix this? $query"
+}
+
+alias "??help"="aichat-clip-help"
+alias "??"="aichat -r help -m claude:claude-3-5-sonnet-20240620"
 
 # SGPT + specific models
 
