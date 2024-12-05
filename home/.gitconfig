@@ -17,6 +17,7 @@ autoSetupRemote = true
 
 [core]
 excludesFile = ~/.gitignore
+autocrlf = input
 
 [init]
 defaultBranch = main
