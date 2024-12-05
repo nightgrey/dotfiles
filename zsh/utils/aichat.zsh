@@ -1,5 +1,5 @@
 # SGPT
-alias "?"="aichat -m claude:claude-3-5-sonnet-20240620 -e"
+alias "?"="aichat -e"
 alias "??clip"="aichat-clip"
 
 function "aichat-clip-help"() {
@@ -9,7 +9,7 @@ function "aichat-clip-help"() {
 }
 
 alias "??help"="aichat-clip-help"
-alias "??"="aichat -r help -m claude:claude-3-5-sonnet-20240620"
+alias "??"="aichat -r help"
 
 # SGPT + specific models
 
@@ -22,8 +22,8 @@ alias "?4om"="?gpt4o-mini"
 alias "?gpt4o-mini"="aichat --model openai:gpt-4o"
 
 # Claude
-alias "?opus"="aichat --model claude:claude-3-opus-20240229"
-alias "?sonnet"="aichat --model claude:claude-3-5-sonnet-20240620"
+alias "?opus"="aichat --model claude:claude-3-opus-latest"
+alias "?sonnet"="aichat --model claude:claude-3-5-sonnet-latest"
 
 # Llama 3.1 405B (Base)
 alias "?405b"="?l405b"
@@ -82,3 +82,20 @@ function civit() {
 
   wget --content-disposition $url
 }
+
+
+# Integrates `aichat` into the shell.
+# Type something, then press `Ctrl + E` to get a response from `aichat`.
+# https://github.com/sigoden/aichat#shell-integration
+_aichat_zsh() {
+  if [[ -n "$BUFFER" ]]; then
+    local _old=$BUFFER
+    BUFFER+=" ..."
+    zle -I && zle redisplay
+    BUFFER=$(aichat -e "$_old")
+    zle end-of-line
+  fi
+}
+zle -N _aichat_zsh
+
+bindkey '^E' _aichat_zsh

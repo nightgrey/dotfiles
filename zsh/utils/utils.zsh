@@ -1,10 +1,9 @@
-
 alias omp="oh-my-posh"
+
 # Shows key codes for the pressed keys.
 alias keycodes="sed -n l"
 
 # Display all colors
-# @TODO: It's executed on startup. Why?!
 print-colors() {
       print -l $funcsourcetrace
     print -l $funcstack
@@ -18,16 +17,6 @@ print-colors() {
 }
 
 # Kill processes with given search term
-function killit() {
-  search="$1"
-  processes=$(ps ux | grep "${search}" | grep -v 'grep')
-
-  if [ -n "${processes}" ]; then
-    kill $(echo "${processes}" | awk '{print $2}')
-    echo -e "Killed all processes matching \"${search}\""
-  else
-    echo -e "No processes found matching \"${search}\""
-  fi
-}
+alias killit="pkill"
 
 alias neofetch="fastfetch"

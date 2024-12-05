@@ -1,9 +1,9 @@
 # Utility to quickly open my dotfiles folder or a specific dotfiles script in VSCode.
 dot() {
     if [ $# -eq 0 ]; then
-        code ~dot
+        $EDITOR ~dot
     else
-        code ~dot/$1
+        $EDITOR ~dot/$1
     fi
 }
 

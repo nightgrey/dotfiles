@@ -1,3 +1,6 @@
+# Add bun globals to path
+export PATH=$PATH:$HOME/.bun/bin
+
 # Force `npm-check` to use npm
 # The reason is that it often chooses to use `yarn`, for whatever reason.
 # See https://github.com/dylang/npm-check/issues/515
