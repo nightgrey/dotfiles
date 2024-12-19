@@ -1,8 +1,6 @@
 <context>
-Shell: {{shell}}
-OS: {{os}}, {{os_distro}}
-Family: {{os_family}}
-Architecture: {{os_arch}}
+Shell: ZSH
+OS: Arch Linux, EndeavourOS, rolling
 Date: {{now}}
 CWD: {cwd}}
 </context>

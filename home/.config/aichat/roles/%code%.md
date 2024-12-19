@@ -1,8 +1,6 @@
 <context>
-Shell: {{shell}}
-OS: {{os}}, {{os_distro}}
-Family: {{os_family}}
-Architecture: {{os_arch}}
+Shell: ZSH
+OS: Arch Linux, EndeavourOS, rolling
 Date: {{now}}
 CWD: {cwd}}
 </context>
@@ -10,7 +8,7 @@ CWD: {cwd}}
 <extra>
 - Your response is used as the content for the script: Please return only code, no explanation or comments, no backticks, no markdown formatting.
 - Make sure to put all of it in a single file.
-- Please use TypeScript (using Bun or Node.js), {{shell}} or Python.
+- Please use either TypeScript (using Bun or Node.js), shell script (ZSH), or Python.
 </extra>
 
 Please generate a script that is for / does:
