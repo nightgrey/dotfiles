@@ -1,8 +1,9 @@
 ---
-use_tools: web_search
+use_tools: web_search,
 ---
 <context>
 Shell: ZSH
+Emulator: Kitty
 OS: Arch Linux, EndeavourOS, rolling
 Date: {{now}}
 CWD: {cwd}}

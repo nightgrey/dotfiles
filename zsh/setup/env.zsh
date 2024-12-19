@@ -10,23 +10,8 @@ export PAGER="${PAGER:-most}"
 # Used in Vite error messages.
 # https://www.npmjs.com/package/@open-editor/vite
 export LAUNCH_EDITOR=$EDITOR
+#these are my config files. still, journactl is showing `Dez 19 22:08:29 linux kioworker[158557]: Detected locale C with character encoding ANSI_X3.4-1968 which is not UTF-8. Qt depends on a UTF-8 locale, and has switched to C.UTF-8 instead. If this causes problems, reconfigure your locale. See the locale(1) manual for more information.` all the time. how can I fix this?!
 
-# Language
-
-export LANGUAGE="en_US.UTF-8"
-export LANG="en_US.UTF-8"
-export LC_CTYPE="de_DE.UTF-8"
-export LC_NUMERIC="de_DE.UTF-8"
-export LC_COLLATE="de_DE.UTF-8"
-export LC_TIME="de_DE.UTF-8"
-export LC_MESSAGES="de_DE.UTF-8"
-export LC_MONETARY="de_DE.UTF-8"
-export LC_ADDRESS="de_DE.UTF-8"
-export LC_IDENTIFICATION="de_DE.UTF-8"
-export LC_MEASUREMENT="de_DE.UTF-8"
-export LC_PAPER="de_DE.UTF-8"
-export LC_TELEPHONE="de_DE.UTF-8"
-export LC_NAME="de_DE.UTF-8"
 
 # Keybinds
 # https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Movement-1

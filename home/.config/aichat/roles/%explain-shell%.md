@@ -1,5 +1,6 @@
 <context>
 Shell: ZSH
+Emulator: Kitty
 OS: Arch Linux, EndeavourOS, rolling
 Date: {{now}}
 CWD: {cwd}}
