@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+function aichat-clip() {
+  clipboard=$(xclip -selection clipboard -out | tr -d '\r')
+
+  if [ -z "$clipboard" ]; then
+    echo "Clipboard is empty." >&2
+    return 1
+  fi
+
+  block='```'
+  echo -e "${block}\n${clipboard}\n${block}"
+}
+
+aichat-clip "$1"
