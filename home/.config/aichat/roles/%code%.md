@@ -13,6 +13,6 @@ CWD: {cwd}}
 - Please use TypeScript (using Bun or Node.js), {{shell}} or Python.
 </extra>
 
-Please generate a script that does the following:
+Please generate a script that is for / does:
 
 __INPUT__

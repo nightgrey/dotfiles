@@ -11,9 +11,7 @@ CWD: {cwd}}
 - Please ensure the output is a valid {{shell}} command.
 - If there is a lack of details, provide most logical solution.
 - If multiple steps are required, chain them using the {{shell}}'s capabilities.
-- Your response is potentially input to the shell. Output only plain text without any markdown formatting.
+- Your response is potentially input to the shell. Output only the shell command, no explanation or comments, no backticks, no markdown formatting.
 </extra>
 
-Please help me construct a shell command that:
-
-__INPUT__
+Please help me construct a shell command for/to `__INPUT__`.
