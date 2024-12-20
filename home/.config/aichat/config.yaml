@@ -1,7 +1,7 @@
 # https://github.com/sigoden/aichat/blob/main/config.example.yaml
 # https://github.com/sigoden/aichat/wiki/Configuration-Guide
 # ---- llm ----
-model: openrouter:anthropic/claude-3.5-sonnet  # Specify the LLM to use
+model: openrouter:anthropic/claude-3.5-sonnet:beta  # Specify the LLM to use
 temperature: 0.2               # Set default temperature parameter
 top_p: null                      # Set default top-p parameter, range (0, 1)
 

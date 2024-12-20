@@ -1,6 +1,6 @@
 ---
 use_tools: web_search
-model: openrouter:anthropic/claude-3.5-haiku
+model: openrouter:anthropic/claude-3.5-haiku:beta
 ---
 <context>
 Shell: ZSH
