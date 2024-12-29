@@ -23,33 +23,6 @@ perf() {
   echo "$execution_time_ms ms"
 }
 
-# Returns relative path to the root of the git repository (or false) by checking the
-# current directory and its parents.
-#
-# Note: Faster than `git rev-parse --show-toplevel` or `git rev-parse
-# --is-inside-work-tree` or `git branch` by roughly ~50%.
-is-git() {
-  vc=false
-  d=$PWD
-
-  if [ -d "$d/.git" ]; then
-    vc=$d/.git
-  else
-    d=..
-
-    # While $d is not /, check if it's a git repository.
-    while ! [ "$d" -ef / ]; do
-      if [ -d "$d/.git" ]; then
-        vc=$d/.git
-        break
-      fi
-      d=$d/..
-    done
-  fi
-
-  echo $vc
-}
-
 # Shows key codes for the pressed keys.
 alias keycodes="sed -n l"
 

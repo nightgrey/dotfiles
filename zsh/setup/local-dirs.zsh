@@ -5,7 +5,11 @@ local LOCAL_BINARIES=(
   node_modules/.bin
 )
 
-# Copied from utils
+# Returns relative path to the root of the git repository (or false) by checking the
+# current directory and its parents.
+#
+# Note: Faster than `git rev-parse --show-toplevel` or `git rev-parse
+# --is-inside-work-tree` or `git branch` by roughly ~50%.
 is-git() {
   vc=false
   d=$PWD
