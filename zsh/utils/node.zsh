@@ -1,7 +1,3 @@
-# Always use bun.
-alias _npx="npx"
-alias npx="bunx"
-
 # https://github.com/raineorshine/npm-check-updates
 # Check package updates with `npm-check-updates`
 alias ncu="bunx npm-check-updates"
@@ -20,7 +16,6 @@ alias "inspect-eslint"="bunx @eslint/config-inspector"
 alias "eslint-inspect"="inspect-eslint"
 alias "debug-eslint"="inspect-eslint"
 alias "eslint-config"="inspect-eslint"
-
 
 # Function to toggle 'npm' and 'bun' in the current command line
 toggle_npm_bun() {

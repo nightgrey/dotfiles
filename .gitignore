@@ -12,3 +12,6 @@ konsolestaterc
 
 # Project files
 .idea
+
+home/.config/aichat/rags
+home/.config/aichat/sessions

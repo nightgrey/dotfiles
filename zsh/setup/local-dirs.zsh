@@ -1,5 +1,5 @@
 # Dynamically extend $PATH in git repos with local binaries
-LOCAL_BINARIES=(
+local LOCAL_BINARIES=(
   bin
   .bin
   node_modules/.bin
@@ -28,8 +28,10 @@ is-git() {
   echo $vc
 }
 
-PREVIOUS_GIT=false
-# Registers $PATH for binaries in git repositories ($LOCAL_BINARIES) with `chpwd`.
+local PREVIOUS_GIT=false
+
+# Registers $PATH and named directories in git repositories ($LOCAL_BINARIES) with `chpwd`.
+#
 # Why not set relative paths?
 # -> Slows down autocompletion considerably.
 # -> Occasionally takes into account the wrong binary.
@@ -40,21 +42,31 @@ PREVIOUS_GIT=false
 # See: https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions
 chpwd() {
   # Check if in a git repository
-  CURRENT_GIT=${$(is-git)//\/.git}
+  local CURRENT_GIT=${$(is-git)//\/.git}
 
-  if [[ $CURRENT_GIT == false ]]; then
-    if [[ -z $PREVIOUS_GIT ]]; then
-      # Do nothing.
-    else
-      # Unset PATH for local binaries
-      for _path in "${LOCAL_BINARIES[@]}"; do
-        _absolute_path="${PREVIOUS_GIT}/${_path}"
-        export PATH="${PATH//$_absolute_path:}"
-      done
-
-      PREVIOUS_GIT=false
-    fi
+  if ([[ $CURRENT_GIT == false ]] ||
+  [[ $CURRENT_GIT == / ]] ||
+  [[ $CURRENT_GIT == $HOME ]] ||
+  [[ $CURRENT_GIT == $PREVIOUS_GIT ]] ||
+  [[ -z $PREVIOUS_GIT ]]);
+  then
+    # Do nothing.
   else
+    # Unset PATH for local binaries
+    for _path in "${LOCAL_BINARIES[@]}"; do
+      _absolute_path="${PREVIOUS_GIT}/${_path}"
+      export PATH="${PATH//$_absolute_path:}"
+    done
+    
+    # Unset named directories
+    hash -d root=""
+    hash -d bin=""
+    hash -d node_modules=""
+
+    PREVIOUS_GIT=false
+  fi
+
+  if [[ $CURRENT_GIT != false ]]; then
     # Set current root as previous root
     PREVIOUS_GIT=$CURRENT_GIT
 
@@ -63,6 +75,11 @@ chpwd() {
       _absolute_path="${CURRENT_GIT}/${_path}"
       export PATH="${_absolute_path}:${PATH}"
     done
+    
+    # Set named directories
+    hash -d root="$CURRENT_GIT"
+    hash -d bin="$CURRENT_GIT/node_modules/.bin"
+    hash -d node_modules="$CURRENT_GIT/node_modules"
   fi
 }
 

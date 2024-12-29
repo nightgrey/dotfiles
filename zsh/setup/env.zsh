@@ -1,3 +1,4 @@
+
 # Read desired editor from ~/.editor file
 [[ -f ~/.editor ]] && export EDITOR=$(cat ~/.editor)
 
