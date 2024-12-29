@@ -14,6 +14,16 @@ wrap: auto                         # Controls text wrapping (no, auto, <max-widt
 wrap_code: true                 # Enables or disables wrapping of code blocks
 save_shell_history: true         # Save shell history
 
+# ---- session ----
+# Controls the persistence of the session. if true, auto save; if false, not save; if null, asking the user
+save_session: true
+# Compress session when token count reaches or exceeds this threshold
+compress_threshold: 256000
+# Text prompt used for creating a concise summary of session message
+summarize_prompt: '<system>This conversation became quite long and we will run out of context. Please summarize this discussion to use as info for a future prompt. Include relevant information to help you continue the conversation.</system>'
+# Text prompt used for including the summary of the entire session
+summary_prompt: '<system>This is a summary of the previous conversation. It was cut off because it got too long. This is the summary. Please continue the conversation. If you have questions, feel free to ask!</system>'
+
 # ---- function-calling ----
 function_calling: true           # Enables or disables function calling (Globally).
 mapping_tools:                   # Alias for a tool or toolset
