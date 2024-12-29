@@ -108,6 +108,11 @@ allow = always
 	repo = /home/nico/.znap/supercrabtree/k
 	repo = /home/nico/.znap/zdharma-continuum/fast-syntax-highlighting
 	repo = /home/nico/.znap/zsh-users/zsh-autosuggestions
+	repo = /home/nico/.znap/minTaqa/mvrel
+	repo = /home/nico/.znap/philFernandez/printc
+	repo = /home/nico/.znap/sigoden/aichat
+	repo = /home/nico/.znap/srijanshetty/zsh-pip-completion
+	repo = /home/nico/.znap/trystan2k/zsh-tab-title
 
 # ### ------------------- ###
 # --- DIFFING AND LOGGING ---
