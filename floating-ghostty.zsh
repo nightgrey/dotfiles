@@ -13,5 +13,5 @@ Y="0"
 
 # GTK_THEME=Sierra-dark-customized 
 # GTK_DEBUG=interactive
-tdrop -P 'wmctrl -i -r $wid -b add,above,skip_taskbar' -y "$Y" -h "35%" -x "$X" -w "$W" -h "$H" ghostty --config-file="/home/nico/.config/ghostty/floating.conf"
+tdrop -P 'wmctrl -i -r $wid -b add,above,skip_taskbar' -y "$Y" -h "35%" -x "$X" -w "$W" -h "$H" ghostty --config-file="/home/nico/.config/ghostty/floating.conf" --config-default-files=false
    
