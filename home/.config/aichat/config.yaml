@@ -82,6 +82,15 @@ clients:
     models:
       - name: model
 
+  - type: openai-compatible
+    name: deepseek
+    api_base: https://api.deepseek.com
+    api_key: ${DEEPSEEK_API_KEY}
+    models:
+      - name: deepseek-reasoner
+        max_input_tokens: 64000
+        max_output_tokens: 8000
+
   # # Ollama
   # # See https://github.com/jmorganca/ollama
   # - type: ollama

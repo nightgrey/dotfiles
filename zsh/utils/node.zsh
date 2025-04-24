@@ -17,15 +17,21 @@ alias "eslint-inspect"="inspect-eslint"
 alias "debug-eslint"="inspect-eslint"
 alias "eslint-config"="inspect-eslint"
 
-# Function to toggle 'npm' and 'bun' in the current command line
+# Function to toggle `npm` / `npx` to `bun` / `bunx` in the current commannd
 toggle_npm_bun() {
-  # Use a temporary placeholder to avoid double replacement
-  BUFFER=${BUFFER//npm/__TMP__}
-  BUFFER=${BUFFER//bun/npm}
-  BUFFER=${BUFFER//__TMP__/bun}
-
-  # Optionally, you can reposition the cursor if needed
-  # zle reset-prompt
+  # First handle bunx/npx pair to avoid conflicts
+  BUFFER=${BUFFER//bunx/__BUNX_TEMP__}
+  BUFFER=${BUFFER//npx/__NPX_TEMP__}
+  
+  # Then handle bun/npm pair
+  BUFFER=${BUFFER//bun/__BUN_TEMP__}
+  BUFFER=${BUFFER//npm/__NPM_TEMP__}
+  
+  # Now restore with swapped values
+  BUFFER=${BUFFER//__BUN_TEMP__/npm}
+  BUFFER=${BUFFER//__NPM_TEMP__/bun}
+  BUFFER=${BUFFER//__BUNX_TEMP__/npx}
+  BUFFER=${BUFFER//__NPX_TEMP__/bunx}
 }
 
 # Register the function as a ZLE widget

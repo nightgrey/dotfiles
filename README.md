@@ -24,6 +24,10 @@ Anything in [`home`](/home/) belongs in `~`, anything in [`root`](/root/) in `/`
 
 **3. Use things!**
 
+**Resources**
+
+- https://github.com/davgar99/arch-linux-font-improvement-guide#improving-font-rendering-and-compatibility-on-arch-linux
+
 ## Contributing
 
 Feel free to fork this repository and customize it to your liking. If you have any suggestions or improvements, please submit a pull request.

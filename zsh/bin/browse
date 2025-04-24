@@ -9,10 +9,8 @@ fi
 
 if [[ ! $URL =~ ^(http|https):// ]]; then
   if [[ $URL == *localhost* ]]; then
-    echo "Assuming http ..."
     URL="http://${URL}"
   else
-    echo "Assuming https ..."
     URL="http://${URL}"
   fi
 fi

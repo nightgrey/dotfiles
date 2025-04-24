@@ -8,47 +8,37 @@ source "$HOME/.znap/znap/znap.zsh"
 #znap eval starship "starship init zsh --print-full-init"
 znap eval oh-my-posh "oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json"
 
-# Autocompletions & syntax highlighting
-znap source zsh-users/zsh-autosuggestions
-znap source marlonrichert/zsh-autocomplete
-znap source zdharma-continuum/fast-syntax-highlighting
-znap source lukechilds/zsh-better-npm-completion
-
-# Completions
-znap source ohmyzsh/ohmyzsh lib/theme-and-appearance
-znap source ohmyzsh/ohmyzsh \
-  lib/{directories,clipboard,history,key-bindings} plugins/{git,npm,web-search,colored-man-pages}
-znap source supercrabtree/k
-znap source DarrinTisdale/zsh-aliases-exa
-
-# Prettify
-znap source marlonrichert/zcolors
-znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
-
-# Tools
-znap source ajeetdsouza/zoxide
-znap eval ajeetdsouza/zoxide "zoxide init zsh"
-
-znap eval nvbn/thefuck "thefuck --alias"
-
-znap source peterhurford/up.zsh
-znap source mattmc3/zman
-
-znap source mattmc3/zephyr \
-  plugins/{utility,history}
-
-# mvrel
-# Move directory with symlinks intact
-znap source minTaqa/mvrel
-
 # Title
 ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 ZSH_TAB_TITLE_ENABLE_FULL_COMMAND=true
 znap source trystan2k/zsh-tab-title
 
-# asdf
-# Tool management (npm, python, ruby, and more)
+# Basics
+znap source mattmc3/zephyr plugins/history
+znap source ohmyzsh/ohmyzsh lib/{directories,} plugins/git
+#  lib/{theme-and-appearance,directories,completion,clipboard,history,key-bindings} plugins/{git,npm,web-search,colored-man-pages}
+
+# asdf (npm, python, ruby, and more)
 znap source asdf-vm/asdf
+ 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#565747"
+znap source zsh-users/zsh-autosuggestions
+znap source marlonrichert/zsh-autocomplete
+#znap source zdharma-continuum/fast-syntax-highlighting
+
+znap source ajeetdsouza/zoxide
+znap eval ajeetdsouza/zoxide "zoxide init zsh"
+znap source DarrinTisdale/zsh-aliases-exa
+
+# znap source marlonrichert/zcolors
+# znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
+
+znap source mattmc3/zman # zsh manual
+znap source minTaqa/mvrel # Move directory with symlinks intact
+#znap source supercrabtree/k
+#znap eval nvbn/thefuck "thefuck --alias"
+
+
 
 # # fpath
 # znap fpath _docker "curl -sSL https://raw.githubusercontent.com/docker/cli/fa84cfd8020a4c221ab97da1c11507c1c5e552fd/contrib/completion/zsh/_docker"
@@ -57,10 +47,11 @@ znap source asdf-vm/asdf
 znap fpath _gh "gh completion -s zsh" 
 znap fpath _rg "rg --generate complete-zsh"
 znap fpath _aichat "curl -sSL https://raw.githubusercontent.com/sigoden/aichat/master/scripts/completions/aichat.zsh"
-znap fpath _oh-my-posh "oh-my-posh completion zsh"
+# znap fpath _oh-my-posh "oh-my-posh completion zsh"
 znap fpath _pip "python -m pip completion --zsh"
-
-
+# znap fpath _pip "pip completion --zsh"
+znap fpath _bun "source /home/nico/.bun/_bun"
+znap fpath _npm "npm completion"
 # My own stuff.
 znap source nightgrey/dotfiles
 

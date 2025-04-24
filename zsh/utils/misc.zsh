@@ -41,10 +41,6 @@ print-colors() {
 
 alias neofetch="fastfetch"
 
-alias wslog="cd /home/nico/.cache/JetBrains/WebStorm2024.3/log/"
-alias wscache="rm -rf /home/nico/.cache/JetBrains/WebStorm2024.3"
-
-
 # Show used ports
 alias ports="netstat -tulnp"
 
@@ -56,3 +52,33 @@ alias iftop=itop
 function docker-ram {
   docker stats --no-stream --format 'table {{.MemUsage}}' | sed 's/[A-Za-z]*//g' | awk '{sum += $1} END {print sum "MB"}'
 }
+
+# Kills process by name
+stirb() {
+  if [ -z "$1" ]; then
+    echo "Usage: stirb PROCESS_NAME"
+    return 1
+  fi
+  
+  echo "Sending SIGTERM to $1..."
+  pkill "$1"
+  
+  # Wait up to 3 seconds for process to terminate
+  for i in {1..3}; do
+    if ! pgrep "$1" >/dev/null; then
+      echo "Process terminated gracefully."
+      return 0
+    fi
+    sleep 1
+  done
+  
+  echo "Forcefully terminating $1..."
+  pkill -9 "$1"
+}
+
+alias wslog="tail -f /home/nico/.cache/JetBrains/WebStorm2025.1/log/idea.log"
+alias wscache="rm -rf /home/nico/.cache/JetBrains/WebStorm2025.1"
+
+# Get network stats.
+alias "ifstats"="vnstat"
+alias "wlanstats"="vnstat -i wlan0"

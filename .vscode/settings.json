@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        // Hide compiled ZSH scripts
+        "**/*.zwc":true
+    }
+}

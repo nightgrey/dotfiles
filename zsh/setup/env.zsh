@@ -1,7 +1,4 @@
 
-# Read desired editor from ~/.editor file
-[[ -f ~/.editor ]] && export EDITOR=$(cat ~/.editor)
-
 export BROWSER="google-chrome-stable"
 # see ~dot/zsh/utils/editor.zsh
 export EDITOR="${EDITOR:-nano}"
@@ -11,8 +8,6 @@ export PAGER="${PAGER:-most}"
 # Used in Vite error messages.
 # https://www.npmjs.com/package/@open-editor/vite
 export LAUNCH_EDITOR=$EDITOR
-#these are my config files. still, journactl is showing `Dez 19 22:08:29 linux kioworker[158557]: Detected locale C with character encoding ANSI_X3.4-1968 which is not UTF-8. Qt depends on a UTF-8 locale, and has switched to C.UTF-8 instead. If this causes problems, reconfigure your locale. See the locale(1) manual for more information.` all the time. how can I fix this?!
-
 
 # Keybinds
 # https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Movement-1
@@ -35,6 +30,9 @@ bindkey "^[[1;5D" backward-word
 # CTRL+DEL to delete word
 bindkey "^H" backward-kill-word
 
+# Jump into autocompletion menu with tab
+#bindkey '^I' menu-select
+#bindkey "$terminfo[kcbt]" menu-select
 
 # Files
 

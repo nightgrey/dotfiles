@@ -1,7 +1,7 @@
 export DOTFILES=${0:A:h}
 
 # First, load the config and setup files...
-for script in $(find $DOTFILES/zsh/{config,setup,utils,private.zsh} -name '*.zsh'); do
+for script in $(find $DOTFILES/zsh/{setup,utils,private.zsh} -name '*.zsh'); do
   source $script
 done
 

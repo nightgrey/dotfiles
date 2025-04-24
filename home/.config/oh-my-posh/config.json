@@ -1,4 +1,5 @@
 {
+  // https://ohmyposh.dev/docs/configuration/general
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "transient_prompt": {
     "template": "{{ .Shell }}> ",
@@ -11,6 +12,7 @@
       "alignment": "left",
       "segments": [
         {
+          "style": "plain",
           "properties": {
             "cache_duration": "none",
             "style": "austin",
@@ -19,40 +21,31 @@
           "template": " {{ .FormattedMs }} ",
           "foreground": "#222222",
           "background": "#007ACC",
-          "type": "executiontime",
-          "style": "plain"
+          "type": "executiontime"
         },
         {
-          "properties": {
-            "cache_duration": "none"
-          },
+          "type": "status",
           "template": "{{ if gt .Code 0 }} {{ .Code }} {{ end }}",
           "foreground": "#ff8888",
           "background": "#880000",
-          "type": "status",
           "style": "plain"
         },
         {
-          "properties": {
-            "cache_duration": "none"
-          },
+          "type": "root",
           "template": "\uf0e7",
           "foreground": "#222222",
           "background": "#ffcc88",
-          "type": "root",
           "style": "plain"
         },
         {
-          "properties": {
-            "cache_duration": "none"
-          },
+          "type": "root",
           "template": " root ",
           "foreground": "#666666",
           "background": "#222222",
-          "type": "root",
           "style": "plain"
         },
         {
+          "type": "path",
           "properties": {
             "cache_duration": "none",
             "folder_icon": "\u2026",
@@ -66,8 +59,7 @@
           },
           "template": " {{ .Path }} ",
           "foreground": "#cccccc",
-          "background": "#444444",
-          "type": "path",
+          "background": "#36383b",
           "style": "plain"
         },
         {
@@ -139,6 +131,27 @@
       "newline": true
     },
     {
+      "alignment": "right",
+      "type": "prompt",
+      "segments": [
+        {
+          "style": "plain",
+          "type": "text",
+          // "background": "#00b0fe",
+          // "foreground": "#828ea0",
+
+          "foreground": "#474f58",
+
+          
+          // "Show EDITOR env variable
+          "template": "{{ if .Env.EDITOR }} {{.Env.EDITOR}} {{end}}",
+          "include_folders": [
+            "~"
+          ]
+        }
+      ]
+    },
+    {
       "type": "prompt",
       "alignment": "left",
       "segments": [
@@ -153,10 +166,11 @@
               "nu": ":)",
               "pwsh": "❯",
               "shell": "❯",
-              "zsh": "%"
+              // "zsh": "󰅂"
+              "zsh": "\uf105"
             }
           },
-          "template": "❯",
+          "template": "{{ .Name }}",
           "foreground": "#ffa600",
           "type": "shell",
           "style": "plain"

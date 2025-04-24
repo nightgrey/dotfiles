@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-
-~/AI/ComfyUI/venv/bin/python main.py --force-fp16 "$@"

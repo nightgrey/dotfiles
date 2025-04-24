@@ -3,6 +3,7 @@ local LOCAL_BINARIES=(
   bin
   .bin
   node_modules/.bin
+  .venv/bin
 )
 
 # Returns relative path to the root of the git repository (or false) by checking the
