@@ -113,6 +113,7 @@ allow = always
 	repo = /home/nico/.znap/sigoden/aichat
 	repo = /home/nico/.znap/srijanshetty/zsh-pip-completion
 	repo = /home/nico/.znap/trystan2k/zsh-tab-title
+	repo = /home/nico/.znap/jdx/mise
 
 # ### ------------------- ###
 # --- DIFFING AND LOGGING ---

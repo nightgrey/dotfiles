@@ -60,19 +60,7 @@ stirb() {
     return 1
   fi
   
-  echo "Sending SIGTERM to $1..."
-  pkill "$1"
-  
-  # Wait up to 3 seconds for process to terminate
-  for i in {1..3}; do
-    if ! pgrep "$1" >/dev/null; then
-      echo "Process terminated gracefully."
-      return 0
-    fi
-    sleep 1
-  done
-  
-  echo "Forcefully terminating $1..."
+  echo "STIRB, $1!"
   pkill -9 "$1"
 }
 

@@ -1,16 +1,20 @@
+
 # https://github.com/marlonrichert/zsh-snap
 # https://github.com/marlonrichert/zsh-snap/blob/main/.zshrc
 source "$HOME/.znap/znap/znap.zsh"
 
-# My own dotfiles
+# Package manager
+#znap source asdf-vm/asdf
+# Auto suggestions
+znap source zsh-users/zsh-autosuggestions
+znap source marlonrichert/zsh-autocomplete
 
 # Theme
 #znap eval starship "starship init zsh --print-full-init"
 znap eval oh-my-posh "oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json"
 
 # Title
-ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
-ZSH_TAB_TITLE_ENABLE_FULL_COMMAND=true
+
 znap source trystan2k/zsh-tab-title
 
 # Basics
@@ -18,26 +22,21 @@ znap source mattmc3/zephyr plugins/history
 znap source ohmyzsh/ohmyzsh lib/{directories,} plugins/git
 #  lib/{theme-and-appearance,directories,completion,clipboard,history,key-bindings} plugins/{git,npm,web-search,colored-man-pages}
 
-# asdf (npm, python, ruby, and more)
-znap source asdf-vm/asdf
- 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#565747"
-znap source zsh-users/zsh-autosuggestions
-znap source marlonrichert/zsh-autocomplete
-#znap source zdharma-continuum/fast-syntax-highlighting
+#znap source zdharma-continuum/fast-syntax-highlighting (fails)
 
 znap source ajeetdsouza/zoxide
-znap eval ajeetdsouza/zoxide "zoxide init zsh"
-znap source DarrinTisdale/zsh-aliases-exa
 
-# znap source marlonrichert/zcolors
-# znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
+#znap source marlonrichert/zcolors
+#znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
 
 znap source mattmc3/zman # zsh manual
 znap source minTaqa/mvrel # Move directory with symlinks intact
 #znap source supercrabtree/k
 #znap eval nvbn/thefuck "thefuck --alias"
 
+
+# Setup after sourcing plugins.
+znap source nightgrey/dotfiles setup
 
 
 # # fpath
@@ -51,7 +50,10 @@ znap fpath _aichat "curl -sSL https://raw.githubusercontent.com/sigoden/aichat/m
 znap fpath _pip "python -m pip completion --zsh"
 # znap fpath _pip "pip completion --zsh"
 znap fpath _bun "source /home/nico/.bun/_bun"
+znap fpath _mise "curl -sSL https://raw.githubusercontent.com/jdx/mise/refs/heads/main/completions/_mise"
 znap fpath _npm "npm completion"
-# My own stuff.
-znap source nightgrey/dotfiles
 
+# Rest
+znap source nightgrey/dotfiles {completions,utils,bin}
+
+eval "$(mise activate zsh)"

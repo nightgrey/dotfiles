@@ -1,15 +1,14 @@
 # SGPT
+
+# Get CLI command
 alias "?"="aichat -e"
-alias "??clip"="aichat-clip"
 
-function "aichat-clip-help"() {
-  query="$1"
-
-  aichat-clip "could you help me fix this? $query"
-}
-
-alias "??help"="aichat-clip-help"
+# Ask for any kind of help
 alias "??"="aichat -r help"
+
+alias "???"="qqq"
+# Automatically send the clipboard content(s) with ask for help. Optionally, pass a prompt.
+alias "??clip"="???"
 
 # SGPT + specific models
 
