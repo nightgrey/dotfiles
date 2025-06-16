@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+# Small script to save the currently connected wifi to a file, and connect to it later.
+
+local CONFIG="$HOME/.wifi"
+
+local save() {
+    ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes" {print $2}')
+    if [ -n "$ssid" ]; then
+        echo "$ssid" > "$CONFIG"
+        echo "Saved WiFi: $ssid"
+    else
+        echo "No WiFi currently connected"
+    fi
+}
+
+local connect() {
+    if [ -f "$CONFIG" ]; then
+        saved=$(cat "$CONFIG")
+
+        echo "Attempting to connect to '$saved' ..."
+
+                # Retry 3 times
+                for i in {1..5}; do
+                        if ! nmcli -t device wifi connect "$saved" > /dev/null 2>&1; then
+                                echo "Searching... ($i/3)"
+                                sleep 2
+                                nmcli device wifi rescan > /dev/null 2>&1
+                        else
+                                echo "Connected."
+                                break
+                        fi
+                done
+        
+    else
+        echo "No saved WiFi found"
+    fi
+}
+
+# Usage
+case "$1" in
+    "save")
+        save
+        ;;
+    "connect")
+        connect
+        ;;
+    *)
+        connect
+        ;;
+esac

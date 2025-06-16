@@ -1,0 +1,122 @@
+#!/bin/bash
+
+# Function to convert modmask to human readable format
+modmask_to_string() {
+    local modmask=$1
+    case $modmask in
+        0) echo "" ;;
+        1) echo "SHIFT+" ;;
+        4) echo "CTRL+" ;;
+        8) echo "ALT+" ;;
+        64) echo "SUPER+" ;;
+        65) echo "SUPER+SHIFT+" ;;  # 64 + 1
+        68) echo "SUPER+CTRL+" ;;   # 64 + 4
+        72) echo "SUPER+ALT+" ;;    # 64 + 8
+        5) echo "CTRL+SHIFT+" ;;    # 4 + 1
+        9) echo "ALT+SHIFT+" ;;     # 8 + 1
+        12) echo "CTRL+ALT+" ;;     # 4 + 8
+        *) echo "MOD($modmask)+" ;;
+    esac
+}
+
+keycode_to_string() {
+    local keycode=$1
+    case $keycode in
+        "mouse:1") echo "left_click" ;;
+        "mouse:2") echo "middle_click" ;;
+        "mouse:3") echo "right_click" ;;
+        "mouse_down") echo "Wheel down" ;;
+        "mouse_up") echo "Wheel up" ;;
+        "mouse:272") echo "LMB" ;;
+        "mouse:273") echo "RMB" ;;
+        "mouse:274") echo "MMB" ;;
+        "mouse:275") echo "MMB2" ;;
+        "mouse:276") echo "MMB3" ;;
+        "mouse:32") echo "wheel_down" ;;
+        "mouse:33") echo "wheel_up" ;;
+        *) echo "$keycode" ;;
+    esac
+}
+ 
+ 
+
+# Get binds from hyprctl and parse them
+
+{ hyprctl binds | awk '
+BEGIN {
+    modmask = ""
+    key = ""
+    dispatcher = ""
+    arg = ""
+    description = ""
+    bind_type = ""
+}
+
+/^bind$/ || /^bindm$/ {
+    # Print previous bind if we have one
+    if (key != "") {
+        print modmask "|" key "|" dispatcher "|" arg "|" description "|" bind_type
+    }
+    # Reset variables
+    modmask = ""
+    key = ""
+    dispatcher = ""
+    arg = ""
+    description = ""
+    bind_type = $0
+}
+
+/^[[:space:]]*modmask:/ {
+    modmask = $2
+}
+
+/^[[:space:]]*key:/ {
+    key = $2
+}
+
+/^[[:space:]]*dispatcher:/ {
+    dispatcher = $2
+}
+
+/^[[:space:]]*arg:/ {
+    # Capture everything after "arg: " including spaces
+    sub(/^[[:space:]]*arg:[[:space:]]*/, "")
+    arg = $0
+}
+
+/^[[:space:]]*description:/ {
+    # Capture everything after "description: " including spaces
+    sub(/^[[:space:]]*description:[[:space:]]*/, "")
+    description = $0
+}
+
+END {
+    # Print the last bind
+    if (key != "") {
+        print modmask "|" key "|" dispatcher "|" arg "|" description "|" bind_type
+    }
+}
+' | while IFS='|' read -r modmask key dispatcher arg description bind_type; do
+    # Convert to readable format
+    mod_string=$(modmask_to_string "$modmask")
+    key_string=$(keycode_to_string "$key")
+
+    # Format the key combination
+    key_combo="${mod_string}${key_string}"
+
+    # Format the output
+    if [ -n "$arg" ]; then
+        action="$dispatcher -> $arg"
+    else
+        action="$dispatcher"
+    fi
+
+    # Add description if present
+    if [ -n "$description" ]; then
+        action="$action ($description)"
+    fi
+
+    # printf "%-30s %s\n" "$key_combo" "$action"
+    echo "$key_combo|$action"
+done
+} | column -t -s '|' -N "Bind,Action"

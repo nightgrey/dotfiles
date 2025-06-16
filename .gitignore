@@ -2,6 +2,8 @@
 private.*sh
 secret.*sh
 
+node_modules
+
 # Ignore compiled .zwc files
 *.zwc
 
@@ -15,3 +17,5 @@ konsolestaterc
 
 home/.config/aichat/rags
 home/.config/aichat/sessions
+
+home/.config/opencode

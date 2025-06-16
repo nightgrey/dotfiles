@@ -1,4 +1,0 @@
-# https://ghostty.org/docs/config
-# https://github.com/ghostty-org/ghostty/blob/main/src/config/Config.zig
-# Style
-config-file=main.conf
