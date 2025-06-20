@@ -1,1 +1,1 @@
-# Empty, check ~/zsh
+# Empty, check ~/.zshenv and ~/.zsh

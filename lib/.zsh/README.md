@@ -1,27 +1,29 @@
-### **`.zshenv`**
+## ZSH
+
+**`.zshenv`**
 - **When loaded**: Always, for every shell (login, non-login, interactive, non-interactive)
 - **Purpose**: Environment variables that should be available to all processes
 - **Use for**: `PATH`, `EDITOR`, `BROWSER`, etc.
 - **Note**: Keep it lightweight since it's loaded most frequently
 
-### **`.zprofile`**
+**`.zprofile`**
 - **When loaded**: Login shells only (before `.zshrc`)
 - **Purpose**: Commands that should run once per login session
 - **Use for**: Starting services, setting up session-wide configurations
 - **Equivalent**: Similar to `.bash_profile`
 
-### **`.zshrc`**
+**`.zshrc`**
 - **When loaded**: Interactive shells (both login and non-login)
 - **Purpose**: Interactive shell configuration
 - **Use for**: Aliases, functions, prompt, key bindings, completions, plugins
 - **Note**: This is where most of your customization goes
 
-### **`.zlogin`**
+**`.zlogin`**
 - **When loaded**: Login shells only (after `.zshrc`)
 - **Purpose**: Commands that should run after the shell is fully configured
 - **Use for**: Displaying system info, running cleanup tasks
 
-### **`.zlogout`**
+**`.zlogout`**
 - **When loaded**: When login shells exit
 - **Purpose**: Cleanup tasks when logging out
 - **Use for**: Clearing temporary files, saving history, etc.

@@ -8,14 +8,14 @@ node_modules
 *.zwc
 
 # Ignore misc files
-konsolestaterc
-**/aichat/messages.md
-.uuid
-
-# Project files
 .idea
 
-home/.config/aichat/rags
-home/.config/aichat/sessions
 
-home/.config/opencode
+# Ignore stateful/personal files
+**/.zcompdump
+konsolestaterc
+**/aichat/rags
+**/aichat/sessions
+**/opencode
+**/aichat/messages.md
+.uuid

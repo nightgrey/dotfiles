@@ -101,7 +101,6 @@ allow = always
 	repo = /home/nico/.znap/marlonrichert/zsh-autocomplete
 	repo = /home/nico/.znap/mattmc3/zephyr
 	repo = /home/nico/.znap/mattmc3/zman
-	repo = /home/nico/Developer/own/dotfiles
 	repo = /home/nico/.znap/nvbn/thefuck
 	repo = /home/nico/.znap/ohmyzsh/ohmyzsh
 	repo = /home/nico/.znap/peterhurford/up.zsh

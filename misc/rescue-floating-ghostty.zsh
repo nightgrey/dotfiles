@@ -1,1 +1,0 @@
-pkill --full "ghostty/floating"

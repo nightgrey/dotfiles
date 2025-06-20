@@ -9,7 +9,7 @@
 # GitHub: https://github.com/zdharma-continuum/zinit
 # Examples: https://zdharma-continuum.github.io/zinit/wiki/GALLERY/#snippets
 source /usr/share/zinit/zinit.zsh
-
+  
 # Package manager
 #zi load asdf-vm/asdf
 
@@ -67,6 +67,6 @@ zi load minTaqa/mvrel
 zi ice id-as="mise" as"completion" atclone"mise completion zsh > _mise; mise activate zsh > init.zsh" atpull"%atclone" src"init.zsh"
 zi load mise
 
-# Dotfiles
-zi ice id-as="dotfiles" src"zsh.plugin.zsh" nocd
-zi load /home/nico/Developer/own/dotfiles
+# Load dotfiles
+zi ice id-as="dotfiles" src"dotfiles.plugin.zsh" nocd
+zi load /home/nico/.dot

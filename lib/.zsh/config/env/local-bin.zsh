@@ -1,5 +1,3 @@
-
-
 # Returns relative path to the root of the git repository (or false) by checking the
 # current directory and its parents.
 #
