@@ -10,7 +10,7 @@ RepeatRate=45
 X11LibInputXAccelProfileFlat=true
 XLbInptAccelProfileFlat=false
 XLbInptPointerAcceleration=-0.2
-cursorTheme=Win11-black-dark
+cursorTheme=
 
 [Tmp]
 update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize
