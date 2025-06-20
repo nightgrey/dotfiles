@@ -60,12 +60,11 @@ zi load mattmc3/zman
 zi load minTaqa/mvrel
 
 # Completions
-
-# zi ice as"completion" has"rg"
-# zi snippet <(rg --generate complete-zsh)
-
 zi ice id-as="mise" as"completion" atclone"mise completion zsh > _mise; mise activate zsh > init.zsh" atpull"%atclone" src"init.zsh"
-zi load mise
+zi load zdharma-continuum/null
+
+zi ice id-as="op" as"completion" atclone"op completion zsh > _op; touch > init.zsh" atpull"%atclone"
+zi load zdharma-continuum/null
 
 # Load dotfiles
 zi ice id-as="dotfiles" src"dotfiles.plugin.zsh" nocd
