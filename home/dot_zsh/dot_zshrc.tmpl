@@ -69,4 +69,4 @@ zi load mise
 
 # Load dotfiles
 zi ice id-as="dotfiles" src"dotfiles.plugin.zsh" nocd
-zi load /home/nico/.dot
+zi load {{ .chezmoi.workingTree }}

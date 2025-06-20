@@ -1,7 +1,7 @@
 # Named directories
 # Can be accessed by `~name`, for example `cd ~dev`.
 
-hash -d dev=~/Developer
+hash -d dev=~/Developera
 hash -d Dev=~/Developer
 hash -d dot=$DOT
 hash -d zdot=$ZDOT
