@@ -1,10 +1,11 @@
-# SGPT
-
-# Get CLI command
+# Translate natural language to CLI command
 alias "?"="aichat -e"
 
-# Ask for any kind of help
+# Ask for (code / shell, but also general) help
 alias "??"="aichat -r help"
+
+# Automatically send the clipboard content(s) with ask for help. Optionally, pass a prompt.
+alias "???"="qqq"
 
 function qqq() {
   raw=$(xclip -selection clipboard -out | tr -d '\r')
@@ -32,9 +33,6 @@ function qqq() {
 
   aichat -r help "$block\n\n$query"
 }
-
-# Automatically send the clipboard content(s) with ask for help. Optionally, pass a prompt.
-alias "???"="qqq"
 
 # # Integrates `aichat` into the shell.
 # # Type something, then press `Ctrl + E` to get a response from `aichat`.
