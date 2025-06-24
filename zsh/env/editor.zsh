@@ -1,3 +1,6 @@
+# Aliases
+alias c="code"
+alias ws="webstorm"
 
 local setup-editor() {
   # Read desired editor from ~/.editor file

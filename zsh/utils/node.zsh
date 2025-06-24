@@ -1,3 +1,4 @@
+
 # https://github.com/raineorshine/npm-check-updates
 # Check package updates with `npm-check-updates`
 alias ncu="bunx npm-check-updates"

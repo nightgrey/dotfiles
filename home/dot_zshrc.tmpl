@@ -60,12 +60,12 @@ zi load mattmc3/zman
 zi load minTaqa/mvrel
 
 # Completions
-zi ice id-as="mise" as"completion" atclone"mise completion zsh > _mise; mise activate zsh > init.zsh" atpull"%atclone" src"init.zsh"
-zi load zdharma-continuum/null
+zi ice id-as="mise" as"completion" atclone"mise completion zsh > _mise; mise activate zsh > init.zsh;" atload="source init.zsh" atpull"%atclone" src"init.zsh"
+zi load mise
 
 zi ice id-as="op" as"completion" atclone"op completion zsh > _op; touch > init.zsh" atpull"%atclone"
-zi load zdharma-continuum/null
+zi load op
 
 # Load dotfiles
-zi ice id-as="dotfiles" src"dotfiles.plugin.zsh" nocd
+zi ice id-as="dotfiles" multisrc'zsh/{env,utils,completions}/*.zsh' completions as'program' pick'zsh/bin/*'
 zi load {{ .chezmoi.workingTree }}

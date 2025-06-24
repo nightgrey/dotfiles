@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+  
+# Function to install a package from @thi.ng namespace using bun
+# Usage: thi <package-name>
+function thing {
+  pkg="$1"
+
+  if [[ -z "$pkg" ]]; then
+    echo "Usage: thing <package-name> OR @thi.ng/<package-name>"
+    return 1
+  fi
+
+  # starts with @thi.ng/ or @thi.ng-/
+  if [[ "$pkg" == @thi.ng/* ]]; then
+    bun i "$pkg"
+  else 
+    bun i "@thi.ng/$pkg"
+  fi
+}
