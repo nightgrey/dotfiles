@@ -1,6 +1,0 @@
-maxtokens: 4096
-# Always points to latest model - gpt-4-turbo-2024-04-09
-model: gpt-4-turbo
-stream: true
-temperature: "0.2"
-topp: "0.1"

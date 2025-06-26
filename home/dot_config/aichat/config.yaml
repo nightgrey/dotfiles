@@ -2,33 +2,19 @@
 # https://github.com/sigoden/aichat/wiki/Configuration-Guide
 # ---- llm ----
 model: openrouter:anthropic/claude-sonnet-4  # Specify the LLM to use
-temperature: 0.2               # Set default temperature parameter
+temperature: 0.2                # Set default temperature parameter
 top_p: null                      # Set default top-p parameter, range (0, 1)
 
 # ---- behavior ----
-stream: true                     # Controls whether to use the stream-style API.
 save: true                       # Indicates whether to persist the message
-keybindings: emacs               # Choose keybinding style (emacs, vi)
 editor: nano                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
-wrap: auto                         # Controls text wrapping (no, auto, <max-width>)
+wrap: auto                       # Controls text wrapping (no, auto, <max-width>)
 wrap_code: true                 # Enables or disables wrapping of code blocks
 save_shell_history: true         # Save shell history
 
 # ---- session ----
 # Controls the persistence of the session. if true, auto save; if false, not save; if null, asking the user
 save_session: true
-# Compress session when token count reaches or exceeds this threshold
-compress_threshold: 256000
-# Text prompt used for creating a concise summary of session message
-summarize_prompt: '<system>This conversation became quite long and we will run out of context. Please summarize this discussion to use as info for a future prompt. Include relevant information to help you continue the conversation.</system>'
-# Text prompt used for including the summary of the entire session
-summary_prompt: '<system>This is a summary of the previous conversation. It was cut off because it got too long. This is the summary. Please continue the conversation. If you have questions, feel free to ask!</system>'
-
-# ---- function-calling ----
-function_calling: true           # Enables or disables function calling (Globally).
-mapping_tools:                   # Alias for a tool or toolset
-  fs: 'fs_cat,fs_ls,fs_mkdir,fs_rm,fs_write'
-use_tools: null                  # Which tools to use by default. (e.g. 'fs,web_search')
 
 clients:
   # All clients have the following configuration:
@@ -81,22 +67,3 @@ clients:
     api_key: ${HYPERBOLIC_API_KEY}
     models:
       - name: model
-
-  - type: openai-compatible
-    name: deepseek
-    api_base: https://api.deepseek.com
-    api_key: ${DEEPSEEK_API_KEY}
-    models:
-      - name: deepseek-reasoner
-        max_input_tokens: 64000
-        max_output_tokens: 8000
-
-  # # Ollama
-  # # See https://github.com/jmorganca/ollama
-  # - type: ollama
-  #   api_base: http://localhost:11434                  # ENV: {client}_API_BASE
-  #   models:                                           # Required
-  #     - name: llama3:8b-instruct-q8_0
-  #       max_input_tokens: 8192
-
-  # Ref: https://github.com/sigoden/aichat/blob/main/config.example.yaml#L80

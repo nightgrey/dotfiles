@@ -20,15 +20,3 @@ export HYPERBOLIC_API_KEY="{{- (onepasswordDetailsFields "Hyperbolic AI API").cr
 export STABILITY_API_KEY="{{- (onepasswordDetailsFields "Stability AI API").credential.value }}"
 export SAI_API_KEY=$STABILITY_API_KEY
 export DEEPSEEK_API_KEY="{{- (onepasswordDetailsFields "Deepseek API").credential.value }}" 
-
-# Wayland
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-  export MOZ_ENABLE_WAYLAND=1
-  export QT_QPA_PLATFORM="wayland;xcb"
-  export GDK_BACKEND=wayland
-  export XDG_CURRENT_DESKTOP=wayland
-  export XDG_SESSION_DESKTOP=wayland
-  
-  export ELECTRON_OZONE_PLATFORM_HINT=auto
-  export WAYLAND_DISPLAY=wayland-0
-fi
