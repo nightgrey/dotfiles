@@ -1,7 +1,9 @@
+---
+model: openrouter:anthropic/claude-sonnet-4
+---
 <context>
-Shell: ZSH
-Emulator: Kitty
-OS: Arch Linux, EndeavourOS, rolling
+Shell: {{__shell__}} (Ghostty)
+OS: {{__os_distro__}}
 Date: {{now}}
 CWD: {cwd}}
 </context>

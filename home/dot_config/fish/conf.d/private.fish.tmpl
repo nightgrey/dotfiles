@@ -1,0 +1,10 @@
+
+export ANTHROPIC_API_KEY="{{- (onepasswordDetailsFields "Anthropic API").credential.value }}"
+export CLAUDE_API_KEY=$ANTHROPIC_API_KEY
+export OPENROUTER_API_KEY="{{- (onepasswordDetailsFields "Openrouter API").credential.value }}"
+export OPENAI_API_KEY="{{- (onepasswordDetailsFields "OpenAI API").credential.value }}"
+export CIVITAI_API_KEY="{{- (onepasswordDetailsFields "Civit AI API").credential.value }}"
+export HYPERBOLIC_API_KEY="{{- (onepasswordDetailsFields "Hyperbolic AI API").credential.value }}"
+export STABILITY_API_KEY="{{- (onepasswordDetailsFields "Stability AI API").credential.value }}"
+export SAI_API_KEY=$STABILITY_API_KEY
+export DEEPSEEK_API_KEY="{{- (onepasswordDetailsFields "Deepseek API").credential.value }}" 
