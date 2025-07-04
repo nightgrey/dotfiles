@@ -1,25 +1,17 @@
 set -gx BUN_INSTALL $HOME/.bun
 fish_add_path -g $BUN_INSTALL/bin
 
+# This is a prefix'ed NPM. Currently only used by `claude` (Claude Code)
+fish_add_path -g /home/nico/.npm/prefix/bin
+
 # https://github.com/raineorshine/npm-check-updates
 # Check package updates with `npm-check-updates`
 alias ncu="bunx npm-check-updates"
-alias bun="bun --prefer-offline"
+alias -g bun="bun --prefer-offline"
 
 # https://github.com/dylang/npm-check
 # Check package updates with `npm-check`
 alias nc="bunx npm-check"
-
-# https://www.npmjs.com/package/madge
-alias list-deps="bunx madge"
-alias list-circular="bunx madge --circular"
-alias list-unused="bunx madge --orphans"
-
-# ESLint config inspector
-alias inspect-eslint="bunx @eslint/config-inspector"
-alias eslint-inspect="inspect-eslint"
-alias debug-eslint="inspect-eslint"
-alias eslint-config="inspect-eslint"
 
 function _toggle_npm_bun --description 'Toggle npm/npx to bun/bunx in the current commandline'
     set -l cmd (commandline)
@@ -36,5 +28,3 @@ end
 
 bind f2 _toggle_npm_bun
 
-# This is a prefix'ed NPM. Currently only used by `claude` (Claude Code)
-set -gx PATH /home/nico/.npm/prefix/bin $PATH

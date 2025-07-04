@@ -5,6 +5,11 @@ alias ll='eza -l --color=always --group-directories-first --icons'  # long forma
 alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
 alias l.="eza -a | grep -e '^\.'"                                     # show only dotfiles
 
+# editor
+alias ws=webstorm
+alias c=code
+alias vs=code
+
 # ripgrep
 alias grep=rg
 
@@ -12,9 +17,9 @@ alias grep=rg
 alias cat=bat
 
 # chezmoi
-alias cz=chezmoi
-alias cza=chezmoi apply --exclude templates
-alias czd=chezmoi diff
+alias cz='chezmoi'
+alias cza='chezmoi apply --exclude templates'
+alias czd='chezmoi diff'
 
 function history
     if test (count $argv) -gt 0
