@@ -32,7 +32,7 @@ fetchrecentrefsdays = 0
 # Returns the git root directory or false.
 root = !git rev-parse --show-toplevel 2>/dev/null || echo false
 # Returns true or false if in git work tree.
-is-git = !git rev-parse --is-inside-work-tree
+is = is-git
 
 # Quickly creates a "SAVEPOINT" commit
 save = !git add -A && git commit -vm 'SAVEPOINT' --no-verify
