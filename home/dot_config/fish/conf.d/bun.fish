@@ -7,7 +7,7 @@ fish_add_path -g /home/nico/.npm/prefix/bin
 # https://github.com/raineorshine/npm-check-updates
 # Check package updates with `npm-check-updates`
 alias ncu="bunx npm-check-updates"
-alias -g bun="bun --prefer-offline"
+alias bun="bun --prefer-offline"
 
 # https://github.com/dylang/npm-check
 # Check package updates with `npm-check`

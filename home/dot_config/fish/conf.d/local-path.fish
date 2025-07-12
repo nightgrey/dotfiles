@@ -55,11 +55,8 @@ function set_local_path --on-variable PWD
         end
     end
 
-    echo "Local bin directories: $DIRS"
-
     # Unset previous local bin directories
     if test -n "$__PREV_DIRS"
-        echo "Unsetting local bin directories from PATH and CDPATH"
         for dir in $__PREV_DIRS
             set PATH (string match -v "$dir" $PATH)
             set CDPATH (string match -v "$dir" $CDPATH)
@@ -77,9 +74,6 @@ function set_local_path --on-variable PWD
         return
     end
 
-    echo "Git root: $GIT_DIR"
-    echo "Previous git root: $__PREV_GIT_DIR"
-
     # Set PATH for current git repository
     for current in $DIRS
         set -l LOCAL_DIR_PATH "$GIT_DIR/$current"
@@ -88,7 +82,6 @@ function set_local_path --on-variable PWD
         if test -d "$LOCAL_DIR_PATH"; and not contains "$LOCAL_DIR_PATH" $PATH
             set -gx PATH "$LOCAL_DIR_PATH" $PATH
             set -gx CDPATH "$LOCAL_DIR_PATH" $CDPATH
-            echo "Added $LOCAL_DIR_PATH to PATH and CDPATH"
         end
     end
 
