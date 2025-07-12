@@ -1,0 +1,6 @@
+{
+    "device": "alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo",
+    "device-description": "RODE NT-USB Analog Stereo",
+    "device-profile": "analog-input-mic",
+    "preset-name": "Improved Microphone (Male voices, with Noise Reduction)"
+}

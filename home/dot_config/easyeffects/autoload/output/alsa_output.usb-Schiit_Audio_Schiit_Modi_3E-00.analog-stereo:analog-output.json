@@ -1,0 +1,6 @@
+{
+    "device": "alsa_output.usb-Schiit_Audio_Schiit_Modi_3E-00.analog-stereo",
+    "device-description": "Schiit Modi 3E Analog Stereo",
+    "device-profile": "analog-output",
+    "preset-name": "Audeze LCD-X (oratory1990 updated)"
+}
