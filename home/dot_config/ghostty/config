@@ -3,7 +3,7 @@
 # Style
 font-family = "TX-02"
 font-family = 500
-font-size = 13
+font-size = 14
 background-opacity = 1
 
 # Window
@@ -11,19 +11,19 @@ window-padding-x = 15
 window-padding-y = 10
 window-inherit-working-directory = true
 
-
 # Cursor
 cursor-style = block
 
 # Interaction
- 
 app-notifications = no-clipboard-copy
 copy-on-select = clipboard
 clipboard-paste-protection = true
 mouse-hide-while-typing = true
 confirm-close-surface = false
+
+
 # Shell integration
-# shell-integration = zsh
+shell-integration = fish
 # shell-integration-features = true
 
 # Keybindings
@@ -31,4 +31,6 @@ keybind = ctrl+shift+r=reload_config
 
 # Theme 
 config-file=theme.conf
+background-opacity=0.75
+background-blur=true
 
