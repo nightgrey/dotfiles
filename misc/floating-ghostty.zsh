@@ -7,7 +7,7 @@ SCREEN_HEIGHT=1440
 # Position (`/ 1` = rounding -- floating points would throw an error)
 W=$(echo "($SCREEN_WIDTH * 0.70) / 1" | bc)
 # H=$(echo "($SCREEN_HEIGHT * 0.40) / 1" | bc)
-H=550
+H=650
 X=$(echo "($SCREEN_WIDTH / 2 - $W / 2) / 1" | bc)
 Y="0"
  

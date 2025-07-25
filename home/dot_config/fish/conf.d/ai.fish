@@ -18,7 +18,7 @@ function ?? --wraps aichat --description 'Ask for help'
         return 1
     end
 
-    aichat -r help "$query" 
+    aichat -r help "$query"
 end
 
 function ??? --wraps aichat --description 'Ask for help with clipboard content'

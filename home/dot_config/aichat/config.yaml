@@ -2,12 +2,12 @@
 # https://github.com/sigoden/aichat/wiki/Configuration-Guide
 # ---- llm ----
 model: openrouter:anthropic/claude-sonnet-4  # Specify the LLM to use
-temperature: 0.2                # Set default temperature parameter
+temperature: 0.3                # Set default temperature parameter
 top_p: null                      # Set default top-p parameter, range (0, 1)
 
 # ---- behavior ----
 save: true                       # Indicates whether to persist the message
-editor: nano                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
+editor: code                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
 wrap: auto                       # Controls text wrapping (no, auto, <max-width>)
 wrap_code: true                 # Enables or disables wrapping of code blocks
 save_shell_history: true         # Save shell history
@@ -15,7 +15,7 @@ save_shell_history: true         # Save shell history
 # ---- session ----
 # Controls the persistence of the session. if true, auto save; if false, not save; if null, asking the user
 save_session: true
-
+compress_threshold: 0
 clients:
   # All clients have the following configuration:
   # - type: xxxx

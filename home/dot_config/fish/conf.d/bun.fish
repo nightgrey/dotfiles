@@ -27,4 +27,3 @@ function _toggle_npm_bun --description 'Toggle npm/npx to bun/bunx in the curren
 end
 
 bind f2 _toggle_npm_bun
-
