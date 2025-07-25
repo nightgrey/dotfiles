@@ -337,6 +337,12 @@ list:
     max_input_tokens: 40960
     input_price: 0.5
     output_price: 1.5
+  - name: devstral-medium-latest
+    type: chat
+    max_input_tokens: 256000
+    input_price: 0.4
+    output_price: 2.0
+    supports_function_calling: true
   - name: devstral-small-latest
     type: chat
     max_input_tokens: 256000
@@ -413,28 +419,33 @@ list:
     max_input_tokens: 4096
 - provider: xai
   models:
-  - name: grok-3-latest
+  - name: grok-3
     type: chat
     max_input_tokens: 131072
     input_price: 3.0
     output_price: 15.0
     supports_function_calling: true
-  - name: grok-3-fast-latest
+  - name: grok-3-fast
     type: chat
     max_input_tokens: 131072
     input_price: 5.0
     output_price: 25.0
     supports_function_calling: true
-  - name: grok-3-mini-latest
+  - name: grok-3-mini
     type: chat
     max_input_tokens: 131072
     input_price: 0.3
     output_price: 0.5
-  - name: grok-3-mini-fast-latest
+  - name: grok-3-mini-fast
     type: chat
     max_input_tokens: 131072
     input_price: 0.6
     output_price: 4.0
+  - name: grok-4
+    type: chat
+    max_input_tokens: 256000
+    input_price: 3.0
+    output_price: 15.0
 - provider: perplexity
   models:
   - name: sonar-pro
@@ -496,6 +507,16 @@ list:
     output_price: 0.0
     supports_function_calling: true
   - name: qwen/qwen3-32b
+    type: chat
+    max_input_tokens: 131072
+    input_price: 0.0
+    output_price: 0.0
+  - name: compound-beta
+    type: chat
+    max_input_tokens: 131072
+    input_price: 0.0
+    output_price: 0.0
+  - name: compound-beta-mini
     type: chat
     max_input_tokens: 131072
     input_price: 0.0
@@ -888,7 +909,6 @@ list:
     max_input_tokens: 131072
     input_price: 0.112
     output_price: 0.448
-    supports_function_calling: true
   - name: ernie-4.5-turbo-vl-32k
     type: chat
     max_input_tokens: 32768
@@ -1078,6 +1098,13 @@ list:
     max_input_tokens: 131072
     input_price: 1.4
     output_price: 4.2
+    supports_vision: true
+    supports_function_calling: true
+  - name: kimi-k2-0711-preview
+    type: chat
+    max_input_tokens: 131072
+    input_price: 0.56
+    output_price: 2.24
     supports_vision: true
     supports_function_calling: true
   - name: kimi-thinking-preview
@@ -1311,19 +1338,6 @@ list:
     supports_vision: true
     supports_function_calling: true
     system_prompt_prefix: Formatting re-enabled
-  - name: openai/gpt-4-turbo
-    type: chat
-    max_input_tokens: 128000
-    input_price: 10.0
-    output_price: 30.0
-    supports_vision: true
-    supports_function_calling: true
-  - name: openai/gpt-3.5-turbo
-    type: chat
-    max_input_tokens: 16385
-    input_price: 0.5
-    output_price: 1.5
-    supports_function_calling: true
   - name: google/gemini-2.5-flash
     type: chat
     max_input_tokens: 1048576
@@ -1445,7 +1459,7 @@ list:
     output_price: 2.0
     supports_vision: true
     supports_function_calling: true
-  - name: mistralai/mistral-small-3.1-24b-instruct
+  - name: mistralai/mistral-small-3.2-24b-instruct
     type: chat
     max_input_tokens: 131072
     input_price: 0.1
@@ -1466,11 +1480,17 @@ list:
     max_input_tokens: 40960
     input_price: 0.5
     output_price: 1.5
-  - name: mistralai/devstral-small
+  - name: mistralai/devstral-medium
     type: chat
     max_input_tokens: 131072
-    input_price: 0.07
-    output_price: 0.1
+    input_price: 0.4
+    output_price: 2.0
+    supports_function_calling: true
+  - name: mistralai/devstral-small-2505
+    type: chat
+    max_input_tokens: 131072
+    input_price: 0.06
+    output_price: 0.12
     supports_function_calling: true
   - name: mistralai/codestral-2501
     type: chat
@@ -1580,6 +1600,18 @@ list:
     max_input_tokens: 32768
     input_price: 0.18
     output_price: 0.18
+  - name: moonshotai/kimi-k2
+    type: chat
+    max_input_tokens: 63000
+    input_price: 0.14
+    output_price: 2.49
+    supports_function_calling: true
+  - name: x-ai/grok-4
+    type: chat
+    max_input_tokens: 256000
+    input_price: 3.0
+    output_price: 15.0
+    supports_function_calling: true
   - name: x-ai/grok-3
     type: chat
     max_input_tokens: 131072
@@ -1658,21 +1690,6 @@ list:
     max_input_tokens: 1000192
     input_price: 0.2
     output_price: 1.1
-  - name: thudm/glm-4-32b
-    type: chat
-    max_input_tokens: 32000
-    input_price: 0.24
-    output_price: 0.24
-  - name: thudm/glm-z1-32b
-    type: chat
-    max_input_tokens: 32000
-    input_price: 0.24
-    output_price: 0.24
-  - name: microsoft/phi-4-reasoning-plus
-    type: chat
-    max_input_tokens: 32768
-    input_price: 0.07
-    output_price: 0.35
 - provider: github
   models:
   - name: gpt-4.1
@@ -1897,7 +1914,7 @@ list:
     max_input_tokens: 131072
     input_price: 0.1
     output_price: 0.2
-  - name: mistralai/Mistral-Small-24B-Instruct-2501
+  - name: mistralai/Mistral-Small-3.2-24B-Instruct-2506
     type: chat
     max_input_tokens: 32768
     input_price: 0.06
