@@ -1,3 +1,4 @@
+### BEGIN: VENDOR COMPLETIONS FROM `bun completions`command ###
 # This is terribly complicated
 # It's because:
 # 1. bun run has to have dynamic completions
@@ -135,11 +136,11 @@ complete -c bun \
 complete -c bun \
     -n __fish_use_subcommand -a install -f -d 'Install packages from package.json'
 
-complete -c bun \
-    -n __fish_use_subcommand -a add -F -d 'Add a package to package.json'
+# complete -c bun \
+#     -n __fish_use_subcommand -a add -F -d 'Add a package to package.json'
 
-complete -c bun \
-    -n __fish_use_subcommand -a remove -F -d 'Remove a package from package.json'
+# complete -c bun \
+#     -n __fish_use_subcommand -a remove -F -d 'Remove a package from package.json'
 
 for i in (seq (count $bun_install_boolean_flags))
     complete -c bun \
@@ -179,11 +180,9 @@ complete -c bun -n __fish_use_subcommand -a pm -d "Additional package management
 complete -c bun -n __fish_use_subcommand -a x -d "Execute a package binary, installing if needed" -f
 complete -c bun -n __fish_use_subcommand -a outdated -d "Display the latest versions of outdated dependencies" -f
 complete -c bun -n __fish_use_subcommand -a publish -d "Publish your package from local to npm" -f
+### END: VENDOR COMPLETIONS FROM `bun completions` command ###
 
-# ####################
-# CUSTOM COMPLETIONS #
-######################
-
+## BEGIN: CUSTOM COMPLETIONS ###
 source /usr/share/fish/functions/__fish_npm_helper.fish
 source /usr/share/fish/functions/__fish_anypython.fish
 
@@ -352,3 +351,4 @@ for c in uninstall remove rm r
     # Help flag
     complete -f -c bun -n "__fish_seen_subcommand_from $c" -s h -l help -d 'Print this help menu'
 end
+## END: CUSTOM COMPLETIONS ###
