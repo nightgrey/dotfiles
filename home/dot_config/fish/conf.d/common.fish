@@ -16,11 +16,6 @@ alias grep=rg
 # bat
 alias cat=bat
 
-# chezmoi
-alias cz='chezmoi'
-alias cza='chezmoi apply --exclude templates'
-alias czd='chezmoi diff'
-
 function history
     if test (count $argv) -gt 0
         builtin history $argv
@@ -45,3 +40,8 @@ alias jctl="journalctl -p 3 -xb"
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+
+
+function pairdrop -d "Open pairdrop"
+  open https://pairdrop.net/
+end
