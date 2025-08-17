@@ -21,7 +21,7 @@ function qqq() {
   if [ "${#clip}" -lt 2 ]; then
     echo "Clipboard ('$clip') is too short." >&2
     return 1
-  fi  
+  fi
 
   block="\`\`\`\n${clip}\n\`\`\`"
 

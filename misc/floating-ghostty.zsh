@@ -10,10 +10,10 @@ W=$(echo "($SCREEN_WIDTH * 0.70) / 1" | bc)
 H=650
 X=$(echo "($SCREEN_WIDTH / 2 - $W / 2) / 1" | bc)
 Y="0"
- 
-# GTK_THEME=Sierra-dark-customized 
+
+# GTK_THEME=Sierra-dark-customized
 # GTK_DEBUG=interactive
-WAYLAND_DISPLAY=no tdrop -P 'wmctrl -i -r $wid -b add,above,skip_taskbar'  -y "$Y" -x "$X" -w "$W" -h "$H" ghostty --config-file="/home/nico/.config/ghostty/floating.conf" --config-default-files=false  
+WAYLAND_DISPLAY=no tdrop -P 'wmctrl -i -r $wid -b add,above,skip_taskbar' -y "$Y" -x "$X" -w "$W" -h "$H" ghostty --config-file="/home/nico/.config/ghostty/floating.conf" --config-default-files=false
 # CLASS="floating.ghostty"
 # EXISTS=false
 # VISIBLE=false
@@ -30,18 +30,16 @@ WAYLAND_DISPLAY=no tdrop -P 'wmctrl -i -r $wid -b add,above,skip_taskbar'  -y "$
 #     VISIBLE=false
 # fi
 
-
 # if [ "$EXISTS" = true ]; then
 
 #     if [ "$VISIBLE" = true ]; then
 #         notify-send "Ghostty" "Visible."
 #     else
-#         notify-send "Hidden or closed" 
+#         notify-send "Hidden or closed"
 #     fi
 
 #     notify-send "Ghostty" "Toggle visibility..."
 #     xdotool search --class "$CLASS" -- windowstate --toggle HIDDEN
-
 
 # else
 #     notify-send "Ghostty" "Closed."
@@ -51,13 +49,11 @@ WAYLAND_DISPLAY=no tdrop -P 'wmctrl -i -r $wid -b add,above,skip_taskbar'  -y "$
 #         xdotool search --limit 1 --class "floating.ghostty" -- windowstate --add ABOVE,STICKY,SKIP_TASKBAR
 # fi
 
-
-
 # # if xdotool search --class "$CLASS" > /dev/null 2>&1; then
 # #     notify-send "Ghostty" "Window doesn't exist, launching the app..."
 
 # #     ghostty --config-file="/home/nico/.config/ghostty/floating.conf" --config-default-files=false  &
-# # else 
+# # else
 
 # #     # Check if window is hidden with wmctrl
 # #    if wmctrl -lx | grep "floating.ghostty" | awk '{print $2}' | grep -q "^-"; then

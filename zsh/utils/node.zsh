@@ -1,4 +1,3 @@
-
 # https://github.com/raineorshine/npm-check-updates
 # Check package updates with `npm-check-updates`
 alias ncu="bunx npm-check-updates"
@@ -25,11 +24,11 @@ toggle_npm_bun() {
   # First handle bunx/npx pair to avoid conflicts
   BUFFER=${BUFFER//bunx/__BUNX_TEMP__}
   BUFFER=${BUFFER//npx/__NPX_TEMP__}
-  
+
   # Then handle bun/npm pair
   BUFFER=${BUFFER//bun/__BUN_TEMP__}
   BUFFER=${BUFFER//npm/__NPM_TEMP__}
-  
+
   # Now restore with swapped values
   BUFFER=${BUFFER//__BUN_TEMP__/npm}
   BUFFER=${BUFFER//__NPM_TEMP__/bun}

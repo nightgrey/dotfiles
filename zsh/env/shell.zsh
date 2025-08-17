@@ -3,13 +3,13 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-setopt HIST_IGNORE_DUPS # Ignore duplicated commands
+setopt HIST_IGNORE_DUPS     # Ignore duplicated commands
 setopt HIST_IGNORE_ALL_DUPS # Ignore duplicated commands
-setopt HIST_IGNORE_SPACE # Ignore commands that start with a space
-setopt HIST_SAVE_NO_DUPS # Don't save duplicated commands
-setopt SHARE_HISTORY # Share command history between all sessions
-setopt APPEND_HISTORY # Append to command history instead of overwriting it
-setopt INC_APPEND_HISTORY # Append to command history instead of overwriting it
+setopt HIST_IGNORE_SPACE    # Ignore commands that start with a space
+setopt HIST_SAVE_NO_DUPS    # Don't save duplicated commands
+setopt SHARE_HISTORY        # Share command history between all sessions
+setopt APPEND_HISTORY       # Append to command history instead of overwriting it
+setopt INC_APPEND_HISTORY   # Append to command history instead of overwriting it
 
 # Files
 # auto_cd: Allows you to change directories by typing the directory name without 'cd'
@@ -20,7 +20,6 @@ setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
-
 
 # Keybinds
 # https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Movement-1
@@ -69,12 +68,11 @@ zstyle ':completion:*' cache-path ~/.cache/zsh/autocomplete
 # Recent directories with zoxide
 # https://github.com/marlonrichert/zsh-autocomplete#use-a-custom-backend-for-recent-directories
 +autocomplete:recent-directories() {
-    echo "zoxide"
-    # Print recent directories (by time, not rating) in a list.
-    # `awk` removes the time prefix (list format is usually `${time} ${path}`).
-    typeset -ga reply=($(/usr/bin/zoxide query --list "$1" | head -20))
+  echo "zoxide"
+  # Print recent directories (by time, not rating) in a list.
+  # `awk` removes the time prefix (list format is usually `${time} ${path}`).
+  typeset -ga reply=($(/usr/bin/zoxide query --list "$1" | head -20))
 }
-
 
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *" # Ignore `cd` commands in history (they are not useful for autosuggestions).
@@ -98,7 +96,6 @@ export _ZO_EXCLUDE_DIRS="/mnt/hdd/*;$HOME"
 # tab-title
 ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 ZSH_TAB_TITLE_ENABLE_FULL_COMMAND=true
-
 
 #############
 #### UNUSED #

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-  
 # Function to install a package from @thi.ng namespace using bun
 # Usage: thi <package-name>
 function thing {
@@ -14,7 +13,7 @@ function thing {
   # starts with @thi.ng/ or @thi.ng-/
   if [[ "$pkg" == @thi.ng/* ]]; then
     bun i "$pkg"
-  else 
+  else
     bun i "@thi.ng/$pkg"
   fi
 }

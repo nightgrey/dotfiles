@@ -7,5 +7,5 @@ else
 fi
 
 function path() {
-    echo -n $(realpath -s "${1:-$PWD}") | xclip -selection clipboard
+  echo -n $(realpath -s "${1:-$PWD}") | xclip -selection clipboard
 }

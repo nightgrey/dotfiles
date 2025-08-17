@@ -52,9 +52,9 @@ typeset -g LOCAL_BINARIES=(
 local_bin() {
   if (
     [[ $PWD == / ]] ||
-    [[ $PWD == $HOME ]] ||
-    [[ $PWD == $PREV_IS_GIT ]]
-  ) then
+      [[ $PWD == $HOME ]] ||
+      [[ $PWD == $PREV_IS_GIT ]]
+  ); then
     return
   fi
 
@@ -62,7 +62,7 @@ local_bin() {
   local IS_GIT=$(is-git)
 
   if ([[ -z $IS_GIT ]]); then
-      # Unset for previous git repository
+    # Unset for previous git repository
     for current in "${LOCAL_BINARIES[@]}"; do
       local LOCAL_DIR_PATH="${PREV_IS_GIT}/${current}"
 
@@ -74,7 +74,7 @@ local_bin() {
 
       fi
     done
-    
+
     # Unset named directories
     hash -d root=""
     hash -d bin=""
@@ -96,7 +96,7 @@ local_bin() {
       fi
 
     done
-    
+
     # Set named directories
     hash -d root="$IS_GIT"
     hash -d bin="$IS_GIT/node_modules/.bin"
