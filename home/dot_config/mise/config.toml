@@ -2,5 +2,8 @@
 bun = "latest"
 go = "latest"
 node = "latest"
+npm = "latest"
+python = "latest"
+uv = "latest"
 zig = "0.14.1"
 zls = "0.14.0"

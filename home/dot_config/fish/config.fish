@@ -4,3 +4,4 @@ mise activate fish | source
 chezmoi completion fish | source
 
 source ~/.config/fish/temp.fish
+
