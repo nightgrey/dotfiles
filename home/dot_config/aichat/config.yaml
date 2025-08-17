@@ -9,7 +9,7 @@ top_p: null                      # Set default top-p parameter, range (0, 1)
 save: true                       # Indicates whether to persist the message
 editor: code                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
 wrap: auto                       # Controls text wrapping (no, auto, <max-width>)
-wrap_code: true                 # Enables or disables wrapping of code blocks
+wrap_code: false                 # Enables or disables wrapping of code blocks
 save_shell_history: true         # Save shell history
 
 # ---- session ----
@@ -34,6 +34,9 @@ clients:
   # OpenAI
   # See https://platform.openai.com/docs/quickstart
   - type: openai
+    patch:
+      reasoning: 
+        effort: "medium"
 
   # Claude
   # See https://docs.anthropic.com/claude/reference/getting-started-with-the-api
