@@ -8,7 +8,7 @@ fish_add_path -g /home/nico/.npm/prefix/bin
 # Check package updates with `npm-check-updates`
 alias ncu="bunx npm-check-updates"
 alias buno="bun --prefer-offline"
-
+alias bunw="bun --watch"
 # https://github.com/dylang/npm-check
 # Check package updates with `npm-check`
 alias nc="bunx npm-check"

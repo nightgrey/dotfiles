@@ -1,11 +1,11 @@
 source /usr/share/fish/functions/__fish_npm_helper.fish
 source /usr/share/fish/functions/__fish_anypython.fish
 
-function __bun_complete_history
+function __bun_complete_history -d "Emit historic bun completions matching the current commandline, i.e. 'bun i w[...rest]'"
     set -l tokens (commandline --current-process --tokenize)
     history --prefix (commandline) | string replace -r \^$tokens[1]\\s\* "" | string replace -r \^$tokens[2]\\s\* "" | string split ' '
 end
-function __bun_complete_global_packages
+function __bun_complete_global_packages -d "Emit bun completions for global packages"
     set -l global "$HOME/.bun/install/global"
     set -l package_json "$global/package.json"
 
@@ -45,46 +45,88 @@ function __bun_complete_global_packages
     end
 end
 
-function __bun_complete_local_packages
+function __bun_complete_local_packages -d "Emit bun completions for local packages"
     __bun_complete_history
 end
 
-function __bun_complete_bins
+function __bun_complete_bins -d "Emit bun completions for binaries (node_modules/.bin)"
     string split ' ' (bun getcompletes b)
 end
 
-function __bun_complete_scripts
+function __bun_complete_scripts -d "Emit bun completions for scripts"
     set -lx SHELL bash
     set -lx MAX_DESCRIPTION_LEN 40
-    string trim (string split '\n' (string split '\t' (bun getcompletes z)))
+    string trim (string split '\n' (string split '  ' (bun getcompletes z)))
 end
 
-function __bun_complete_packages
+function __bun_complete_packages -d "Emit bun completions for packages"
     if test (commandline -ct) != ""
         set -lx SHELL fish
         string split ' ' (bun getcompletes a (commandline -ct))
     end
 end
 
-
-function __bun_complete_path
-    __fish_complete_path
-    # string split ' ' (bun getcompletes j)
+function __bun_use_main
+    __fish_use_subcommand
 end
 
-function __bun_complete_run --inherit-variable __bun_cmds_without_run -d "Emit bun completions for bins and scripts"
-    __bun_complete_scripts
-    __bun_complete_path
+function __bun_is_main
+    set -l commands create build init link unlink pm publish install add i uninstall remove rm r update x
+
+    not __fish_seen_subcommand_from -a $commands
+
 end
 
-set -l __bun_install_boolean_flags yarn production optional development no-save dry-run force no-cache silent verbose global
-set -l __bun_install_boolean_flags_descriptions "Write a yarn.lock file (yarn v1)" "Don't install devDependencies" "Add dependency to optionalDependencies" "Add dependency to devDependencies" "Don't update package.json or save a lockfile" "Don't install anything" "Always request the latest versions from the registry & reinstall all dependencies" "Ignore manifest cache entirely" "Don't output anything" "Excessively verbose logging" "Use global folder"
+function __bun_complete_sub
+    echo -e "run\tExecute a file with Bun"
+    echo -e "test\tRun unit tests with Bun"
+    echo -e "x\tExecute a package binary, installing if needed"
+    echo -e "repl\tStart a REPL session with Bun"
+    echo -e "exec\tRun a shell script directly with Bun"
 
-set -l __bun_cmds_without_run dev create help bun upgrade discord install remove add init pm x
-set -l __bun_cmds_accepting_flags create help bun upgrade discord run init link unlink pm x
+    echo -e "install\tInstall packages"
+    echo -e "add\tInstall packages"
+    echo -e "remove\tUninstall packages"
+    echo -e "update\tUpdate outdated packages"
+    echo -e "audit\tCheck installed packages for vulnerabilities"
+    echo -e "link\tRegister or link a local npm package"
+    echo -e "unlink\tUnregister a local npm package"
+    echo -e "publish\tPublish your package from local to npm"
+    echo -e "patch\tPrepare a package for patching"
+    echo -e "pm\tAdditional package management utilities"
+    echo -e "info\tDisplay package metadata from the registry"
 
-# Clear existing completions
-complete  -e -c bun -f
+    echo -e "build\tTranspile and bundle one or more files"
+
+    echo -e "init\tInitialize a Bun project in this directory"
+    echo -e "create\tCreate a new project from a template"
+    echo -e "upgrade\tUpgrade to latest version of Bun"
+end
+
+function __bun_complete_main -d "Emit bun completions for bins and scripts"
+    if __fish_seen_argument -l watch -l hot
+        __fish_complete_path
+        __bun_complete_scripts
+        __bun_complete_sub
+    else
+        __bun_complete_sub
+        __bun_complete_scripts
+        __fish_complete_path
+    end
+end
+
+function __bun_complete_run -d "Emit bun completions for bins and scripts"
+    if __fish_seen_argument -l watch -l hot
+        __fish_complete_path
+        __bun_complete_scripts
+    else
+        __bun_complete_scripts
+        __fish_complete_path
+    end
+end
+
+complete -e -c bun -f
+complete -c bun -k -F -n __fish_use_subcommand -a "(__bun_complete_main)"
 
 # Basic flags
 complete -c bun -l watch -d "Automatically restart the process on file change"
@@ -97,10 +139,10 @@ complete -c bun -s r -l preload -d "Import a module before other modules are loa
 complete -c bun -l require -d "Alias of --preload, for Node.js compatibility" -r -F
 complete -c bun -l import -d "Alias of --preload, for Node.js compatibility" -r -F
 
-# Debug options
-complete -c bun -l inspect -d "Activate Bun's debugger" -r
-complete -c bun -l inspect-wait -d "Activate Bun's debugger, wait for a connection before executing" -r
-complete -c bun -l inspect-brk -d "Activate Bun's debugger, set breakpoint on first line of code and wait" -r
+# __bun_is_main options
+complete -c bun -l inspect -d "Activate Bun's __bun_is_mainger" -r
+complete -c bun -l inspect-wait -d "Activate Bun's __bun_is_mainger, wait for a connection before executing" -r
+complete -c bun -l inspect-brk -d "Activate Bun's __bun_is_mainger, set breakpoint on first line of code and wait" -r
 
 # Install options
 complete -c bun -l if-present -d "Exit without an error if the entrypoint does not exist"
@@ -153,30 +195,25 @@ complete -c bun -l cwd -d "Absolute path to resolve files & entry points from. T
 complete -c bun -s c -l config -d "Specify path to Bun config file. Default \$commandwd/bunfig.toml" -r -F
 
 # bun create
-complete -c bun -n __fish_use_subcommand -a create -r -d "Create a new project from a template"
 
 # bun build
-complete -c bun -n __fish_use_subcommand -a "build" -r -d "Transpile and bundle one or more files"
 
 # bun init
-complete -c bun -n __fish_use_subcommand -a init -d "Initialize a Bun project in this directory"
 
 # bun link
-complete -c bun -n __fish_use_subcommand -a link -d "Register or link a local npm package"
 complete -c bun -n "__fish_seen_subcommand_from link" -f
 # bun unlink
-complete -c bun -n __fish_use_subcommand -a unlink -d "Unregister a local npm package"
+
 complete -c bun -n "__fish_seen_subcommand_from unlink" -f
 # bun pm
-complete -c bun -n __fish_use_subcommand -a pm -d "Additional package management utilities" -r
+
 complete -c bun -n "__fish_seen_subcommand_from pm" -f
 # bun publish
-complete -c bun -n __fish_use_subcommand -a publish -d "Publish your package from local to npm"
+
 complete -c bun -n "__fish_seen_subcommand_from publish" -f
 
 # bun install
 for command in install add i
-    complete -x -c bun -n __fish_use_subcommand -a $command -d 'Install packages'
 
     # Lockfile and package.json behavior
     complete -f -c bun -n "__fish_seen_subcommand_from $command" -s y -l yarn -d 'Write a yarn.lock file (yarn v1)'
@@ -232,8 +269,6 @@ end
 
 # bun uninstall
 for command in uninstall remove rm r
-    complete -x -c bun -n __fish_use_subcommand -a $command -d 'Uninstall packages'
-
     complete -x -c bun -n "__fish_seen_subcommand_from $command" -a '(__bun_complete_local_packages)'
     complete -x -c bun -n "__fish_seen_subcommand_from $command" -s g -l global -d 'Remove global package' -a '(__bun_complete_global_packages)'
     complete -x -c bun -n "__fish_seen_subcommand_from $command" -s g -l g -d 'Remove global package' -a '(__bun_complete_global_packages)'
@@ -284,14 +319,12 @@ for command in uninstall remove rm r
 end
 
 # bun update
-complete -c bun -n __fish_use_subcommand -a update -d "Update outdated packages" -f
 complete -c bun -n "__fish_seen_subcommand_from update" -l latest -d "Update packages to their latest versions"
 complete -f -c bun -n "__fish_seen_subcommand_from update" -l save-text-lockfile -d 'Save a text-based lockfile'
 complete -f -c bun -n "__fish_seen_subcommand_from update" -l lockfile-only -d 'Generate a lockfile without installing dependencies'
 
-
 # bun run
-complete -c bun -n "__fish_seen_subcommand_from run" -a "(__bun_complete_run)" -r
+complete -c bun -k -n "__fish_seen_subcommand_from run" -a "(__bun_complete_run)" -r
 
 complete -x -c bun -n "__fish_seen_subcommand_from run" -l main-fields -d "Main fields to lookup in package.json. Defaults to --target dependent"
 complete -f -c bun -n "__fish_seen_subcommand_from run" -l preserve-symlinks -d "Preserve symlinks when resolving files"
@@ -309,5 +342,4 @@ complete -x -c bun -n "__fish_seen_subcommand_from run" -l jsx-runtime -a "autom
 complete -f -c bun -n "__fish_seen_subcommand_from run" -l ignore-dce-annotations -d "Ignore tree-shaking annotations such as @__PURE__"
 
 # bun x
-complete -c bun -n __fish_use_subcommand -a x -d "Execute a package binary, installing if needed" -f
 complete -c bun -n "__fish_seen_subcommand_from x" -a "(__bun_complete_bins)" -d "Execute a package binary, installing if needed" -f
