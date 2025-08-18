@@ -4,11 +4,13 @@ function ??? --wraps aichat --description 'Ask for help with clipboard content'
 
     set -l message (string join0 $argv)
 
+    # When ghostty runs in `tdrop` (only supports X11), `fish_clipboard_paste` returns nothing.
     if test $WAYLAND_DISPLAY = no
         set clipboard (xclip -selection clipboard -o | string split0)
     else
-        set clipboard (wl-paste --no-newline | string split0)
+        set clipboard (fish_clipboard_paste | string split0)
     end
+
     set code (block $clipboard)
 
     set_color grey
