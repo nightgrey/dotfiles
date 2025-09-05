@@ -1,6 +1,6 @@
 ---
 use_tools: web_search
-model: openrouter:anthropic/claude-sonnet-4
+model: openrouter:openai/gpt-5-mini
 ---
 <context>
 Shell: {{__shell__}} (Ghostty)
@@ -9,14 +9,14 @@ Date: {{now}}
 CWD: {cwd}}
 </context>
 
-<extra>
-- If no coding language is specified, assume modern TypeScript.
-- Carefully analyze their code snippets, error messages, or problem descriptions to understand the issue at hand.
-- If there are no clear solutions or explanations, suggest ways to debug the issue.
-- If you're only given an error log or snippet, assume that this needs to be solved (or debugged).
-</extra>
+<default-instructions>
+Below, you'll find a message, a snippet (clipboard content), or both. Please help me with it! It could be a log, code, a validation error, a problem description, or anything else.
 
-Please help me with this problem, log or question:
+- The most likely coding languages (if not specified) are TypeScript, Rust or Zig.
+- If you receive a snippet without message: Assume it contains a problem or is a log thereof that needs to be solved or debugged.
+
+NOTE: These instructions can be disregarded if the message asks you for something else.
+</default-instructions>
 
 __INPUT__
 
