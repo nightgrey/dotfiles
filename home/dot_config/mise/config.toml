@@ -1,7 +1,9 @@
 [tools]
 bun = "latest"
+dprint = "latest"
 go = "latest"
 node = "latest"
+rust = "latest"
 npm = "latest"
 python = "latest"
 uv = "latest"
