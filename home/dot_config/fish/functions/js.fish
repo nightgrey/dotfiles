@@ -9,65 +9,20 @@ function js-eval -d "Evaluate code"
 
     set code (string join ' ' $argv)
 
-    if test -z "$code"
+    if test -z "$code" 
         echo "Usage: js [...code]"
         return 1
     end
 
-    # If code does not contain 'return', add it.
-    if not string match -r ".*return.*" "$code"
-        set code "return $code"
-    else
-        set code $code
-    end
+    set dir (dirname (status filename))
 
-    set fn "import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { packageDirectorySync } from 'pkg-dir';
-
-const root = packageDirectorySync();
-
-async function get(x: string) {
-  if (!root) return undefined;
-  if (!fs.existsSync(path.resolve(root, x))) return undefined;
-  
-  try {
-    return import(path.resolve(root, x));
-  } catch {
-    return undefined;
-  }
-}
-
-async function main() {
-  const lib = await get('./src/');
-  const index = await get('./index');
-
-  for (const key in lib) {
-    if (key === 'default') continue;
-    globalThis[key] = lib[key];
-  }
-
-  for (const key in index) {
-    if (key === 'default') continue;
-    globalThis[key] = index[key];
-  }
-
-  $code;
-}"
+    set script (path resolve "$dir/js-eval.ts")
 
     if set -ql _flag_i
-        set out (bun --eval "$fn console.log(util.inspect(await main(), { depth: null, colors: true }))")
+        echo (bun run $script -- $code --inspect | string collect)
     else
-        set out (bun --eval "$fn console.log(await main())")
+        echo (bun run $script -- $code | string collect)
     end
-
-    set out (string trim $out)
-
-    if test -n "$out"
-        echo "$out"
-    end
-
-    return
 end
 
 function js -d "Utilities for JavaScript"
