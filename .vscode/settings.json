@@ -3,4 +3,9 @@
         // Hide compiled ZSH scripts
         "**/*.zwc":true
     },
+   "triggerTaskOnSave.tasks": {
+        "Apply": [
+            "home/**/*",
+        ],
+    }
 }
