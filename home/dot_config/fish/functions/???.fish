@@ -1,20 +1,35 @@
 function ??? --wraps aichat --description 'Ask for help with clipboard content'
-    if test -z "$argv"
-        echo "Usage: ??? <query>" >&2
-        return 1
+    set -l message
+    set -l model
+
+    getopts $argv | while read -l key value
+        switch $key
+            case m model
+                set model $value
+                # Collect anything else into the message.
+            case _
+                set -a message (string split0 $value)
+        end
     end
+
+    set message (string collect $message)
 
     set -l clipboard
     set -l code
     set -l query
     set -l snippet
-    set -l message (string collect $argv)
 
     # When ghostty runs in `tdrop` (only supports X11), `fish_clipboard_paste` returns nothing.
-    if test $WAYLAND_DISPLAY = "no"
-        set clipboard (xclip -selection clipboard -o | string collect)
+    if is_wayland
+        for type in STRING 'text/plain' 'text/plain;charset=utf-8' 'text/plain;charset=utf-8;format=text/plain' 'text/html'
+            if wl-paste --type="$type" >/dev/null 2>&1
+                # Set the first that works, then break.
+                set clipboard (wl-paste --type="$type" -n | string collect)
+                break
+            end
+        end
     else   
-        set clipboard (wl-paste -t STRING -n | string collect)
+        set clipboard (xclip -selection clipboard -o | string collect)
     end
  
     set code (block $clipboard | string collect)
@@ -47,7 +62,11 @@ $message"
     if test -z "$query"
         echo "Usage: ??? <query>" >&2
         return 1
-    end
+    end 
 
-   aichat -r help "$query"
+    if test -n "$model"
+        aichat --model $model -r help "$query"
+    else
+        aichat -r help "$query"
+    end
 end 

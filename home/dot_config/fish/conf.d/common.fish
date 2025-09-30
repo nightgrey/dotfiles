@@ -12,6 +12,9 @@ alias vs=code
 
 # ripgrep
 alias grep=rg
+alias rgrep=rg
+alias agrep=ast-grep
+alias astgrep=ast-grep
 
 # bat
 alias cat=bat
