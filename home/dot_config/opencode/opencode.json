@@ -1,0 +1,90 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "model": "openai/gpt-5-mini",
+    "small_model": "openai/gpt-5-nano",
+    "username": "Nico",
+    "agent": { 
+        "general": {},
+        "build": {
+            "tools": {
+                // Execute shell commands
+                "bash": true,
+                // Modify existing files
+                "edit": true,
+                // Create new files
+                "write": true,
+                // Read file contents
+                "read": true,
+                // Search file contents
+                "grep": true,
+                // Find files by pattern
+                "glob": true,
+                // List directory contents
+                "list": true,
+                // Apply patches to files
+                "patch": true,
+                // Manage todo lists
+                "todowrite": true,
+                // Read todo lists
+                "todoread": true,
+                // Fetch web content
+                "webfetch": false,
+            }
+        },
+        "plan": {
+            "model": "openai/gpt-5-mini",
+            "tools": {
+                // Execute shell commands
+                "bash": false,
+                // Modify existing files
+                "edit": false,
+                // Create new files
+                "write": false,
+                // Read file contents
+                "read": true,
+                // Search file contents
+                "grep": true,
+                // Find files by pattern
+                "glob": true,
+                // List directory contents
+                "list": true,
+                // Apply patches to files
+                "patch": false,
+                // Manage todo lists
+                "todowrite": true,
+                // Read todo lists
+                "todoread": true,
+                // Fetch web content
+                "webfetch": false,
+            }
+        },
+        "edit": {
+            "mode": "primary",
+            "model": "openai/gpt-5-mini",
+            "tools": {
+                // Execute shell commands
+                "bash": false,
+                // Modify existing files
+                "edit": false,
+                // Create new files
+                "write": true,
+                // Read file contents
+                "read": true,
+                // Search file contents
+                "grep": false,
+                // Find files by pattern
+                "glob": false,
+                // List directory contents
+                "list": false,
+                // Apply patches to files
+                "patch": true,
+                // Manage todo lists
+                "todowrite": false,
+                // Read todo lists
+                "todoread": false,
+                // Fetch web content
+                "webfetch": false,
+            }
+        }
+    }
+}
