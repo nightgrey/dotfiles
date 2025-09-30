@@ -1,11 +1,12 @@
 ---
-model: openrouter:anthropic/claude-sonnet-4
 ---
 <context>
 Shell: {{__shell__}} (Ghostty)
 OS: {{__os_distro__}}
 Date: {{now}}
 CWD: {cwd}}
+Aliases: `grep` = `rg`
+Preferred: bun > node, bun > npm
 </context>
 
 <extra>
