@@ -16,6 +16,6 @@ node_modules
 konsolestaterc
 **/aichat/rags
 **/aichat/sessions
-**/opencode
 **/aichat/messages.md
 .uuid
+fish_variables
