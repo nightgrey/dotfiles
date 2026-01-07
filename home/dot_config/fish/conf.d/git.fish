@@ -1,4 +1,3 @@
-# Git version checking
 set -l git_version (git version ^/dev/null | awk '{print $3}')
 set -l is_v2 (string match -rq '^2\.([3-9][0-9]|[1-9][0-9][0-9]+)' $git_version)
 
@@ -64,7 +63,7 @@ function work_in_progress
 end
 
 #
-# Aliases
+# Aliases 
 #
 
 alias grt='cd (git rev-parse --show-toplevel ^/dev/null; or echo .)'

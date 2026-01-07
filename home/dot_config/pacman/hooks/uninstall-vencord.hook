@@ -6,6 +6,6 @@ Type = Package
 Target = discord
 
 [Action]
-Description = Uninstall Vencord ...
+Description = Uninstalling Vencord ...
 When = PreTransaction
-Exec = /usr/bin/vencordinstallercli -uninstall -uninstall-openasar -location /opt/discord
+Exec = /usr/bin/vencordinstallercli -uninstall -uninstall-openasar -location /opt/discord > /dev/null 2>&1

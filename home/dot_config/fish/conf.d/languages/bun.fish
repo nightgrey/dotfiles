@@ -3,7 +3,7 @@ fish_add_path -g $BUN_INSTALL/bin
 
 # This is a prefix'ed NPM. Currently only used by `claude` (Claude Code)
 fish_add_path -g /home/nico/.npm/prefix/bin
-
+ 
 # https://github.com/raineorshine/npm-check-updates
 # Check package updates with `npm-check-updates`
 alias ncu="bunx npm-check-updates"
@@ -11,8 +11,8 @@ alias buno="bun --prefer-offline"
 alias bunw="bun --watch"
 # https://github.com/dylang/npm-check
 # Check package updates with `npm-check`
-alias nc="bunx npm-check"
-
+alias ncheck="bunx npm-check"
+ 
 function _toggle_npm_bun --description 'Toggle npm/npx to bun/bunx in the current commandline'
     set -l cmd (commandline)
     set cmd (string replace -a 'bunx' '__BUNX_TEMP__' $cmd)

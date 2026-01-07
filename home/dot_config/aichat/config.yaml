@@ -28,10 +28,6 @@ clients:
   # OpenAI
   # See https://platform.openai.com/docs/quickstart
   - type: openai
-    patch:
-      body: 
-        reasoning_effort: minimal
-        temperature: 1.0
 
   # Claude
   # See https://docs.anthropic.com/claude/reference/getting-started-with-the-api
@@ -48,21 +44,10 @@ clients:
     name: hyperbolic
     api_base: https://api.hyperbolic.xyz/v1
     chat_endpoint: /chat/completions
-    models:
-      - name: meta-llama/Meta-Llama-3.1-405B-Instruct
-        max_input_tokens: 128000
-        supports_vision: false
-        supports_function_calling: false
-
-      - name: meta-llama/Meta-Llama-3.1-70B-Instruct
-        max_input_tokens: 128000
-        supports_vision: false
-        supports_function_calling: false
 
   - type: openai-compatible
     name: local
-    api_base: http://localhost:8080/v1 # ENV: {client}_API_BASE
-    chat_endpoint: /chat/completions # Optional
-    api_key: ${HYPERBOLIC_API_KEY}
+    api_base: http://localhost:8080/v1
+    chat_endpoint: /chat/completions
     models:
       - name: model

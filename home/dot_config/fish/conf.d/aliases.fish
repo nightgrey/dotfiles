@@ -5,13 +5,19 @@ alias ll='eza -l --color=always --group-directories-first --icons' # long format
 alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
 alias l.="eza -a | grep -e '^\.'" # show only dotfiles
 
+# edit
+alias edit=$EDITOR
 # editor
 alias ws=webstorm
 alias c=code
 alias vs=code 
 
+# where
+alias where="command -v"
+
 # ripgrep
-# alias grep=rg
+alias grep=rg
+alias ggrep=/usr/bin/grep
 alias rgrep=rg
 alias agrep=ast-grep 
 alias astgrep=ast-grep
@@ -24,13 +30,6 @@ alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 
 # Error messages
 alias jctl="journalctl -p 3 -xb"
-
-# Recent installed packages
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-
-function pairdrop -d "Open pairdrop"
-    open https://pairdrop.net/
-end
 
 function history
     if test (count $argv) -gt 0
