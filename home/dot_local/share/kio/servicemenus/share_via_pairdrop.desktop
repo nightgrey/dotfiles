@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+Icon=network-wireless
+Actions=ShareViaPairDrop; 
+MimeType=all/all;
+
+[Desktop Action ShareViaPairDrop]
+Name=Share via PairDrop 
+Name[en]=Share via PairDrop
+Icon=network-wireless
+Exec=/home/nico/.local/bin/pairdrop %F   
