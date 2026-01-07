@@ -6,5 +6,6 @@ chezmoi completion fish | source
 atuin init fish | source
 atuin gen-completions --shell fish | source
 uv generate-shell-completion fish | source
+srgn --completions fish | source
 
 source ~/.config/fish/temp.fish
