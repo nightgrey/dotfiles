@@ -4,7 +4,7 @@
 function __pairdrop_notify --argument-names title message
     notify-send --app-name="PairDrop" --icon=network-wireless "$title" "$message"
 end
- 
+
 function __pairdrop_copy_to_clipboard --argument-names content
     if set --query WAYLAND_DISPLAY
         command --query wl-copy; or begin
@@ -22,10 +22,17 @@ function __pairdrop_copy_to_clipboard --argument-names content
 end
 
 function __pairdrop_safe_filename --argument-names input_name
-    string replace --all ' ' '_' -- "$input_name" \
+    set --local result (string replace --all ' ' '_' -- "$input_name" \
         | string replace --regex '^\.+' '' \
         | string replace --regex '\.[^.]*$' '' \
-        | string replace --regex --all '[^a-zA-Z0-9_]' ''
+        | string replace --regex --all '[^a-zA-Z0-9_]' '')
+    
+    # Fallback if everything was stripped
+    if test -z "$result"
+        echo "archive"
+    else
+        echo "$result"
+    end
 end
 
 function __pairdrop_create_archive --argument-names output_path
@@ -54,17 +61,39 @@ function __pairdrop_create_archive --argument-names output_path
         end
     end
 
-    __pairdrop_notify "PairDrop" "Preparing (count $files) files, (count $dirs) directories..."
+    set --local file_count (count $files)
+    set --local dir_count (count $dirs)
+    __pairdrop_notify "PairDrop" "Preparing $file_count file(s), $dir_count director(y/ies)..."
 
-    # Files: junk paths (-j)
-    test (count $files) -gt 0; and zip -q -j -0 -r "$output_path" $files
+    # Files: junk paths (-j), no compression (-0)
+    if test $file_count -gt 0
+        zip -q -j -0 "$output_path" $files; or begin
+            __pairdrop_notify "Error" "Failed to create archive"
+            return 1
+        end
+    end
 
-    # Directories: preserve structure
-    for i in (seq (count $dirs))
+    # Directories: preserve structure, update existing (-u)
+    for i in (seq $dir_count)
         cd "$dir_parents[$i]"
-        zip -q -0 -u -r "$output_path" "$dir_names[$i]"
+        
+        # Use -u (update) only if archive exists, otherwise create
+        if test -f "$output_path"
+            zip -q -0 -u -r "$output_path" "$dir_names[$i]"
+        else
+            zip -q -0 -r "$output_path" "$dir_names[$i]"
+        end
+        
+        or begin
+            cd "$working_dir"
+            __pairdrop_notify "Error" "Failed to add directory: $dir_names[$i]"
+            return 1
+        end
+        
         cd "$working_dir"
     end
+
+    return 0
 end
 
 function pairdrop --description "Send files via PairDrop"
@@ -109,18 +138,20 @@ function pairdrop --description "Send files via PairDrop"
     rm -f "$zip_path"
 
     # Inline hash or clipboard depending on size
+    set --local url
     if test (string length "$encoded") -gt $max_inline_size
         __pairdrop_copy_to_clipboard "$encoded"; or return 1
-        set --local url "$domain?base64zip=paste"
+        set url "$domain?base64zip=paste"
     else
-        set --local url "$domain?base64zip=hash#$encoded"
+        set url "$domain?base64zip=hash#$encoded"
     end
 
     __pairdrop_notify "PairDrop" "Opening $domain"
     xdg-open "$url" &>/dev/null &
-    disown
-end
+    disown 
+end 
 
 # ~/.config/fish/completions/pairdrop.fish
+
 complete -c pairdrop -f -d "Send files via PairDrop"
 complete -c pairdrop -F -d "File or directory to send"
