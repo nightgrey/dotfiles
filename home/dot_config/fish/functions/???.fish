@@ -1,18 +1,10 @@
-function ??? --wraps aichat --description 'Ask for help with clipboard content'
-    set -l message
-    set -l model
+function ??? --wraps aichat --description 'Ask your friendly neighborhood machine - with clipboard'
+    set -l message (string collect "$argv" | string trim)
 
-    getopts $argv | while read -l key value
-        switch $key
-            case m model
-                set model $value
-                # Collect anything else into the message.
-            case _
-                set -a message (string split0 $value)
-        end
-    end
-
-    set message (string collect $message)
+    if test -z "$message"
+        echo "Usage: ??? <query>" >&2
+        return 1
+    end 
 
     set -l clipboard
     set -l code
@@ -28,45 +20,25 @@ function ??? --wraps aichat --description 'Ask for help with clipboard content'
                 break
             end
         end
-    else   
-        set clipboard (xclip -selection clipboard -o | string collect)
+    else    
+        set clipboard (xclip -out -selection clipboard | string collect)
     end
  
-    set code (block $clipboard | string collect)
 
-    if test -n "$code" 
-        set snippet (tag snippet $code | string collect)
-        set query $snippet
-
-        set_color grey
-        echo $code
-        set_color normal
+    if test -n "$clipboard" 
+        set -l blocked (block $clipboard | string collect)
+        printf "<snippet>\n%s\n</snippet>\n" "$blocked"
+        set -a query "$blocked"
     end
 
     if test -n "$message"
-        if test -n "$code"
-            echo
-            set query "$query
+        printf "\n\x1b[1;31m%s\x1b[0m\n\n" "$message"
+
+        set -a query "
 
 $message"
-        else 
-            set query $message
-        end
-
-
-        set_color brred
-        echo $message
-        set_color normal
     end
 
-    if test -z "$query"
-        echo "Usage: ??? <query>" >&2
-        return 1
-    end 
 
-    if test -n "$model"
-        aichat --model $model -r help "$query"
-    else
-        aichat -r help "$query"
-    end
+    aichat -r help "$query"
 end 
