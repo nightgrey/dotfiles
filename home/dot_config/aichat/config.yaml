@@ -47,7 +47,6 @@ clients:
 
   - type: openai-compatible
     name: local
-    api_base: http://localhost:8080/v1
-    chat_endpoint: /chat/completions
+    api_base: http://localhost:8000/v1
     models:
       - name: model

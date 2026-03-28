@@ -4,7 +4,7 @@ function ??m --description "Use '??' with a specific model"
 
     if test -z "$model" || test -z "$query"
         echo "Usage: m?? <model> [<query>]" >&2
-    else 
+    else
         echo "Using $model ..."
         aichat --model $model -r help "$message"
     end
