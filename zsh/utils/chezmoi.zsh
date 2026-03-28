@@ -1,5 +1,0 @@
-alias chez="chezmoi"
-alias cm="chezmoi"
-alias ch="chezmoi"
-alias cz="chezmoi"
-alias cza="chezmoi add --follow"
