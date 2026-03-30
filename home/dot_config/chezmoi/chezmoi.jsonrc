@@ -1,0 +1,19 @@
+{
+  "git": {
+    "autoPush": false
+  },
+  "diff": {
+    "command": "code",
+    "args": [
+      "--wait",
+      "--diff"
+    ]
+  },
+  "merge": {
+    "command": "bash",
+    "args": [
+      "-c",
+      "cp {{ .Target | quote }} {{ printf \"%s.base\" .Target |>
+    ]
+  }
+}
