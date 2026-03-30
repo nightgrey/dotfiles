@@ -34,6 +34,4 @@ keybind = ctrl+shift+r=reload_config
 # Palette cheat sheet: https://www.ditig.com/publications/256-colors-cheat-sheet
 # Font feature info: https://fontdrop.info
 theme=GitHub Dark
-background-opacity=0.99
-background-blur=true
 
