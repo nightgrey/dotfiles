@@ -24,7 +24,7 @@ wmclassmatch=3
 Description=Visual Studio Code
 activity=aeeb54cb-7717-48cd-ab74-438e591a080d
 activityrule=2
-desktops=6fd4e98b-7c4d-42cf-9f16-c863856362c0
+desktops=0c496234-e37e-4838-b249-154824e5ee36
 desktopsrule=2
 wmclass=code Code
 wmclasscomplete=true
@@ -73,12 +73,12 @@ above=true
 aboverule=2
 
 [acc32743-de4a-4727-8499-b75f82bbe975]
-Description=Brave
+Description=Firefox
 activity=00000000-0000-0000-0000-000000000000
 activityrule=3
 desktops=0c496234-e37e-4838-b249-154824e5ee36
 desktopsrule=2
-wmclass=brave-browser
+wmclass=firefox
 wmclassmatch=1
 
 [b70fe2f2-6915-49ce-b4f6-ae940d969483]
@@ -96,5 +96,6 @@ activityrule=3
 desktops=0c496234-e37e-4838-b249-154824e5ee36
 desktopsrule=2
 noborderrule=3
-wmclass=brave-fmpnliohjhemenmnlpbfagaolkdacoja-Default
+wmclass=claude Claude
+wmclasscomplete=true
 wmclassmatch=1
