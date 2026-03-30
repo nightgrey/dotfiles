@@ -2,7 +2,7 @@ source /usr/share/fish/functions/__fish_npm_helper.fish
 source /usr/share/fish/functions/__fish_anypython.fish
 
 function __bun_complete_history -a prefix
-    history --null --prefix $prefix --max 100 | string split0 | string match -v '' | string replace -r "^$prefix\\s*" ""  | string split " " | string replace -r "^(--|-|\|).*" "" | string replace -r "^(\.|~)?\/.*\/.*" ""
+    history --null --prefix $prefix --max 100 | string split0 | string match -v '' | string replace -r "^$prefix\\s*" "" | string split " " | string replace -r "^(--|-|\|).*" "" | string replace -r "^(\.|~)?\/.*\/.*" ""
 end
 
 function __bun_complete_bun_bins -d "Emit bun-native completions for binaries"
@@ -157,7 +157,7 @@ end
 function __bun_complete_x
     __bun_complete_bun_bins
     __bun_complete_bun_history "bun x"
-    __bun_complete_bun_history "bunx"
+    __bun_complete_bun_history bunx
 end
 
 # Completions for `bun update`

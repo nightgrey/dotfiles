@@ -9,3 +9,4 @@ uv generate-shell-completion fish | source
 srgn --completions fish | source
 
 source ~/.config/fish/temp.fish
+source ~/.config/fish/_completions/*.fish
