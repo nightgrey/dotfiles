@@ -1,0 +1,29 @@
+{
+  "standard_models": [
+    {
+      "id": "openrouter:moonshotai/kimi-k2.5",
+      "name": "Kimi K2.5",
+      "alias": "kimi"
+    },
+    {
+      "id": "openrouter:google/gemini-3-pro-preview",
+      "name": "Gemini 3.0 Pro",
+      "alias": "gemini,google"
+    },
+    {
+      "id": "openrouter:openai/gpt-5.2-codex",
+      "name": "GPT-5.2 Codex",
+      "alias": "gpt,codex"
+    },
+    {
+      "id": "openrouter:anthropic/claude-sonnet-4.6",
+      "name": "Claude Sonnet 4.6",
+      "alias": "claude,sonnet"
+    },
+    {
+      "id": "openrouter:anthropic/claude-opus-4.6",
+      "name": "Claude Opus 4.6",
+      "alias": "opus"
+    }
+  ]
+}

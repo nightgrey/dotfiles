@@ -1,5 +1,5 @@
 function ??m --description "Use '??' with a specific model"
-    set -l model (__standard_model $argv[1])
+    set -l model (__standard_model_or $argv[1])
     set -l query (string collect $argv[2..])
 
     if test -z "$model" || test -z "$query"

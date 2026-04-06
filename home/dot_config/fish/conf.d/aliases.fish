@@ -9,7 +9,7 @@ alias ls='eza -al --color=always --group-directories-first --icons' # preferred 
 alias la='eza -a --color=always --group-directories-first --icons' # all files and dirs
 alias ll='eza -l --color=always --group-directories-first --icons' # long format
 alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
-alias l.="eza -a | grep -e '^\.'" # show only dotfiles
+alias l.="eza -a | grep -e '^\.'" # show only dotfiles+
 
 # edit
 alias edit=$EDITOR
@@ -20,6 +20,7 @@ alias vs=code
 
 # where                 
 alias where="command -v"
+alias trace="fish_trace=1"
 
 # ripgrep
 alias grep=rg

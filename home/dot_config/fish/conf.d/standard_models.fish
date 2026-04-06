@@ -14,6 +14,7 @@
 # ```
 set -gx STANDARD_MODELS \
     "openrouter:moonshotai/kimi-k2.5|kimi|Kimi K2.5" \
+    "openrouter:z-ai/glm-5-turbo|glm|GLM 5 Turbo" \
     "openrouter:google/gemini-3-pro-preview|gemini,google|Gemini 3.0 Pro" \
     "openrouter:openai/gpt-5.2-codex|gpt,codex|GPT-5.2 Codex" \
     "openrouter:anthropic/claude-sonnet-4.6|claude,sonnet|Claude Sonnet 4.6" \
@@ -81,20 +82,18 @@ function __dot_complete_standard_models
     end
 end
 
-# Get a standard model ID, return as-is if not found.
+# Get a standard model ID, return `1` if not found.
 #
 # Example:
 #
 # ```
-# echo (__standard_model kimi) // 'moonshotai/kimi-k2-thinking'
-# echo (__standard_model gpt) // 'openai/gpt-5.2-codex'
-# echo (__standard_model as-is) // 'as-is'
-# echo (__standard_model) // empty
+# echo (__standard_model claude) // anthropic/claude-sonnet-4.6
+# echo (__standard_model foo) // 1
 # ```
 function __standard_model
-    set -l model_arg $argv[1]
+    set -l arg $argv[1]
     set -l model
-    set -l found_arg_in_dict false
+    set -l found false
 
     # Try to find the model from the dictionary by any of its aliases
     for entry in $STANDARD_MODELS
@@ -105,29 +104,45 @@ function __standard_model
 
         # Check if the argument matches any of the aliases
         for alias in $aliases
-            if test "$model_arg" = "$alias"
+            if test "$arg" = "$alias"
                 set model $model_id
-                set found_arg_in_dict true
+                set found true
                 break
             end
         end
 
         # Break outer loop if found
-        if $found_arg_in_dict
+        if $found
             break
         end
     end
 
-    # If not found in dictionary, use the provided value as-is (arbitrary model)
-    # or return empty.
-    if not $found_arg_in_dict
-        if test -z "$model_arg"
-            return 1
-        else
-            # Use given model
-            set model $model_arg
-        end
+    # If not found in dictionary, return empty.
+    if not $found
+        return 1
+    else
+        echo $model
     end
+end
 
-    echo $model
+# Get a standard model ID or return the provided value.
+#
+# Example:
+#
+# ```
+# echo (__standard_model claude) // anthropic/claude-sonnet-4.6
+# echo (__standard_model foo) // foo
+# ```
+function __standard_model_or
+    set -l result (__standard_model $argv)
+
+    if test -z "$result"
+        echo $argv[1]
+    else
+        echo $result
+    end
+end
+
+function standard-model
+    __standard_model $argv
 end

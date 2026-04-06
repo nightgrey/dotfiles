@@ -1,15 +1,15 @@
 function ???m --description "Use '???' with a specific model"
-    set -l model (__standard_model $argv[1])
- 
+    set -l model (__standard_model_or $argv[1])
+
     if test -z "$model"
         echo "Usage: m?? <model> [<query>]" >&2
-    else 
+    else
         set -l message (string collect "$argv[2..-1]" | string trim)
 
         if test -z "$message"
             echo "Usage: ??? <model> <query>" >&2
             return 1
-        end 
+        end
 
         set -l clipboard
         set -l code
@@ -17,18 +17,18 @@ function ???m --description "Use '???' with a specific model"
         set -l snippet
         # When ghostty runs in `tdrop` (only supports X11), `fish_clipboard_paste` returns nothing.
         if is_wayland
-            for type in STRING 'text/plain' 'text/plain;charset=utf-8' 'text/plain;charset=utf-8;format=text/plain' 'text/html'
+            for type in STRING text/plain 'text/plain;charset=utf-8' 'text/plain;charset=utf-8;format=text/plain' text/html
                 if wl-paste --type="$type" >/dev/null 2>&1
                     # Set the first that works, then break.
                     set clipboard (wl-paste --type="$type" -n | string collect)
                     break
                 end
             end
-        else    
+        else
             set clipboard (xclip -out -selection clipboard | string collect)
         end
 
-        if test -n "$clipboard" 
+        if test -n "$clipboard"
             set -l blocked (block $clipboard | string collect)
             printf "<snippet>\n%s\n</snippet>\n" "$blocked"
             set -a query "$blocked"
@@ -44,8 +44,8 @@ function ???m --description "Use '???' with a specific model"
         if test -z "$query"
             echo "Usage: ??? <query>" >&2
             return 1
-        end 
- 
+        end
+
         aichat --model $model -r help "$query"
     end
 end
