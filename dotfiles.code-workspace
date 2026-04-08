@@ -1,11 +1,8 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../../../.znap"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    },
+  ],
+  "settings": {}
 }

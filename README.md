@@ -1,6 +1,6 @@
 # Dotfiles
 
-This repository contains my personal dotfiles. They contain configuration files for my system, including my terminal, shell, and other tools.
+This repository contains my personal dotfiles, managed using chezmoi. They contain configuration files for my system, including my terminal, shell, and other tools.
 
 ![neofetch](/docs/banner.png)
 
@@ -8,29 +8,6 @@ I've picked up a lot from other developers' dotfiles, which is why I decided to 
 
 > Note: It is not meant to be copied and run - I mean, technically you could, but it is tailored to my system. It is 
 > meant to be an inspiration, but use it however you like! :)
-
-## How I use this repository
-
-**1. Clone to my local machine**
-
-```sh
-git clone https://github.com/nightgrey/dotfiles.git ~/.dot
-```
-
-**2. Symlink files**
-
-[`lib`](/lib/) represents `~`. I never automated the symlinking process, so I just manually symlink things:
-
-```sh
-ln -s ~/.dot/lib/* ~/
-ln -s ~/.dot/lib/.config/* ~/.config/
-ln -s ~/.dot/lib/.local/share/* ~/.local/share
-```
-
-> Note: It assumes tooling (like [zsh](https://www.zsh.org/), [ghostty](https://ghostty.org), 
-> [starship](https://starship.rs/), [git](https://git-scm.com/), [mise](https://mise.sh/) and [zinit](https://github.com/zdharma/zinit)) to be installed.
-
-**3. Use things!**
 
 **Resources**
 

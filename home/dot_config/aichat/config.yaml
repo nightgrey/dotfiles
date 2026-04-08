@@ -3,7 +3,7 @@
 model: openrouter:z-ai/glm-5-turbo:exacto
 # ---- behavior ----
 save: true                       # Indicates whether to persist the message
-editor: nano                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
+editor: micro                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
 wrap: auto                       # Controls text wrapping (no, auto, <max-width>)
 wrap_code: false                 # Enables or disables wrapping of code blocks
 save_shell_history: true         # Save shell history
