@@ -5,8 +5,16 @@ go = "latest"
 node = "latest"
 rust = "nightly"
 npm = "latest"
-python = "latest"
+python = "system"
 uv = "latest"
 zig = "0.14.1"
 zls = "0.14.0"
 pnpm = "latest"
+
+
+[settings]
+
+status = {  
+    show_env = true,
+show_tools = true,
+}
