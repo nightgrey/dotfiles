@@ -19,7 +19,7 @@ set -gx ATUIN_NOBIND true
 atuin init fish | source
 
 atuin gen-completions --shell fish | source
-bind up _atuin_search
+bind up _atuin_bind_up
 
 # Completions
 uv generate-shell-completion fish | source
