@@ -44,7 +44,7 @@
             "infoForeground": "#475C5999",
             "acceleratorForeground": "#475C59",
             "shortcutForeground": "shortCutForeground",
-            "underlineColor": "#80CBC4",
+            "underlineColor": "#e9a581",
             "inactiveUnderlineColor": "disabledForeground",
             "focusColor": "#2C3F38",
             "separatorColor": "#21302B",
@@ -68,10 +68,10 @@
             }
         },
         "ActionButton": {
-            "hoverBackground": "#80CBC40f",
+            "hoverBackground": "#e9a5810f",
             "hoverBorderColor": "#ffffff00",
-            "pressedBackground": "#80CBC41a",
-            "pressedBorderColor": "#80CBC426"
+            "pressedBackground": "#e9a5811a",
+            "pressedBorderColor": "#e9a58126"
         },
         "Badge": {
             "greenOutlineForeground": "#C3E88D",
@@ -107,8 +107,8 @@
             "default": {
                 "foreground": "#000000",
                 "loadingForeground": "#111816",
-                "startBackground": "#80CBC4",
-                "endBackground": "#80CBC4",
+                "startBackground": "#e9a581",
+                "endBackground": "#e9a581",
                 "startBorderColor": "#111816",
                 "endBorderColor": "#111816",
                 "focusedBorderColor": "border",
@@ -124,7 +124,7 @@
         "SegmentedButton": {
             "selectedStartBorderColor": "#21302B",
             "selectedEndBorderColor": "#21302B",
-            "selectedButtonColor": "#80CBC433",
+            "selectedButtonColor": "#e9a58133",
             "focusedSelectedButtonColor": "#1118161a"
         },
         "ComboBox": {
@@ -134,7 +134,7 @@
                 "iconColor": "#CAE5D5",
                 "nonEditableBackground": "#111816"
             },
-            "modifiedItemForeground": "#80CBC4",
+            "modifiedItemForeground": "#e9a581",
             "minimumSize": "49,28",
             "nonEditableBackground": "#111816",
             "padding": "1,9,1,6"
@@ -170,8 +170,8 @@
             }
         },
         "Counter": {
-            "background": "#80CBC433",
-            "foreground": "#80CBC4"
+            "background": "#e9a58133",
+            "foreground": "#e9a581"
         },
         "Debugger": {
             "Variables": {
@@ -269,11 +269,11 @@
             "warningForeground": "#CAE5D5"
         },
         "Link": {
-            "activeForeground": "#80CBC4",
-            "hoverForeground": "#80CBC4",
-            "pressedForeground": "#80CBC4",
-            "visitedForeground": "#80CBC4",
-            "secondaryForeground": "#80CBC4",
+            "activeForeground": "#e9a581",
+            "hoverForeground": "#e9a581",
+            "pressedForeground": "#e9a581",
+            "visitedForeground": "#e9a581",
+            "secondaryForeground": "#e9a581",
             "focusedBorderColor": "#CAE5D5"
         },
         "List": {
@@ -353,7 +353,7 @@
             "background": "#111816",
             "borderColor": "border",
             "foreground": "#CAE5D5",
-            "linkForeground": "#80CBC4",
+            "linkForeground": "#e9a581",
             "iconHoverBackground": "#ffffff1a",
             "errorBackground": "#111816",
             "errorBorderColor": "#f07178",
@@ -399,11 +399,11 @@
             "SectionHeader.background": "#1D2A25",
             "Button": {
                 "installFillForeground": "#000000",
-                "installFillBackground": "#80CBC4",
-                "installFillBorderColor": "#80CBC4",
+                "installFillBackground": "#e9a581",
+                "installFillBorderColor": "#e9a581",
                 "installBorderColor": "#80CBC400",
                 "installBackground": "#80CBC417",
-                "installForeground": "#80CBC4",
+                "installForeground": "#e9a581",
                 "updateBackground": "#6FA0DE17",
                 "updateBorderColor": "#6FA0DE00",
                 "updateForeground": "#6FA0DE"
@@ -447,16 +447,16 @@
         "ComplexPopup.Header.background": "#111816",
         "CompletionPopup": {
             "foreground": "#CAE5D5",
-            "matchForeground": "#80CBC4",
+            "matchForeground": "#e9a581",
             "Advertiser": {
                 "foreground": "#446058",
                 "background": "#111816"
             }
         },
         "ProgressBar": {
-            "progressColor": "#80CBC4",
-            "indeterminateStartColor": "#80CBC4",
-            "indeterminateEndColor": "#80CBC480",
+            "progressColor": "#e9a581",
+            "indeterminateStartColor": "#e9a581",
+            "indeterminateEndColor": "#e9a58180",
             "passedColor": "#C3E88D",
             "passedEndColor": "#74C9DE",
             "failedColor": "#f07178",
@@ -495,8 +495,8 @@
             "selectedPressedBackground": "#D3959B"
         },
         "Slider": {
-            "buttonColor": "#80CBC4",
-            "buttonBorderColor": "#80CBC4",
+            "buttonColor": "#e9a581",
+            "buttonBorderColor": "#e9a581",
             "tickColor": "#475C59",
             "trackColor": "#21302B"
         },
@@ -563,7 +563,7 @@
             "background": "#192420",
             "borderColor": "border",
             "foreground": "#CAE5D580",
-            "stepForeground": "#80CBC4",
+            "stepForeground": "#e9a581",
             "secondaryActionForeground": "#475C59",
             "Header.foreground": "#CAE5D5",
             "shortcutForeground": "shortCutForeground",
@@ -571,15 +571,15 @@
             "codeForeground": "#C3E88D",
             "codeBackground": "#11181600",
             "codeBorderColor": "#11181600",
-            "linkForeground": "#80CBC4",
+            "linkForeground": "#e9a581",
             "linkUnderlineHoveredColor": "#ffffff00",
             "linkUnderlineDefaultColor": "#ffffff00",
             "imageBorderColor": "#1D2A25",
             "animationBackground": "border",
             "Button": {
-                "foreground": "#80CBC4",
-                "startBackground": "#80CBC417",
-                "endBackground": "#80CBC417",
+                "foreground": "#e9a581",
+                "startBackground": "#e9a58117",
+                "endBackground": "#e9a58117",
                 "startBorderColor": "#80CBC400",
                 "endBorderColor": "#80CBC400"
             }
@@ -600,16 +600,16 @@
                 "font.size.offset": 0
             },
             "HeaderTab": {
-                "underlineColor": "#80CBC4",
+                "underlineColor": "#e9a581",
                 "inactiveBackground": "#11181600",
                 "hoverBackground": "#111816",
                 "hoverInactiveBackground": "#11181600",
-                "inactiveUnderlineColor": "#80CBC4"
+                "inactiveUnderlineColor": "#e9a581"
             },
             "Button": {
                 "foreground": "#CAE5D5",
-                "selectedForeground": "#80CBC4",
-                "selectedBackground": "#80CBC40f",
+                "selectedForeground": "#e9a581",
+                "selectedBackground": "#e9a5810f",
                 "DragAndDrop": {
                     "stripeBackground": "#111816",
                     "buttonDropBackground": "#CAE5D51a",
@@ -661,8 +661,8 @@
             "foreground": "#475C59",
             "selectionBackground": "#192420",
             "selectionInactiveBackground": "#ffffff0d",
-            "selectionForeground": "#80CBC4",
-            "selectionInactiveForeground": "#80CBC4",
+            "selectionForeground": "#e9a581",
+            "selectionInactiveForeground": "#e9a581",
             "rowHeight": 32,
             "hash": "#2C3F39b3",
             "border": "4,12,4,12",
@@ -914,7 +914,7 @@
                 "Foreground": "#CAE5D5",
                 "info.Foreground": "#CAE5D5cc",
                 "timer.Foreground": "#CAE5D5",
-                "link": "#80CBC4"
+                "link": "#e9a581"
             }
         },
         "RunWidget": {
@@ -1000,8 +1000,8 @@
             "textColor": "#CAE5D5cc"
         },
         "FlameGraph.Tooltip": {
-            "scaleBackground": "#80CBC433",
-            "scaleColor": "#80CBC466",
+            "scaleBackground": "#e9a58133",
+            "scaleColor": "#e9a58166",
             "foreground": "#CAE5D5"
         },
         "LineProfiler": {

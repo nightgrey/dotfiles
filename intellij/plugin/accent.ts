@@ -17,8 +17,7 @@
  */
 
 import { existsSync, readFileSync, writeFileSync, readdirSync } from "fs";
-import { join, dirname } from "path";
-import { parseArgs } from "util";
+import { join } from "path";
 
 // ---------------------------------------------------------------------------
 // Predefined accent colors (from the decompiled ViraThemeConfigFactory)
@@ -127,6 +126,19 @@ const VIRA_SCHEME_KEYS: string[] = [
   "SEARCH_RESULT_ATTRIBUTES.EFFECT_COLOR",
 ];
 
+// ---------------------------------------------------------------------------
+// Known nested attribute block names in scheme XML.
+// Keys like CTRL_CLICKABLE.FOREGROUND are stored as:
+//   <option name="CTRL_CLICKABLE"><value><option name="FOREGROUND" value="…"/></value></option>
+// ---------------------------------------------------------------------------
+const NESTED_SCHEME_PREFIXES = [
+  "CTRL_CLICKABLE",
+  "FOLLOWED_HYPERLINK_ATTRIBUTES",
+  "HYPERLINK_ATTRIBUTES",
+  "INACTIVE_HYPERLINK_ATTRIBUTES",
+  "SEARCH_RESULT_ATTRIBUTES",
+];
+
 const THEMES_DIR = join(import.meta.dir, "themes");
 const SCHEMES_DIR = join(import.meta.dir, "schemes");
 
@@ -160,20 +172,10 @@ function formatHex(r: number, g: number, b: number, a?: number): string {
   return `#${rr}${gg}${bb}`;
 }
 
-/** Relative luminance (sRGB) */
-function luminance(r: number, g: number, b: number): number {
-  const rs = r / 255;
-  const gs = g / 255;
-  const bs = b / 255;
-  const toLin = (c: number) =>
-    c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-  return 0.2126 * toLin(rs) + 0.7152 * toLin(gs) + 0.0722 * toLin(bs);
-}
-
-/** Return "#000000" or "#FFFFFF" depending on accent luminance */
+/** Perceived brightness using the same formula as the Java Core.a() method */
 function accentForeground(hex: string): string {
   const { r, g, b } = parseHex(hex);
-  // The Java code uses: (R*299 + G*587 + B*114) / 1000 > 128
+  // (R*299 + G*587 + B*114) / 1000 > 128
   const perceived = (r * 299 + g * 587 + b * 114) / 1000;
   return perceived > 128 ? "#000000" : "#FFFFFF";
 }
@@ -195,31 +197,68 @@ function replaceColorPreservingAlpha(existing: string, newAccent: string): strin
 // ---------------------------------------------------------------------------
 
 /**
- * Resolve a dotted path into a nested object, returning the leaf value and
- * a function to set it. Returns null if the path can't be fully traversed.
+ * Resolve a dotted path into the UI object.
+ *
+ * IntelliJ theme JSONs use a mix of nested objects AND flat dotted keys:
+ *
+ *   Nested:  ui.Button.default.foreground       → ui["Button"]["default"]["foreground"]
+ *   Flat:    ui.FlameGraph.Tooltip.scaleColor    → ui["FlameGraph.Tooltip"]["scaleColor"]
+ *
+ * This function tries progressively longer flat-key prefixes until it finds a
+ * matching path.
  */
-function resolvePath(
-  obj: Record<string, unknown>,
+function resolveUiPath(
+  ui: Record<string, unknown>,
   path: string,
 ): { value: unknown; set: (v: unknown) => void } | null {
   const parts = path.split(".");
-  let current: Record<string, unknown> = obj;
-  for (let i = 0; i < parts.length - 1; i++) {
-    const seg = parts[i];
-    const child = current[seg];
-    if (!child || typeof child !== "object" || Array.isArray(child)) {
-      return null;
+
+  // Try progressively longer flat-key prefixes.
+  // For "FlameGraph.Tooltip.scaleBackground":
+  //   attempt 1: current=ui,   key="FlameGraph",               rest=["Tooltip","scaleBackground"]
+  //   attempt 2: current=ui,   key="FlameGraph.Tooltip",       rest=["scaleBackground"]
+  //   attempt 3: current=ui,   key="FlameGraph.Tooltip.scaleBackground", rest=[]  → wouldn't reach here if nested fails
+  for (let flatSegs = 1; flatSegs <= parts.length; flatSegs++) {
+    const flatKey = parts.slice(0, flatSegs).join(".");
+    const flatChild = ui[flatKey];
+    if (flatChild === undefined || flatChild === null) continue;
+    if (typeof flatChild !== "object" || Array.isArray(flatChild)) continue;
+
+    let current = flatChild as Record<string, unknown>;
+    const remaining = parts.slice(flatSegs);
+    let ok = true;
+
+    // Traverse remaining segments
+    for (let i = 0; i < remaining.length - 1; i++) {
+      const seg = remaining[i];
+      const child = current[seg];
+      if (!child || typeof child !== "object" || Array.isArray(child)) {
+        ok = false;
+        break;
+      }
+      current = child as Record<string, unknown>;
     }
-    current = child as Record<string, unknown>;
+
+    if (!ok) continue;
+
+    const last = remaining[remaining.length - 1];
+    if (remaining.length === 0) {
+      // The flat key itself is the leaf (value), but our keys always
+      // resolve to a colour string, not an object, so this shouldn't happen.
+      continue;
+    }
+
+    if (!(last in current)) continue;
+
+    return {
+      value: current[last],
+      set: (v: unknown) => {
+        current[last] = v;
+      },
+    };
   }
-  const last = parts[parts.length - 1];
-  if (!(last in current)) return null;
-  return {
-    value: current[last],
-    set: (v: unknown) => {
-      current[last] = v;
-    },
-  };
+
+  return null;
 }
 
 /**
@@ -245,7 +284,6 @@ function findAllKeys(
 function patchThemeJson(
   filePath: string,
   accentHex: string,
-  accentHexNoHash: string,
   fgHex: string,
 ): boolean {
   const raw = readFileSync(filePath, "utf-8");
@@ -270,7 +308,7 @@ function patchThemeJson(
         }
       }
     } else {
-      const resolved = resolvePath(ui, key);
+      const resolved = resolveUiPath(ui, key);
       if (!resolved) continue;
       const existing = resolved.value;
       if (typeof existing !== "string") continue;
@@ -285,7 +323,7 @@ function patchThemeJson(
 
   // ----- 2. Replace accent foreground keys (luminance-based black/white) -----
   for (const key of ACCENT_FOREGROUND_KEYS) {
-    const resolved = resolvePath(ui, key);
+    const resolved = resolveUiPath(ui, key);
     if (!resolved) continue;
     const existing = resolved.value as string;
     if (existing === fgHex) continue;
@@ -308,19 +346,25 @@ function patchThemeJson(
 // Scheme XML patching
 // ---------------------------------------------------------------------------
 
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 /**
  * Patch a simple flat key like:
  *   <option name="Adaptive.accent" value="80CBC4" />
+ *   <option name="TAB_UNDERLINE" value="80CBC4" />
+ *
+ * Keys without dots (MODIFIED_TAB_ICON, TAB_UNDERLINE, etc.) are also stored
+ * as flat <option> elements.
  */
 function patchFlatSchemeKey(
   xml: string,
   key: string,
-  accentHex: string,
   accentHexNoHash: string,
 ): string {
-  // Match: <option name="KEY" value="HEX" />
   const regex = new RegExp(
-    `(<option\\s+name="${escapeXml(key)}"\\s+value=")([0-9A-Fa-f]*)("\\s*/>)`,
+    `(<option\\s+name="${escapeRegExp(key)}"\\s+value=")([0-9A-Fa-f]*)("\\s*/>)`,
     "g",
   );
   return xml.replace(regex, (_match, prefix, oldVal, suffix) => {
@@ -334,14 +378,12 @@ function patchFlatSchemeKey(
 
 /**
  * Patch a nested attribute-level key like:
- *   CTRL_CLICKABLE.FOREGROUND → inside <option name="CTRL_CLICKABLE">…
- *
- * We find the outer block, then replace the inner <option name="KEY"> value.
+ *   CTRL_CLICKABLE.FOREGROUND  →
+ *     inside <option name="CTRL_CLICKABLE"><value><option name="FOREGROUND" value="…"/></value></option>
  */
 function patchNestedSchemeKey(
   xml: string,
   dottedKey: string,
-  accentHex: string,
   accentHexNoHash: string,
 ): string {
   const dotIdx = dottedKey.indexOf(".");
@@ -350,14 +392,14 @@ function patchNestedSchemeKey(
   const innerKey = dottedKey.slice(dotIdx + 1);
 
   // Find the outer block: <option name="OUTER_KEY"> ... </option>
+  // Using non-greedy [\s\S]*? to match the shortest closing </option>
   const outerRegex = new RegExp(
-    `(<option\\s+name="${escapeXml(outerKey)}">[\\s\\S]*?</option>)`,
+    `(<option\\s+name="${escapeRegExp(outerKey)}">[\\s\\S]*?</option>)`,
     "g",
   );
   return xml.replace(outerRegex, (outerMatch) => {
-    // Inside the block, replace inner <option name="INNER_KEY" value="..."/>
     const innerRegex = new RegExp(
-      `(<option\\s+name="${escapeXml(innerKey)}"\\s+value=")([0-9A-Fa-f]*)("\\s*/>)`,
+      `(<option\\s+name="${escapeRegExp(innerKey)}"\\s+value=")([0-9A-Fa-f]*)("\\s*/>)`,
     );
     return outerMatch.replace(innerRegex, (_m, prefix, oldVal, suffix) => {
       if (!oldVal) return _m;
@@ -368,45 +410,26 @@ function patchNestedSchemeKey(
   });
 }
 
-function escapeXml(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 function patchSchemeXml(
   filePath: string,
-  accentHex: string,
   accentHexNoHash: string,
 ): boolean {
   let xml = readFileSync(filePath, "utf-8");
   const before = xml;
 
-  // Apply flat keys
-  for (const key of [...GLOBAL_SCHEME_KEYS, ...VIRA_SCHEME_KEYS]) {
-    if (key.includes(".") && key.split(".").length > 2) continue; // not flat
-    if (!key.includes(".")) continue; // all our keys have dots
-    // Check if it's a simple flat key (no deeper nesting beyond one dot)
-    const dotCount = (key.match(/\./g) || []).length;
-    if (dotCount === 1) {
-      xml = patchFlatSchemeKey(xml, key, accentHex, accentHexNoHash);
-    }
+  // Collect all scheme keys (deduplicated)
+  const allKeys = [...new Set([...GLOBAL_SCHEME_KEYS, ...VIRA_SCHEME_KEYS])];
+
+  // ----- 1. Flat key replacement: try every key as a flat <option> -----
+  for (const key of allKeys) {
+    xml = patchFlatSchemeKey(xml, key, accentHexNoHash);
   }
 
-  // Apply nested attribute-level keys (CTRL_CLICKABLE.FOREGROUND etc.)
+  // ----- 2. Nested key replacement for known attribute blocks -----
   for (const key of VIRA_SCHEME_KEYS) {
-    if (!key.includes(".")) continue;
-    // Keys with more than one dot are nested attributes
-    const dotCount = (key.match(/\./g) || []).length;
-    if (dotCount >= 2) continue;
-    // Check if this key refers to a sub-attribute (not a flat option)
-    // Flat keys have the subkey after one dot: "Adaptive.accent" is flat
-    // Nested attribute keys: "CTRL_CLICKABLE.FOREGROUND" where CTRL_CLICKABLE is a block
-    // We can detect this by checking if the key after the dot is a known attribute name
-    const knownNested = ["CTRL_CLICKABLE", "FOLLOWED_HYPERLINK_ATTRIBUTES",
-      "HYPERLINK_ATTRIBUTES", "INACTIVE_HYPERLINK_ATTRIBUTES",
-      "SEARCH_RESULT_ATTRIBUTES"];
     const outerPart = key.split(".")[0];
-    if (knownNested.includes(outerPart)) {
-      xml = patchNestedSchemeKey(xml, key, accentHex, accentHexNoHash);
+    if (NESTED_SCHEME_PREFIXES.includes(outerPart)) {
+      xml = patchNestedSchemeKey(xml, key, accentHexNoHash);
     }
   }
 
@@ -444,7 +467,9 @@ function main() {
   } else {
     // Validate hex
     if (!/^#[0-9A-Fa-f]{6}$/.test(input) && !/^#[0-9A-Fa-f]{8}$/.test(input)) {
-      console.error(`Error: "${input}" is not a valid hex colour (#RRGGBB) or preset.`);
+      console.error(
+        `Error: "${input}" is not a valid hex colour (#RRGGBB) or preset.`,
+      );
       process.exit(1);
     }
     accentHex = input;
@@ -468,7 +493,7 @@ function main() {
   console.log("── Patching theme JSONs ──");
   for (const f of themeFiles) {
     const fp = join(THEMES_DIR, f);
-    patchThemeJson(fp, accentHex, accentHexNoHash, fgHex);
+    patchThemeJson(fp, accentHex, fgHex);
   }
 
   // ----- Patch scheme XMLs -----
@@ -477,13 +502,13 @@ function main() {
     process.exit(1);
   }
   const schemeFiles = readdirSync(SCHEMES_DIR)
-    .filter((f) => f.endsWith(".xml"))
+    .filter((f) => f.endsWith(".xml") && !f.endsWith(".bak"))
     .sort();
 
   console.log("\n── Patching scheme XMLs ──");
   for (const f of schemeFiles) {
     const fp = join(SCHEMES_DIR, f);
-    patchSchemeXml(fp, accentHex, accentHexNoHash);
+    patchSchemeXml(fp, accentHexNoHash);
   }
 
   console.log("\nDone.");
