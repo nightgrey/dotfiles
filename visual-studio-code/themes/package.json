@@ -1,0 +1,131 @@
+{
+  "name": "themes",
+  "displayName": "Themes",
+  "version": "1.0.0",
+  "description": "A collection of custom themes.",
+  "categories": [
+    "Themes"
+  ],
+  "publisher": "Me",
+  "scripts": {
+    "build": "bunx vsce package --allow-missing-repository --out themes.vsix",
+    "deploy": "code --install-extension themes.vsix"
+  },
+  "dependencies": {
+    "oxfmt": "^0.45.0",
+    "oxlint": "^1.60.0"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "[Themes] Vira Teal",
+        "path": "./themes/original/Vira-Theme-Teal.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Teal High Contrast",
+        "path": "./themes/original/Vira-Theme-Teal-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Graphene",
+        "path": "./themes/original/Vira-Theme-Graphene.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Graphene High Contrast",
+        "path": "./themes/original/Vira-Theme-Graphene-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Palenight",
+        "path": "./themes/original/Vira-Theme-Palenight.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Palenight High Contrast",
+        "path": "./themes/original/Vira-Theme-Palenight-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Ocean",
+        "path": "./themes/original/Vira-Theme-Ocean.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Ocean High Contrast",
+        "path": "./themes/original/Vira-Theme-Ocean-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Deepforest",
+        "path": "./themes/original/Vira-Theme-Deepforest.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Deepforest High Contrast",
+        "path": "./themes/original/Vira-Theme-Deepforest-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Carbon",
+        "path": "./themes/original/Vira-Theme-Carbon.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Carbon High Contrast",
+        "path": "./themes/original/Vira-Theme-Carbon-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Anthracite",
+        "path": "./themes/original/Vira-Theme-Anthracite.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Anthracite High Contrast",
+        "path": "./themes/original/Vira-Theme-Anthracite-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Montana",
+        "path": "./themes/original/Vira-Theme-Montana.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Montana High Contrast",
+        "path": "./themes/original/Vira-Theme-Montana-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Sand",
+        "path": "./themes/original/Vira-Theme-Sand.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Sand High Contrast",
+        "path": "./themes/original/Vira-Theme-Sand-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Clay",
+        "path": "./themes/original/Vira-Theme-Clay.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes] Vira Clay High Contrast",
+        "path": "./themes/original/Vira-Theme-Clay-High-Contrast.json",
+        "uiTheme": "vs-dark"
+      },
+      {
+        "label": "[Themes/Custom] Vira Anthracite",
+        "path": "./themes/custom/Vira-Theme-Anthracite.json",
+        "uiTheme": "vs-dark"
+      }
+    ]
+  },
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.60.0"
+  }
+}
