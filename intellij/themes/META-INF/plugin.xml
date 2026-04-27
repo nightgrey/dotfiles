@@ -1,0 +1,32 @@
+<idea-plugin>
+  <id>grey.themes</id>
+  <name>Grey Themes</name>
+  <version>0.1</version>
+  <vendor email="" url="http://"></vendor>
+
+  <description><![CDATA[
+      A collection of themes.
+    ]]></description>
+
+  <change-notes><![CDATA[
+      
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="142.0"/>
+
+  <depends>com.intellij.modules.lang</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="grey.themes.vira-teal" path="/themes/Vira-Teal.theme.json" />
+    <themeProvider id="grey.themes.vira-graphene" path="/themes/Vira-Graphene.theme.json" />
+    <themeProvider id="grey.themes.vira-ocean" path="/themes/Vira-Ocean.theme.json" />
+    <themeProvider id="grey.themes.vira-palenight" path="/themes/Vira-Palenight.theme.json" />
+    <themeProvider id="grey.themes.vira-deepforest" path="/themes/Vira-Deepforest.theme.json" />
+    <themeProvider id="grey.themes.vira-carbon" path="/themes/Vira-Carbon.theme.json" />
+    <themeProvider id="grey.themes.vira-montana" path="/themes/Vira-Montana.theme.json" />
+    <themeProvider id="grey.themes.vira-sand" path="/themes/Vira-Sand.theme.json" />
+    <themeProvider id="grey.themes.vira-clay" path="/themes/Vira-Clay.theme.json" />
+    <themeProvider id="grey.themes.vira-anthracite" path="/themes/Vira-Anthracite.theme.json" />
+  </extensions>
+</idea-plugin>
