@@ -1,9 +1,9 @@
 {
-    "name": "Vira Palenight",
+    "name": "Grey's Vira Palenight",
     "dark": true,
     "author": "vira",
     "editorScheme": "/schemes/Vira-Palenight.xml",
-    "nameKey": "Vira-Palenight",
+    "nameKey": "Greys-Vira-Palenight",
     "colors": {
         "border": "#ffffff0f",
         "disabledForeground": "#676E95",
@@ -14,9 +14,9 @@
     "ui": {
         "Islands": 1,
         "Island": {
-            "arc": 20,
+            "arc": 16,
             "arc.compact": 16,
-            "borderWidth": 8,
+            "borderWidth": 6,
             "borderWidth.compact": 6,
             "borderColor": "#232634",
             "inactiveAlpha": 0.44,
@@ -663,7 +663,7 @@
             "selectionInactiveBackground": "#00000033",
             "selectionForeground": "#e9a581",
             "selectionInactiveForeground": "#e9a581",
-            "rowHeight": 32,
+            "rowHeight": 24,
             "hash": "#4E5579b3",
             "border": "4,12,4,12",
             "Selection": {
@@ -671,7 +671,7 @@
             }
         },
         "SettingsTree": {
-            "rowHeight": 32
+            "rowHeight": 24
         },
         "TrialWidget": {
             "Default": {

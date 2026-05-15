@@ -1,9 +1,9 @@
 {
-    "name": "Vira Sand",
+    "name": "Grey's Vira Sand",
     "dark": true,
     "author": "vira",
     "editorScheme": "/schemes/Vira-Sand.xml",
-    "nameKey": "Vira-Sand",
+    "nameKey": "Greys-Vira-Sand",
     "colors": {
         "border": "#ffffff0f",
         "disabledForeground": "#46443E",
@@ -14,9 +14,9 @@
     "ui": {
         "Islands": 1,
         "Island": {
-            "arc": 20,
+            "arc": 16,
             "arc.compact": 16,
-            "borderWidth": 8,
+            "borderWidth": 6,
             "borderWidth.compact": 6,
             "borderColor": "#131210",
             "inactiveAlpha": 0.44,
@@ -663,7 +663,7 @@
             "selectionInactiveBackground": "#0000004d",
             "selectionForeground": "#e9a581",
             "selectionInactiveForeground": "#e9a581",
-            "rowHeight": 32,
+            "rowHeight": 24,
             "hash": "#201F1Db3",
             "border": "4,12,4,12",
             "Selection": {
@@ -671,7 +671,7 @@
             }
         },
         "SettingsTree": {
-            "rowHeight": 32
+            "rowHeight": 24
         },
         "TrialWidget": {
             "Default": {

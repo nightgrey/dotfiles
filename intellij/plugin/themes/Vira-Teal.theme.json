@@ -1,9 +1,9 @@
 {
-    "name": "Vira Teal",
+    "name": "Grey's Vira Teal",
     "dark": true,
     "author": "vira",
     "editorScheme": "/schemes/Vira-Teal.xml",
-    "nameKey": "Vira-Teal",
+    "nameKey": "Greys-Vira-Teal",
     "colors": {
         "border": "#ffffff0f",
         "disabledForeground": "#546E7A",
@@ -14,9 +14,9 @@
     "ui": {
         "Islands": 1,
         "Island": {
-            "arc": 20,
+            "arc": 16,
             "arc.compact": 16,
-            "borderWidth": 8,
+            "borderWidth": 6,
             "borderWidth.compact": 6,
             "borderColor": "#263238",
             "inactiveAlpha": 0.44,
@@ -663,7 +663,7 @@
             "selectionInactiveBackground": "#00000033",
             "selectionForeground": "#e9a581",
             "selectionInactiveForeground": "#e9a581",
-            "rowHeight": 32,
+            "rowHeight": 24,
             "hash": "#37474Fb3",
             "border": "4,12,4,12",
             "Selection": {
@@ -671,7 +671,7 @@
             }
         },
         "SettingsTree": {
-            "rowHeight": 32
+            "rowHeight": 24
         },
         "TrialWidget": {
             "Default": {
