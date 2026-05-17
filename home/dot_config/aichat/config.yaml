@@ -1,12 +1,11 @@
 # https://github.com/sigoden/aichat/blob/main/config.example.yaml
 # https://github.com/sigoden/aichat/wiki/Configuration-Guide
-model: openrouter:z-ai/glm-5-turbo:exacto
+model: openrouter:anthropic/claude-sonnet-4.7
 # ---- behavior ----
-save: true                       # Indicates whether to persist the message
-editor: micro                     # Specifies the command used to edit input buffer or session. (e.g. vim, emacs, nano).
-wrap: auto                       # Controls text wrapping (no, auto, <max-width>)
-wrap_code: false                 # Enables or disables wrapping of code blocks
-save_shell_history: true         # Save shell history
+save: true # Indicates whether to persist the message
+wrap: auto # Controls text wrapping (no, auto, <max-width>)
+wrap_code: false # Enables or disables wrapping of code blocks
+save_shell_history: true # Save shell history
 
 # ---- session ----
 # Controls the persistence of the session. if true, auto save; if false, not save; if null, asking the user
@@ -39,7 +38,6 @@ clients:
     name: openrouter
     api_base: https://openrouter.ai/api/v1
 
-    
   - type: openai-compatible
     name: hyperbolic
     api_base: https://api.hyperbolic.xyz/v1

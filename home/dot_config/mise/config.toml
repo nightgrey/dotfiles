@@ -1,6 +1,5 @@
 [tools]
 bun = "latest"
-dprint = "latest"
 go = "latest"
 node = "latest"
 rust = "nightly"
@@ -10,11 +9,8 @@ uv = "latest"
 zig = "0.14.1"
 zls = "0.14.0"
 pnpm = "latest"
-
+ruby = "4.0.3"
+watchexec = "latest"
 
 [settings]
-
-status = {  
-    show_env = true,
-show_tools = true,
-}
+experimental = true

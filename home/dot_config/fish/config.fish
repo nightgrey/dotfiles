@@ -22,9 +22,11 @@ atuin gen-completions --shell fish | source
 bind up _atuin_bind_up
 
 # Completions
+wt config shell init fish | source
 uv generate-shell-completion fish | source
 srgn --completions fish | source
 chezmoi completion fish | source
+grove switch shell-init | source
 
 # Temporary + extra completions
 source ~/.config/fish/temp.fish

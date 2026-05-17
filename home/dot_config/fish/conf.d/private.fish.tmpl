@@ -8,3 +8,5 @@ export HYPERBOLIC_API_KEY="{{- (onepasswordDetailsFields "Hyperbolic AI API").cr
 export STABILITY_API_KEY="{{- (onepasswordDetailsFields "Stability AI API").credential.value }}"
 export SAI_API_KEY=$STABILITY_API_KEY
 export DEEPSEEK_API_KEY="{{- (onepasswordDetailsFields "Deepseek API").credential.value }}" 
+export MOONSHOT_API_KEY="{{- (onepasswordDetailsFields "Moonshot API").credential.value }}"
+export KIMI_API_KEY="$MOONSHOT_API_KEY"

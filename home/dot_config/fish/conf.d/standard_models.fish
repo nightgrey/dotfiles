@@ -13,12 +13,14 @@
 # end
 # ```
 set -gx STANDARD_MODELS \
+    "openrouter:deepseek/deepseek-v4-flash|deepseek-flash,ds-flash,deepseek,ds|DeepSeek V4 (Flash)" \
+    "openrouter:deepseek/deepseek-v4-pro|deepseek-pro,ds-pro|DeepSeek V4 (Pro)" \
     "openrouter:moonshotai/kimi-k2.5|kimi|Kimi K2.5" \
     "openrouter:z-ai/glm-5-turbo|glm|GLM 5 Turbo" \
     "openrouter:google/gemini-3-pro-preview|gemini,google|Gemini 3.0 Pro" \
     "openrouter:openai/gpt-5.2-codex|gpt,codex|GPT-5.2 Codex" \
-    "openrouter:anthropic/claude-sonnet-4.6|claude,sonnet|Claude Sonnet 4.6" \
-    "openrouter:anthropic/claude-opus-4.6|opus|Claude Opus 4.6"
+    "openrouter:anthropic/claude-sonnet-4.7|claude,sonnet|Claude Sonnet 4.7" \
+    "openrouter:anthropic/claude-opus-4.7|opus|Claude Opus 4deepseek-flash.7"
 
 # Set individual environment variables (`$STANDARD_MODEL_KIMI`, `$STANDARD_MODEL_GEMINI`, `$STANDARD_MODEL_CLAUDE`, etc.)
 #
@@ -33,8 +35,9 @@ for entry in $STANDARD_MODELS
     # Create an environment variable for each alias
     for alias in $aliases
         # Convert alias to uppercase for environment variable name
-        # e.g. kimi -> STANDARD_MODEL_KIMI, gpt -> STANDARD_MODEL_GPT, etc.
-        set --local env_variable (string upper "STANDARD_MODEL_$alias")
+        # e.g. kimi -> STANDARD_MODEL_KIMI, gpt -> STANDARD_MODEL_GPT, etc. 
+        set --local normalized_alias (string trim (string replace -r '-' '_' $alias))
+        set --local env_variable (string upper "STANDARD_MODEL_$normalized_alias")
 
         # Set the environment variable globally and export it
         set -gx $env_variable $model
