@@ -1,9 +1,3 @@
-# code
-
-# Technically only needed when ran from inside floating ghostty because tdrop does not support wayland yet.
-# Too lazy to if-condition it properly, though.
-alias code="env --unset=WAYLAND_DISPLAY code"
-
 # eza
 alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing
 alias la='eza -a --color=always --group-directories-first --icons' # all files and dirs

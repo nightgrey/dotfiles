@@ -1,3 +1,11 @@
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
+workspace "dev"
+workspace "browser"
+
+
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
@@ -13,7 +21,7 @@ input {
             // For more information, see xkeyboard-config(7).
 
             // For example:
-            // layout "us,ru"
+            // layout ""
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
 
             // If this section is empty, niri will fetch xkb settings
@@ -23,6 +31,9 @@ input {
 
         // Enable numlock on startup, omitting this setting disables it.
         numlock
+        repeat-delay 200
+        repeat-rate 50
+        track-layout "global"
     }
 
     // Next sections include libinput settings.
@@ -35,7 +46,7 @@ input {
         // dwtp
         // drag false
         // drag-lock
-        natural-scroll
+        // natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
         // scroll-method "two-finger"
@@ -43,11 +54,17 @@ input {
     }
 
     mouse {
-        // off
+		// off
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 1.0
+        accel-profile "flat"
+        scroll-factor 1.25
+        // scroll-factor vertical=1.0 horizontal=-2.0
         // scroll-method "no-scroll"
+        // scroll-button 273
+        // scroll-button-lock
+        // left-handed
+        // middle-emulation
     }
 
     trackpoint {
@@ -75,7 +92,7 @@ input {
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
+output "DP-2" {
     // Uncomment this line to disable this output.
     // off
 
@@ -85,10 +102,10 @@ input {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
+    mode "2560x1440@143.998"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
+    scale 1.0
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -159,7 +176,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -167,7 +184,7 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
+        active-color "#bc000c"
 
         // Color of the ring on inactive monitors.
         //
@@ -195,11 +212,11 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        off
+        // off
 
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
+        width 1
+        active-color "#444"
+        inactive-color "#444"
 
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
@@ -361,6 +378,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Ctrl+Space hotkey-overlay-title="Application launcher" { spawn "fuzzel";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -582,10 +600,12 @@ binds {
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
     Mod+Minus { set-column-width "-10%"; }
+    Mod+Plus { set-column-width "+10%"; }
     Mod+Equal { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
     Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Plus { set-window-height "+10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
@@ -626,4 +646,10 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+
+    // Custom
+
+    // Pick a color and copy it to the clipboard
+    
 }
