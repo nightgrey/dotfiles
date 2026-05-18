@@ -3,8 +3,10 @@
  
 
 workspace "ndrop" {
-    open-on-output "eDP-1";
 }
+
+workspace "browser"
+
 // Keybinds
 // https://niri-wm.github.io/niri/Configuration%3A-Key-Bindings.html
 binds {
@@ -20,6 +22,7 @@ binds {
     }
 
     Alt+Space repeat=false hotkey-overlay-title="Application Launcher" { spawn "fuzzel"; }
+    Mod+Space repeat=false hotkey-overlay-title="Application Launcher" { spawn "fuzzel"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
 
@@ -53,19 +56,13 @@ binds {
     // Scroll columns and workspaces
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
-    Mod+WheelScrollLeft { focus-column-left; }
-    Mod+WheelScrollRight { focus-column-right; }
+    Mod+WheelScrollLeft cooldown-ms=150 { focus-column-left; }
+    Mod+WheelScrollRight cooldown-ms=150 { focus-column-right; }
 
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
-
-    // Shift-scroll columns
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    Mod+Ctrl+WheelScrollRight cooldown-ms=150 { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft cooldown-ms=150  { move-column-left; }
 
     // Consume/expel windows
     Mod+Comma  { consume-window-into-column; }
@@ -197,23 +194,21 @@ binds {
 
 // Window rules
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
-
+window-rule {
+    match app-id="^firefox$"
+    open-on-workspace "browser"
+}
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id="^firefox$" title="^Picture-in-Picture$"
     open-floating true
 }
-
-// Open the Firefox picture-in-picture player as floating by default.
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id="floating.ghostty"
+    match title="^(Open File|Open File -.*)$"
     open-floating true
+    default-window-height { proportion 0.5; }
+    max-height 700
+    // Anchor to the top edge of the screen.
 }
 // Layout
 // https://niri-wm.github.io/niri/Configuration:-Layout
@@ -228,6 +223,8 @@ layout {
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
     center-focused-column "never"
+
+    empty-workspace-above-first
 
     preset-column-widths {
         proportion 0.33333
