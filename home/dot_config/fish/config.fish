@@ -1,6 +1,7 @@
 # Fish config
 # https://fishshell.com/docs/current/index.html
 
+set -g fish_greeting
 # set -U fish_features regex-easyesc qmark-noglob ampersand-nobg-in-token remove-percent-self test-require-arg query-term
 
 oh-my-posh init fish -c ~/.config/oh-my-posh/config.json | source
@@ -27,7 +28,8 @@ uv generate-shell-completion fish | source
 srgn --completions fish | source
 chezmoi completion fish | source
 grove switch shell-init | source
-
+piri completion fish | source
+niri completions fish | source
 # Temporary + extra completions
 source ~/.config/fish/temp.fish
 source ~/.config/fish/_completions/*.fish
