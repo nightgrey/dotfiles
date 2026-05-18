@@ -1,4 +1,4 @@
-function printc --description 'Prints a colored message to the terminal'
+function colored --description 'Prints a colored message to the terminal'
     set -l color $argv[0]
     set -l message (string join ' ' $argv[2..-1])
 
@@ -6,3 +6,5 @@ function printc --description 'Prints a colored message to the terminal'
     echo $message
     set_color normal
 end
+
+alias color=printc

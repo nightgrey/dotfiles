@@ -3,8 +3,8 @@ function ansi --description "Show control character information"
     set -l end_byte
     set -l is_range false
 
-    # Parse range syntax (e.g., "0x40..0x2F" or "64..47")
-    if string match -qr '\.\.' -- $argv[1]
+    # Parse range syntax (e.g., "0x40..0x2F" or "64..47" or "0x40..=0x2F")
+    if string match -qr '\.\.=?' -- $argv[1]
         set is_range true
         set -l range_parts (string split '..' -- $argv[1])
 
@@ -20,12 +20,12 @@ function ansi --description "Show control character information"
         else
             set end_byte $range_parts[2]
         end
-    # Original two-argument syntax
+        # Original two-argument syntax
     else if test (count $argv) -ge 2
         set is_range true
         set start_byte $argv[1]
         set end_byte $argv[2]
-    # Single value
+        # Single value
     else
         set start_byte $argv[1]
         set end_byte $argv[1]

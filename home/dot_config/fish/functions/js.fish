@@ -9,14 +9,14 @@ function js-eval -d "Evaluate code"
 
     set code (string join ' ' $argv)
 
-    if test -z "$code" 
+    if test -z "$code"
         echo "Usage: js [...code]"
         return 1
     end
 
     set dir (dirname (status filename))
 
-    set script (path resolve "$dir/js-eval.ts")
+    set script (path resolve "$dir/js.ts")
 
     if set -ql _flag_i
         echo (bun run $script -- $code --inspect | string collect)
