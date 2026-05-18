@@ -1,5 +1,5 @@
 function block --description 'Wrap input in a code block'
-    argparse  "l/language=?" -- $argv
+    argparse "l/language=?" -- $argv
 
     set -l code (string collect "$argv")
 
@@ -15,8 +15,10 @@ function block --description 'Wrap input in a code block'
     end
 end
 
+complete --command block --no-files
+
 function tag --description 'Wrap input in a HTML/XML tag'
-    argparse -n "tag" --min-args 2 -- $argv
+    argparse -n tag --min-args 2 -- $argv
 
     set -l tag_name "$argv[1]"
     set -l content (string collect "$argv[2..-1]")
@@ -24,12 +26,14 @@ function tag --description 'Wrap input in a HTML/XML tag'
     printf '<%s>\n%s\n</%s>' "$tag_name" "$content" "$tag_name"
 end
 
+complete --command tag --no-files
+
 function hr --description 'Draws a horizontal rule'
     argparse n/newline -- $argv
 
     if test -n "$_flag_newline"
         echo -n (string repeat --count (tput cols) '─')
-    else 
+    else
         echo (string repeat --count (tput cols) '─')
     end
 end

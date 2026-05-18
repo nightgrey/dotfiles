@@ -5,8 +5,6 @@
 workspace "ndrop" {
 }
 
-workspace "browser"
-
 // Keybinds
 // https://niri-wm.github.io/niri/Configuration%3A-Key-Bindings.html
 binds {
@@ -214,7 +212,7 @@ window-rule {
 // https://niri-wm.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 24
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -323,7 +321,7 @@ input {
     }
 
     mouse {
-		// off
+		    // off
         // natural-scroll
         accel-speed 1.0
         accel-profile "flat"
@@ -374,8 +372,6 @@ output "DP-2" {
 // Environment
 // https://niri-wm.github.io/niri/Configuration%3A-Miscellaneous.html#environment
 environment {
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    QT_QPA_PLATFORM "wayland"
 }
 
 
