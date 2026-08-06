@@ -11,6 +11,7 @@ zls = "0.14.0"
 pnpm = "latest"
 ruby = "4.0.3"
 watchexec = "latest"
+cargo-binstall = "latest"
 
 [settings]
 experimental = true

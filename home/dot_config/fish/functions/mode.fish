@@ -1,6 +1,6 @@
-function mode -d "Switch scheduler mode"
-    set -l current (scxctl get 2>/dev/null)
-    
+function mode2 -d "Switch scheduler mode"
+    set -l current (scxctl get)
+
     switch $argv[1]
         case g game gamer gaming
             if string match -q "*Lavd*Gaming*" $current

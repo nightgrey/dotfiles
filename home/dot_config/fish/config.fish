@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------
 
 set -g fish_greeting
-set -U fish_features regex-easyesc query-term
+#set -U fish_features regex-easyesc query-term
 # qmark-noglob ampersand-nobg-in-token remove-percent-self test-require-arg
 
 # -------------------- -----------------------------------------------------------
@@ -24,6 +24,7 @@ if test "$PAGER" = (command -v bat)
 end
 
 set -gx LAUNCH_EDITOR (test -n "$LAUNCH_EDITOR" && echo $LAUNCH_EDITOR || echo $EDITOR)
+set -gx QT_QPA_PLATFORM "wayland;xcb"
 
 # .local/bin
 fish_add_path -g $HOME/.local/bin
@@ -130,6 +131,7 @@ chezmoi completion fish | source
 grove switch shell-init | source
 piri completion fish | source
 niri completions fish | source
+crush completion fish | source
 
 # ------------------------------------------------------------------------------
 # KEYBINDINGS

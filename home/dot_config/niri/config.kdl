@@ -2,8 +2,30 @@
 // https://niri-wm.github.io/niri/Configuration:-Introduction
  
 
-workspace "ndrop" {
-}
+workspace "ndrop"
+
+// workspace "browser" {
+
+//   layout {
+//       default-column-width { proportion 1.0; }
+//       always-center-single-column
+//     focus-ring {
+//         active-gradient from="#446fff" to="#92e9ff" angle=45
+//     }
+//   }
+// }
+
+// workspace "ide" {
+//  layout {
+//         default-column-width { proportion 1.0; }
+//    always-center-single-column
+
+//   focus-ring {
+//       active-gradient from="#ffa63f" to="#ffdabb" angle=45
+//   }
+//  }
+// }
+
 
 // Keybinds
 // https://niri-wm.github.io/niri/Configuration%3A-Key-Bindings.html
@@ -182,7 +204,7 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
-
+ 
     Mod+Q repeat=false { close-window; }
 
     // Powers off the monitors. To turn them back on, do any input like
@@ -190,17 +212,26 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
-// Window rules
-// https://niri-wm.github.io/niri/Configuration:-Window-Rules
-window-rule {
-    match app-id="^firefox$"
-    open-on-workspace "browser"
-}
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     match app-id="^firefox$" title="^Picture-in-Picture$"
     open-floating true
 }
+
+// Window rules
+// https://niri-wm.github.io/niri/Configuration:-Window-Rules
+window-rule {
+    match app-id="firefox"
+    open-on-workspace "browser"
+}
+ 
+
+window-rule {
+  match app-id="^jetbrains-.*"
+  open-on-workspace "ide"
+}
+
+
 window-rule {
     match title="^(Open File|Open File -.*)$"
     open-floating true
@@ -208,6 +239,7 @@ window-rule {
     max-height 700
     // Anchor to the top edge of the screen.
 }
+
 // Layout
 // https://niri-wm.github.io/niri/Configuration:-Layout
 layout {
@@ -221,8 +253,6 @@ layout {
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
     center-focused-column "never"
-
-    empty-workspace-above-first
 
     preset-column-widths {
         proportion 0.33333
